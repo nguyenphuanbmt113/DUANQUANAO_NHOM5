@@ -282,3 +282,6 @@ export const searchProduct = asyncHandler(async (req, res) => {
     });
   }
 });
+export const getSearchBar = asyncHandler(async (req, res) => {
+  
+});
