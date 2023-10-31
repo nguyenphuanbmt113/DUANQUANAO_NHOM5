@@ -7,6 +7,9 @@ import { DashBoard } from "./page/dashboard/DashBoard";
 import { Product } from "./page/dashboard/Product";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { ToastContainer } from "react-toastify";
+
 const App = () => {
   return (
     <>
@@ -14,8 +17,12 @@ const App = () => {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/dashboard" element={<DashBoard></DashBoard>}>
           <Route path="product" element={<Product></Product>}></Route>
+          <Route
+            path="create-product"
+            element={<ProductCreate></ProductCreate>}></Route>
           <Route path="order" element={<Product></Product>}></Route>
           <Route path="category" element={<Category></Category>}></Route>
+          <Route path="category/:page" element={<Category></Category>}></Route>
           <Route path="user" element={<Product></Product>}></Route>
           <Route path="*" element={<Product></Product>}></Route>
         </Route>

@@ -29,7 +29,7 @@ export const Login = () => {
       navigate("/dashboard/product");
     }
   }, [dispatch, navigate, response?.data, response.isSuccess]);
-  console.log("response:", response);
+  
   return (
     <div className="p-5 bg-blue-400 h-[100vh]">
       <div className="bt-form-login-simple-1 bg-white">

@@ -10,7 +10,7 @@ export const DashBoard = () => {
         <Sidebar></Sidebar>
       </div>
       <div className="bg-white w-full">
-        <div className="p-3 bg-blue-200">
+        <div className="p-3 bg-gray-200">
           <NavContent></NavContent>
         </div>
         <div className="m-2 p-3 flex-auto">
