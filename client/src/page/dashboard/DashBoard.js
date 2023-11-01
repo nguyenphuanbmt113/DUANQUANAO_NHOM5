@@ -9,6 +9,7 @@ export const DashBoard = () => {
       <div className="flex-none w-[250px] h-[100vh] bg-gray-100">
         <Sidebar></Sidebar>
       </div>
+      <div className="bg-white w-full h-[100vh] overflow-y-auto"></div>
       <div className="bg-white w-full">
         <div className="p-3 bg-gray-200">
           <NavContent></NavContent>
