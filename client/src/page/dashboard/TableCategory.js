@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { useDeleteCategoryMutation } from "../../service/categoryService";
-
 export const TableCategory = React.memo(({ data, isLoading }) => {
   const [removeItem, response] = useDeleteCategoryMutation();
   const handleDelete = (id) => {
@@ -9,8 +8,12 @@ export const TableCategory = React.memo(({ data, isLoading }) => {
       removeItem({ id });
     }
   };
-
-
+  // useEffect(() => {
+  //   if (response.isSuccess) {
+      
+  //   }
+    
+  // }, [response?.data?.mes])
   return (
     <>
       <div className="w-full bg-white shadow-lg rounded-sm border border-gray-200">
@@ -35,7 +38,7 @@ export const TableCategory = React.memo(({ data, isLoading }) => {
                   data?.caterories.map((item, index) => (
                     <tr key={index}>
                       <td className="p-2 whitespace-nowrap">
-                        <div className="text-left font-medium text-green-500">
+                        <div className="text-left font-medium text-gray-500">
                           {item.title}
                         </div>
                       </td>

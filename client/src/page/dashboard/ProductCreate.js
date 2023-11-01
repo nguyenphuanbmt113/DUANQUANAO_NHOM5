@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TwitterPicker } from "react-color";
 import { BiUpload } from "react-icons/bi";
 import { FiEye } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { ColorList } from "../../components/Color/Color";
 import { ListSizes } from "../../components/ListSize/ListSize";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { useAllCategoryQuery } from "../../service/categoryService";
 import { useCreateProductMutation } from "../../service/productService";
+import { toast } from "react-toastify";
 export const ProductCreate = () => {
   const [state, setState] = useState({
     title: "",
@@ -19,17 +20,20 @@ export const ProductCreate = () => {
     discount: 0,
     category: "",
     colors: [],
-    sizes: [],
+    // sizes: [],
+    sizesList: [],
     image1: {},
     image2: {},
     image3: {},
     description: "",
   });
+  console.log("state:", state);
   const [previewImg, setPreviewImg] = useState({
     image1: "",
     image2: "",
     image3: "",
   });
+  const navigate = useNavigate();
   const [listSizes, setListSizes] = useState([]);
   const [value, setValue] = useState("");
   const [sizes] = useState([
@@ -90,18 +94,21 @@ export const ProductCreate = () => {
     });
   //handle submit
   const CreateProduct = async (e) => {
-    setState({ ...state, description: value, sizes: listSizes });
+    setState({ ...state, description: value, sizesList: listSizes });
     console.log(">.state:", state);
     const formData = new FormData();
     formData.append("data", JSON.stringify(state));
     formData.append("image1", state.image1);
     formData.append("image2", state.image2);
     formData.append("image3", state.image3);
-    console.log(">>>>>>>.state:", state);
-    console.log(">>>>>>>.listSizes:", listSizes);
-    // console.log(">>>>>>>.colors:");
-    await createNewProduct(formData);
+    createNewProduct(formData);
   };
+  useEffect(() => {
+    if (response?.isSuccess) {
+      toast.success("Create Product success");
+      navigate("/dashboard/product");
+    }
+  }, [response?.isSuccess]);
   return (
     <div>
       <Link
