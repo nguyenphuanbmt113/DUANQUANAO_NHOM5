@@ -4,11 +4,7 @@ import { isAdmin, verifyAccess } from "../middleware/verifyAccess";
 const router = express.Router();
 router.post("/create", [verifyAccess, isAdmin], productCtr.createProduct);
 // router.get("/all", categoryCtr.getAllCategory);
-// router.get(
-//   "/get-catequery",
-//   [verifyAccess, isAdmin],
-//   categoryCtr.getCateParagination
-// );
+router.get("/get-product", [verifyAccess, isAdmin], productCtr.getProductsByQuery);
 // router.delete(
 //   "/delete/:id",
 //   [verifyAccess, isAdmin],
