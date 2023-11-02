@@ -13,6 +13,7 @@ export const Login = () => {
   });
   const navigate = useNavigate();
   const [createLogin, response] = useCreateLoginMutation();
+  console.log("response:", response)
   // const error = response?.error?.data ? response?.error?.data : [];
   const handleInputs = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -22,6 +23,8 @@ export const Login = () => {
     e.preventDefault();
     createLogin(state);
   };
+  //error
+  const error = response?.error?.data?.mes
   useEffect(() => {
     if (response.isSuccess) {
       localStorage.setItem("access_token", response?.data?.access_token);
@@ -29,7 +32,6 @@ export const Login = () => {
       navigate("/dashboard/product");
     }
   }, [dispatch, navigate, response?.data, response.isSuccess]);
-  console.log("response:", response);
   return (
     <div className="p-5 bg-blue-400 h-[100vh]">
       <div className="bt-form-login-simple-1 bg-white">
@@ -59,6 +61,7 @@ export const Login = () => {
               onChange={handleInputs}
             />
           </div>
+          {error && <p className="text-red-500 h-[4px]">Not Authentication</p>}
           <div className="form-meta">
             <Link className="form-link">Forgot Password</Link>
           </div>

@@ -12,6 +12,12 @@ export const sidebarMenu = [
     text: "Products",
     icon: <AiOutlineShoppingCart size="24px"></AiOutlineShoppingCart>,
   },
+  // {
+  //   id: 1,
+  //   path: "create-product",
+  //   text: "Create Products",
+  //   icon: <AiOutlineShoppingCart size="24px"></AiOutlineShoppingCart>,
+  // },
   {
     id: 2,
     path: "order",

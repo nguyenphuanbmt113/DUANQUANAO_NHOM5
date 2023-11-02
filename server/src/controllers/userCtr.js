@@ -21,16 +21,22 @@ export const login = asyncHandler(async (req, res) => {
     throw new Error("Missing data");
   }
   const user = await User.findOne({
-    email,  
+    email,
+    role: "admin",
   });
   if (user && user.comparePassword(user.password)) {
     //tạo token
     const access_token = await createToken(user._id, user.role);
     return res.status(200).json({
-      success: user ? 0 : -1,
-      mes: user ? "login user success" : "failed to login user",
+      success: 0,
+      mes: "login user success",
       access_token,
       user,
+    });
+  } else {
+    return res.status(500).json({
+      success: -1,
+      mes: "failed to login user",
     });
   }
 });

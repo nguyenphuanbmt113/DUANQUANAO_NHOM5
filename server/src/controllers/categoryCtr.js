@@ -29,13 +29,14 @@ export const deleteCategory = asyncHandler(async (req, res) => {
 });
 export const updateCategory = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  if (_.isEmpty(req.body)) {
-    throw new Error("Missing inputs");
+  const { title } = req.body;
+  if (!title) {
+    throw new Error("Missing inputs update");
   }
   if (!id) throw new Error("Missing params");
   const category = await Category.findByIdAndUpdate(
     id,
-    { ...req.body },
+    { title },
     { new: true }
   );
   return res.status(200).json({
@@ -51,5 +52,23 @@ export const getCategoryById = asyncHandler(async (req, res) => {
     success: category ? true : false,
     mes: category ? "get category okela" : "failed to get category",
     category,
+  });
+});
+export const getCateParagination = asyncHandler(async (req, res) => {
+  const { page = 1, limit = 5 } = req.query;
+  const query = Category.find({})
+    .limit(limit)
+    .skip((page - 1) * limit)
+    .sort({ updatedAt: -1 });
+  const count = await Category.find({}).countDocuments();
+  const caterories = await query;
+  return res.status(200).json({
+    success: caterories ? true : false,
+    mes: caterories ? "get categies okela" : "failed too create categories!",
+    caterories,
+    currentPage: page,
+    limit,
+    count,
+    totalPages: Math.ceil(count / limit),
   });
 });
