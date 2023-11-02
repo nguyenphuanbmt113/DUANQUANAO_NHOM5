@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { useDeleteCategoryMutation } from "../../service/categoryService";
 
 export const TableCategory = React.memo(({ data, isLoading }) => {
-  const [removeItem, response] = useDeleteCategoryMutation();
+  const [removeItem] = useDeleteCategoryMutation();
   const handleDelete = (id) => {
     if (window.confirm("Are you really want to delete")) {
       removeItem({ id });

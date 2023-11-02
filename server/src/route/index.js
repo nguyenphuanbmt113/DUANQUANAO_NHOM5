@@ -12,4 +12,5 @@ const initRoutes = (app) => {
     res.send("server on...");
   });
 };
+
 export default initRoutes;

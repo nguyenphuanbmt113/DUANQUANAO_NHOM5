@@ -8,7 +8,6 @@ export const register = asyncHandler(async (req, res) => {
     throw new Error("Missing data");
   }
   const user = await User.create(req.body);
-  console.log("user:", user);
   return res.status(200).json({
     success: user ? 0 : -1,
     mes: user ? "Create user success" : "failed to create user",

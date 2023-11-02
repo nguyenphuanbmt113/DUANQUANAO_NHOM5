@@ -1,17 +1,21 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { useGetProductQuery } from "../../service/productService";
 
 export const Product = () => {
   let { page } = useParams();
-  console.log("page:", page);
+
   if (!page) {
     page = 1;
   }
+  const navigate = useNavigate();
   const { data, isFetching } = useGetProductQuery({ page });
-  console.log("data:", data);
+
+  const handleUpdate = (dataUpdate) => {
+    navigate(`product/edit/${dataUpdate._id}`, { state: dataUpdate });
+  };
   return (
     <div>
       <Link
@@ -77,7 +81,9 @@ export const Product = () => {
                             </div>
                           </td>
                           <td className="p-2 whitespace-nowrap flex items-center gap-3">
-                            <div className="cursor-pointer px-2 py-1 bg-blue-500 text-white rounded-sm">
+                            <div
+                              className="cursor-pointer px-2 py-1 bg-blue-500 text-white rounded-sm"
+                              onClick={() => handleUpdate(item)}>
                               Update
                             </div>
                             <div className=" cursor-pointer px-2 py-1 bg-red-500 text-white rounded-sm">
