@@ -14,7 +14,7 @@ export const getAllCategory = asyncHandler(async (req, res) => {
   const caterories = await Category.find();
   return res.status(200).json({
     success: caterories ? true : false,
-    mes: caterories ? "get categies okela" : "failed too create categories!",
+    mes: caterories ? "get categies okela" : "failed too get categories!",
     caterories,
   });
 });
@@ -70,5 +70,15 @@ export const getCateParagination = asyncHandler(async (req, res) => {
     limit,
     count,
     totalPages: Math.ceil(count / limit),
+  });
+});
+export const getRandomCategory = asyncHandler(async (req, res) => {
+  const caterories = await Category.aggregate([{ $sample: { size: 5 } }]);
+  return res.status(200).json({
+    success: caterories ? true : false,
+    mes: caterories
+      ? "get random categies okela"
+      : "failed too get random categories!",
+    caterories,
   });
 });

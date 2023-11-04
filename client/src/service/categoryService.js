@@ -33,6 +33,15 @@ export const categoryService = createApi({
       },
       providesTags: ["category"],
     }),
+    getRanCategory: builder.query({
+      query: () => {
+        return {
+          url: `/random-category`,
+          method: "GET",
+        };
+      },
+      providesTags: ["category"],
+    }),
     putCategory: builder.mutation({
       query: (data) => {
         return {
@@ -64,6 +73,7 @@ export const categoryService = createApi({
 export const {
   useCreateCategoryMutation,
   useGetCategoryQuery,
+  useGetRanCategoryQuery,
   useAllCategoryQuery,
   usePutCategoryMutation,
   useDeleteCategoryMutation,

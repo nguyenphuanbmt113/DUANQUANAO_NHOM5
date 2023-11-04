@@ -2,9 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../../service/authJson";
 import "./AuthUser.scss";
+import { UseForm } from "../../../hook/UseForm";
 import { toast } from "react-toastify";
 export const RegisterUser = () => {
-  const [state, setState] = useState({
+  // const [state, setState] = useState({
+  //   firstname: "",
+  //   lastname: "",
+  //   email: "",
+  //   password: "",
+  //   mobile: null,
+  // });
+  const { state, handleChangeState } = UseForm({
     firstname: "",
     lastname: "",
     email: "",
@@ -13,13 +21,6 @@ export const RegisterUser = () => {
   });
   const navigate = useNavigate();
   const [registerActioon, response] = useRegisterMutation();
-  console.log("response:", response);
-  const handleChangeState = (e) => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-    });
-  };
   const handleSubmit = () => {
     registerActioon(state);
   };

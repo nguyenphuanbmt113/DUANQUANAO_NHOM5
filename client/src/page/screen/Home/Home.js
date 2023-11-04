@@ -1,10 +1,12 @@
 import React from "react";
-import { LoginHeader } from "../../../components/LoginHeader/LoginHeader";
+import { NavHome } from "../../../components/NavHome/NavHome";
+import { SwiperSlider } from "../../../components/Swiper/Swiper";
 
 export const Home = () => {
   return (
     <div>
-      <LoginHeader></LoginHeader>
+      <NavHome></NavHome>
+      <SwiperSlider></SwiperSlider>
     </div>
   );
 };
