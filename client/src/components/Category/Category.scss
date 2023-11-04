@@ -1,0 +1,42 @@
+.swiper.swiper-virtual.swiper-initialized.swiper-horizontal.swiper-watch-progress {
+    height: 70px !important;
+  }
+  .swiper-virtual {
+    .swiper-wrapper {
+      height: 70px !important;
+    }
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .swiper {
+    width: 100%;
+    height: 300px;
+    margin: 20px auto;
+  }
+  .swiper-wrapper {
+    .swiper-slide {
+      background: white;
+      border-radius: 5px;
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+  }

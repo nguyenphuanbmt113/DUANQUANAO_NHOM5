@@ -8,7 +8,7 @@
 
 .swiper {
   width: 100%;
-  height: 80vh;
+  height: 75vh;
 }
 
 .swiper-slide {
@@ -41,4 +41,15 @@
   font-family: "Playfair Display", serif;
   font-weight: 700;
   font-size: 30px;
+}
+.font-v1 {
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-size: 30px;
+}
+.my-container {
+  @apply max-w-[1240px] mx-auto;
+}
+.swiper.swiper-initialized.swiper-horizontal.mySwiper.swiper-backface-hidden {
+  margin: 0;
 }
