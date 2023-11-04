@@ -32,6 +32,15 @@ export const productService = createApi({
       },
       providesTags: ["product"],
     }),
+    getProductCategory: builder.query({
+      query: (name, page) => {
+        return {
+          url: `/cat-product/${name}/${page}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["product"],
+    }),
     getProductById: builder.query({
       query: (id) => {
         return {
@@ -43,7 +52,7 @@ export const productService = createApi({
     }),
     putProduct: builder.mutation({
       query: (data) => {
-        console.log("data update put len server :", data)
+        console.log("data update put len server :", data);
         return {
           url: `/update/${data.id}`,
           method: "PUT",
@@ -61,14 +70,6 @@ export const productService = createApi({
       },
       invalidatesTags: ["product"],
     }),
-    // allCategory: builder.query({
-    //   query: () => {
-    //     return {
-    //       url: `/all`,
-    //       method: "GET",
-    //     };
-    //   },
-    // }),
   }),
 });
 
@@ -77,5 +78,6 @@ export const {
   useDeleteProductMutation,
   usePutProductMutation,
   useGetProductQuery,
+  useGetProductCategoryQuery,
   useGetProductByIdQuery,
 } = productService;
