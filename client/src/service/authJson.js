@@ -12,7 +12,25 @@ export const authJson = createApi({
         body: data,
       }),
     }),
+    createLoginUser: builder.mutation({
+      query: (data) => ({
+        url: `/login-user`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: `/register`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useCreateLoginMutation } = authJson;
+export const {
+  useCreateLoginMutation,
+  useRegisterMutation,
+  useCreateLoginUserMutation,
+} = authJson;

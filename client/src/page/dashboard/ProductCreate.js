@@ -34,7 +34,6 @@ export const ProductCreate = () => {
   });
   const navigate = useNavigate();
   const [listSizes, setListSizes] = useState([]);
-  console.log("listSizes:", listSizes);
   const [value, setValue] = useState("");
   const [sizes] = useState([
     {
@@ -93,7 +92,6 @@ export const ProductCreate = () => {
     });
   //handle submit
   const CreateProduct = async (e) => {
-    console.log("23>>>>>>state", state);
     const formData = new FormData();
     formData.append("data", JSON.stringify(state));
     formData.append("sizes", JSON.stringify(listSizes));
@@ -101,10 +99,8 @@ export const ProductCreate = () => {
     formData.append("image1", state.image1);
     formData.append("image2", state.image2);
     formData.append("image3", state.image3);
-    console.log(">>>>>>state", state);
     createNewProduct(formData);
   };
-  console.log("2456>>>>>>state", state);
 
   useEffect(() => {
     if (response?.isSuccess) {

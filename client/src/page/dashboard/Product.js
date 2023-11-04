@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { Spinner } from "../../components/Spinner/Spinner";
-import { useGetProductQuery } from "../../service/productService";
+import {
+  useGetProductQuery,
+  useDeleteProductMutation,
+} from "../../service/productService";
 
 export const Product = () => {
   let { page } = useParams();
@@ -12,9 +15,14 @@ export const Product = () => {
   }
   const navigate = useNavigate();
   const { data, isFetching } = useGetProductQuery({ page });
-
+  const [deleteProduct] = useDeleteProductMutation();
   const handleUpdate = (dataUpdate) => {
-    navigate(`product/edit/${dataUpdate._id}`, { state: dataUpdate });
+    navigate(`/dashboard/product/edit/${dataUpdate._id}`);
+  };
+  const handleDelete = (item) => {
+    if (window.confirm("do you want to delete")) {
+      deleteProduct(item._id);
+    }
   };
   return (
     <div>
@@ -77,7 +85,6 @@ export const Product = () => {
                                 alt=""
                                 className="w-[50px] h-[50px] object-cover"
                               />
-                              {/* {item?.stock} */}
                             </div>
                           </td>
                           <td className="p-2 whitespace-nowrap flex items-center gap-3">
@@ -86,7 +93,9 @@ export const Product = () => {
                               onClick={() => handleUpdate(item)}>
                               Update
                             </div>
-                            <div className=" cursor-pointer px-2 py-1 bg-red-500 text-white rounded-sm">
+                            <div
+                              className=" cursor-pointer px-2 py-1 bg-red-500 text-white rounded-sm"
+                              onClick={() => handleDelete(item)}>
                               Delete
                             </div>
                           </td>

@@ -9,11 +9,7 @@ router.get(
   [verifyAccess, isAdmin],
   productCtr.getProductsByQuery
 );
-// router.delete(
-//   "/delete/:id",
-//   [verifyAccess, isAdmin],
-//   categoryCtr.deleteCategory
-// );
+router.delete("/delete/:id", [verifyAccess, isAdmin], productCtr.deleteProduct);
 router.put("/update/:id", [verifyAccess, isAdmin], productCtr.updateProduct);
 router.get("/:id", productCtr.getProduct);
 

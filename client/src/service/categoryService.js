@@ -5,9 +5,9 @@ export const categoryService = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:7000/api/v1/category",
     prepareHeaders: (headers, { getState }) => {
-      const accessToken = getState().authReducer.accessToken;
-      if (accessToken) {
-        headers.set("authorization", `Bearer ${accessToken}`);
+      const accessTokenAdmin = getState().authReducer.accessTokenAdmin;
+      if (accessTokenAdmin) {
+        headers.set("authorization", `Bearer ${accessTokenAdmin}`);
       }
 
       return headers;

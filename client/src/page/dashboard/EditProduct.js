@@ -3,23 +3,22 @@ import { TwitterPicker } from "react-color";
 import { FiEye } from "react-icons/fi";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { ColorList } from "../../components/Color/Color";
+import parse from "html-react-parser";
 import { ListSizes } from "../../components/ListSize/ListSize";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { useAllCategoryQuery } from "../../service/categoryService";
+import h2p from "html2plaintext";
 import {
-  useCreateProductMutation,
-  useGetProductByIdQuery
+  useGetProductByIdQuery,
+  usePutProductMutation,
 } from "../../service/productService";
 export const ProductEdit = () => {
   const { id } = useParams();
   const { data: productDataUpdate, isFetching: isFetchingDataUpdate } =
     useGetProductByIdQuery(id);
-  const location = useLocation();
-  console.log("location:", location);
   const [state, setState] = useState({
     title: "",
     price: 0,
@@ -27,16 +26,7 @@ export const ProductEdit = () => {
     discount: 0,
     category: "",
     colors: [],
-    sieze: [],
-    image1: {},
-    image2: {},
-    image3: {},
     description: "",
-  });
-  const [previewImg, setPreviewImg] = useState({
-    image1: "",
-    image2: "",
-    image3: "",
   });
 
   const navigate = useNavigate();
@@ -64,7 +54,8 @@ export const ProductEdit = () => {
   };
   //call data
   const { data, isFetching } = useAllCategoryQuery();
-  const [createNewProduct, response] = useCreateProductMutation();
+  const [putProduct] = usePutProductMutation();
+  
   //choose Color
   const saveColors = (color) => {
     const filtered = state.colors.filter((clr) => clr.color !== color.hex);
@@ -78,63 +69,23 @@ export const ProductEdit = () => {
     const filtered = listSizes.filter((ele) => ele.name !== item.name);
     setListSizes([...filtered, item]);
   };
-  //handle Img
-  const handleImg = async (e) => {
-    if (e.target.files[0].length !== 0) {
-      setState({
-        ...state,
-        [e.target.name]: e.target.files[0],
-      });
-      const preview = await toBase64(e.target.files[0]);
-      setPreviewImg({ ...previewImg, [e.target.name]: preview });
-    }
-  };
-  //file to base64
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
   //handle submit
-  const CreateProduct = async (e) => {
-    setState({ ...state, description: value, sizes: listSizes });
-    const formData = new FormData();
-    formData.append("data", JSON.stringify(state));
-    formData.append("image1", state.image1);
-    formData.append("image2", state.image2);
-    formData.append("image3", state.image3);
-    createNewProduct(formData);
+  const updateProduct = async (e) => {
+    putProduct({ ...state, _id: id, sizes: listSizes });
+    navigate(`/dashboard/product`);
   };
-  useEffect(() => {
-    if (response?.isSuccess) {
-      toast.success("Create Product success");
-      navigate("/dashboard/product");
-    }
-  }, [response?.isSuccess]);
-
-  // useEffect(() => {
-  //   setState({
-  //     title: location?.state?.title,
-  //     price: location?.state?.price,
-  //     stock: location?.state?.stock,
-  //     discount: location?.state?.discount,
-  //     description: location?.state?.description,
-  //     category: location?.state?.category,
-  //     colors: location?.state?.colors,
-  //     sizes: location?.state?.sizes,
-  //   });
-  //   setListSizes(location?.state?.sizes);
-  // }, [location]);
-
+  console.log(">productDataUpdate:", productDataUpdate);
   useEffect(() => {
     if (!isFetchingDataUpdate) {
       setState(productDataUpdate);
       setListSizes(productDataUpdate?.sizes);
-      setValue(productDataUpdate?.description);
+      setValue(h2p(productDataUpdate?.description));
     }
   }, [isFetchingDataUpdate, productDataUpdate]);
+  useEffect(() => {
+    setState({ ...state, description: value });
+  }, [value]);
+  console.log(">>>>>>>>check value:", value);
   return (
     <div>
       <Link
@@ -295,7 +246,7 @@ export const ProductEdit = () => {
               </div>
             </div>
             <button
-              onClick={CreateProduct}
+              onClick={updateProduct}
               className="px-3 py-2 bg-blue-500 text-white rounded-sm">
               Edit Product
             </button>

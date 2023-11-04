@@ -13,8 +13,6 @@ export const Login = () => {
   });
   const navigate = useNavigate();
   const [createLogin, response] = useCreateLoginMutation();
-  console.log("response:", response)
-  // const error = response?.error?.data ? response?.error?.data : [];
   const handleInputs = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };

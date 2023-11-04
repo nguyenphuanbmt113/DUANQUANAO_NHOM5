@@ -50,7 +50,9 @@ userSchema.pre("save", async function hashpassword(next) {
   this.password = await bcrypt.hashSync(this.password, salt);
 });
 userSchema.methods.comparePassword = async function (password) {
-  return await bcrypt.compareSync(password, this.password);
+  const check = await bcrypt.compareSync(password, this.password);
+  console.log("check:", check)
+  return check;
 };
 //Export the model
 module.exports = mongoose.model("User", userSchema);

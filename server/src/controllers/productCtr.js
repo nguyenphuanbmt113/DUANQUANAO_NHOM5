@@ -10,10 +10,7 @@ export const createProduct = asyncHandler(async (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, async (err, fields, files) => {
     if (!err) {
-      console.log("files:", files);
-      console.log("fields:", fields);
       const parsedData = JSON.parse(fields.data);
-      console.log("parsedData:", parsedData);
       const images = {};
       for (let i = 0; i < Object.keys(files).length; i++) {
         const mimeType = files[`image${i + 1}`].mimetype;
@@ -49,7 +46,6 @@ export const createProduct = asyncHandler(async (req, res) => {
           image3: images["image3"],
           description: fields.description,
         });
-        console.log("response:", response);
         return res.status(200).json({ msg: "Product has created", response });
       } catch (error) {
         console.log(">>>>>>>.check :", error);
@@ -129,7 +125,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
     description,
     category,
   } = req.body;
-  if (_.isEmpty()) {
+  if (_.isEmpty(req.body)) {
     throw new Error("Missing inputs");
   }
   const response = await Product.updateOne(
@@ -160,5 +156,28 @@ export const getProduct = asyncHandler(async (req, res) => {
     return res.status(200).json(product);
   } catch (error) {
     throw new Error(error);
+  }
+});
+export const deleteProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findOne({ _id: id });
+    [1, 2, 3].forEach((number) => {
+      let key = `image${number}`;
+      let image = product[key];
+      let __dirname = path.resolve();
+      let imagePath = __dirname + `/../client/public/images/${image}`;
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          throw new Error(err);
+        }
+      });
+    });
+    await Product.findByIdAndDelete(id);
+    return res
+      .status(200)
+      .json({ msg: "Product has been deleted successfully" });
+  } catch (error) {
+    throw new Error(error.message);
   }
 });
