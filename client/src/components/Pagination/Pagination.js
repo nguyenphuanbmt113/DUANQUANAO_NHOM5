@@ -27,7 +27,6 @@ export const Pagination = ({ page, totalPage, path, count }) => {
     }
     return allLinks;
   };
-  console.log("links:", links());
 
   const next = () => {
     if (page < totalPage) {
@@ -52,7 +51,7 @@ export const Pagination = ({ page, totalPage, path, count }) => {
     }
   };
   return (
-    count > 3 && (
+    count > totalPage && (
       <div className="mt-5 fui-basic-pagination">
         <ul className="pagination-list">
           {prev()}

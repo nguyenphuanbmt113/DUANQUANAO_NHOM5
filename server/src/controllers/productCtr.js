@@ -10,10 +10,7 @@ export const createProduct = asyncHandler(async (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, async (err, fields, files) => {
     if (!err) {
-      console.log("files:", files);
-      console.log("fields:", fields);
       const parsedData = JSON.parse(fields.data);
-      console.log("parsedData:", parsedData);
       const images = {};
       for (let i = 0; i < Object.keys(files).length; i++) {
         const mimeType = files[`image${i + 1}`].mimetype;
@@ -43,7 +40,7 @@ export const createProduct = asyncHandler(async (req, res) => {
           stock: parseInt(parsedData.stock),
           category: parsedData.category,
           colors: parsedData.colors,
-          sizes: parsedData.sizesList,
+          sizes: JSON.parse(fields.sizes),
           image1: images["image1"],
           image2: images["image2"],
           image3: images["image3"],
@@ -55,4 +52,132 @@ export const createProduct = asyncHandler(async (req, res) => {
       }
     }
   });
+});
+export const getProductsByQuery = asyncHandler(async (req, res) => {
+  try {
+    //Tách các trường đặc biệt ra khỏi query
+    const queries = { ...req.query };
+    const excludeFields = ["limit", "sort", "page", "fields"];
+    //xoá các query dac biet
+    excludeFields.forEach((ele) => {
+      delete queries[ele];
+    });
+    let queryString = JSON.stringify(queries);
+
+    queryString = queryString.replace(
+      /\b(gte|gt|lt|lte)\b/g,
+      (macthed) => `$${macthed}`
+    );
+    const formatedQueries = JSON.parse(queryString);
+    //filtering tile
+    if (queries?.title) {
+      formatedQueries.title = { $regex: queries.title, $options: "i" };
+    }
+    //số lượng sản phản thỏa mản đk !== số lượng sản phẩm trả về một lần
+    let queryCommand = Product.find(formatedQueries);
+    //sorting
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      queryCommand = queryCommand.sort(sortBy);
+    }
+    //fields, limited
+    if (req.query.fields) {
+      const fieldsBy = req.query.fields.split(" ").join(" ");
+      queryCommand = queryCommand.select(fieldsBy);
+    }
+
+    if (req.query.page) {
+      const page = req.query.page * 1 || 1;
+      const limit = 7;
+      const skip = (page - 1) * limit;
+      queryCommand = queryCommand.skip(skip).limit(limit).sort("-updatedAt");
+    }
+    //pagination
+    queryCommand.exec(async (err, result) => {
+      if (err) throw new Error(err.message);
+      //số lượng sản phản thỏa mản đk
+      const counts = await Product.find(formatedQueries).countDocuments();
+      const limit = 7;
+      const totalPage = Math.ceil(counts / limit);
+      return res.status(200).json({
+        success: result ? true : false,
+        products: result ? result : "cannot get products",
+        counts,
+        totalPage,
+        // totalPage: Math.ceil(counts / limit)
+      });
+    });
+  } catch (err) {
+    if (err.name === "CastError")
+      return new Error(`Invalid ${err.path}: ${err.value}`);
+    return err;
+  }
+});
+export const updateProduct = asyncHandler(async (req, res) => {
+  const {
+    _id,
+    title,
+    price,
+    discount,
+    stock,
+    colors,
+    sizes,
+    description,
+    category,
+  } = req.body;
+  if (_.isEmpty(req.body)) {
+    throw new Error("Missing inputs");
+  }
+  const response = await Product.updateOne(
+    { _id },
+    {
+      $set: {
+        title,
+        price,
+        discount,
+        stock,
+        category,
+        colors,
+        sizes,
+        description,
+      },
+    }
+  );
+  return res.status(200).json({
+    msg: response ? "Product has updated" : "failed to update user",
+    response: response ? response : "",
+    success: response ? true : false,
+  });
+});
+export const getProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findOne({ _id: id });
+    return res.status(200).json(product);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+export const deleteProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findOne({ _id: id });
+    [1, 2, 3].forEach((number) => {
+      let key = `image${number}`;
+      let image = product[key];
+      let __dirname = path.resolve();
+      let imagePath = __dirname + `/../client/public/images/${image}`;
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          throw new Error(err);
+        }
+      });
+    });
+    await Product.findByIdAndDelete(id);
+    return res
+      .status(200)
+      .json({ msg: "Product has been deleted successfully" });
+  } catch (error) {
+    throw new Error(error.message);
+  }
 });

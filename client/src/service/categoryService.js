@@ -1,13 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const categoryService = createApi({
   reducerPath: "category",
+  tagTypes: "category",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:7000/api/v1/category",
     prepareHeaders: (headers, { getState }) => {
-      const accessToken = getState().authReducer.accessToken;
-      if (accessToken) {
-        headers.set("authorization", `Bearer ${accessToken}`);
+      const accessTokenAdmin = getState().authReducer.accessTokenAdmin;
+      if (accessTokenAdmin) {
+        headers.set("authorization", `Bearer ${accessTokenAdmin}`);
       }
+
       return headers;
     },
   }),
@@ -20,6 +22,7 @@ export const categoryService = createApi({
           body: { title: data },
         };
       },
+      invalidatesTags: ["category"],
     }),
     getCategory: builder.query({
       query: (data) => {
@@ -28,6 +31,7 @@ export const categoryService = createApi({
           method: "GET",
         };
       },
+      providesTags: ["category"],
     }),
     putCategory: builder.mutation({
       query: (data) => {

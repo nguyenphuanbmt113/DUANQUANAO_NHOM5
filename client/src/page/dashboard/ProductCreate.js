@@ -20,14 +20,13 @@ export const ProductCreate = () => {
     discount: 0,
     category: "",
     colors: [],
-    // sizes: [],
-    sizesList: [],
+    sizes: [],
     image1: {},
     image2: {},
     image3: {},
     description: "",
   });
-  console.log("state:", state);
+
   const [previewImg, setPreviewImg] = useState({
     image1: "",
     image2: "",
@@ -59,7 +58,6 @@ export const ProductCreate = () => {
   //call data
   const { data, isFetching } = useAllCategoryQuery();
   const [createNewProduct, response] = useCreateProductMutation();
-  console.log("response P>>>>>>:", response);
   //choose Color
   const saveColors = (color) => {
     const filtered = state.colors.filter((clr) => clr.color !== color.hex);
@@ -94,15 +92,16 @@ export const ProductCreate = () => {
     });
   //handle submit
   const CreateProduct = async (e) => {
-    setState({ ...state, description: value, sizesList: listSizes });
-    console.log(">.state:", state);
     const formData = new FormData();
     formData.append("data", JSON.stringify(state));
+    formData.append("sizes", JSON.stringify(listSizes));
+    formData.append("description", value);
     formData.append("image1", state.image1);
     formData.append("image2", state.image2);
     formData.append("image3", state.image3);
     createNewProduct(formData);
   };
+
   useEffect(() => {
     if (response?.isSuccess) {
       toast.success("Create Product success");

@@ -16,4 +16,5 @@ router.delete(
 );
 router.put("/update/:id", [verifyAccess, isAdmin], categoryCtr.updateCategory);
 router.get("/:id", categoryCtr.getCategoryById);
+
 export default router;
