@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { UseForm } from "../../../hook/UseForm";
 import { setAccessTokenUser } from "../../../redux/reducers/authReducer";
 import { useCreateLoginUserMutation } from "../../../service/authJson";
 import "./AuthUser.scss";
 export const LoginUser = () => {
-  // const [state, setState] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-  const navigate = useNavigate();
-  const [loginUser, response] = useCreateLoginUserMutation();
-  const dispatch = useDispatch();
-  console.log("response:", response);
-  const [state, setState] = useState({
+  const { state, handleChangeState } = UseForm({
     email: "",
     password: "",
   });
-  const handleChangeState = (e) => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const navigate = useNavigate();
+  const [loginUser, response] = useCreateLoginUserMutation();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (response.isSuccess) {
       toast.success("Login success");
@@ -72,9 +62,7 @@ export const LoginUser = () => {
 
                 <input
                   type={"button"}
-                  value={`${
-                    !response.isLoading ? "Đăng Nhập" : "Loading..."
-                  }`}
+                  value={`${!response.isLoading ? "Đăng Nhập" : "Loading..."}`}
                   className="mt-4 bg-blue-400 w-full text-center uppercase py-4 px-2 text-white text-sm"
                   onClick={handleSubmit}></input>
                 <div className="mt-8 text-center text-sm font-medium text-gray-500 dark:text-gray-300">

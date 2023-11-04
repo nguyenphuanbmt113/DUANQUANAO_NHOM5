@@ -11,25 +11,41 @@ import { DashBoard } from "./page/dashboard/DashBoard";
 import { ProductEdit } from "./page/dashboard/EditProduct";
 import { Product } from "./page/dashboard/Product";
 import { ProductCreate } from "./page/dashboard/ProductCreate";
+import { Account } from "./page/screen/Account/Account";
 import { LoginUser } from "./page/screen/AuthLogin/LoginUser";
 import { RegisterUser } from "./page/screen/AuthLogin/RegisterUser";
 import { Home } from "./page/screen/Home/Home";
 import { PrivateRoute } from "./Route/PrivateRoute";
+import { UserAuth } from "./Route/UserRoute/UserAuth";
+import { UserRouteProtect } from "./Route/UserRoute/UserRoute";
+import "swiper/css";
+import "swiper/css/pagination";
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/home" element={<Home></Home>}></Route>
-        <Route path="/login" element={<LayoutLogin></LayoutLogin>}>
-          <Route path="/login" element={<LoginUser></LoginUser>}></Route>
+        <Route element={<UserRouteProtect></UserRouteProtect>}>
+          <Route path="/home" element={<Home></Home>}></Route>
+          <Route path="/account" element={<Account></Account>}></Route>
         </Route>
-        <Route path="/register" element={<LayoutRegister></LayoutRegister>}>
-          <Route
-            path="/register"
-            element={<RegisterUser></RegisterUser>}></Route>
+        <Route element={<UserAuth></UserAuth>}>
+          <Route path="/login" element={<LayoutLogin></LayoutLogin>}>
+            <Route path="/login" element={<LoginUser></LoginUser>}></Route>
+          </Route>
+          <Route path="/register" element={<LayoutRegister></LayoutRegister>}>
+            <Route
+              path="/register"
+              element={<RegisterUser></RegisterUser>}></Route>
+          </Route>
         </Route>
         <Route path="/auth/login" element={<Login></Login>}></Route>
-        <Route path="/dashboard" element={<DashBoard></DashBoard>}>
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <DashBoard></DashBoard>
+            </PrivateRoute>
+          }>
           <Route
             path="product"
             element={
