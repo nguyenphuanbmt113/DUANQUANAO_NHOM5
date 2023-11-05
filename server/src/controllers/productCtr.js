@@ -183,19 +183,25 @@ export const deleteProduct = asyncHandler(async (req, res) => {
 });
 export const getCateProduct = asyncHandler(async (req, res) => {
   const { name } = req.params;
-  const page = req?.params?.page || 1;
+  const page = req.params.page || 1;
+  console.log("page:", page)
   console.log("name:", name);
-  let limit = 10;
+  let limit = 1;
   let offset = limit * (page - 1);
   const product = await Product.find({
     category: name,
   })
     .limit(limit)
     .skip(offset)
-    .sort("-createdAt");
+    .sort("-createdAt")
+    .where("stock")
+    .gt(0);
   const count = await Product.find({
     category: name,
-  }).countDocuments();
+  })
+  .where("stock")
+  .gt(0)
+  .countDocuments();
   const totalPage = Math.ceil(count / limit);
   return res.status(200).json({
     success: product ? true : false,
@@ -204,5 +210,6 @@ export const getCateProduct = asyncHandler(async (req, res) => {
       : "failed to get category products",
     product,
     totalPage,
+    count,
   });
 });

@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import "./Pagi.scss";
 import { GrNext, GrPrevious } from "react-icons/gr";
 export const Pagination = ({ page, totalPage, path, count }) => {
+  console.log("count:", count);
+  console.log("path:", path);
+  console.log("totalPage:", totalPage);
+  console.log("page:", page);
   let startLoop = page; //1
   let diff = totalPage - page; //4-1=3
   if (diff <= 3) {
@@ -51,7 +55,7 @@ export const Pagination = ({ page, totalPage, path, count }) => {
     }
   };
   return (
-    count > totalPage && (
+    count >= totalPage && (
       <div className="mt-5 fui-basic-pagination">
         <ul className="pagination-list">
           {prev()}

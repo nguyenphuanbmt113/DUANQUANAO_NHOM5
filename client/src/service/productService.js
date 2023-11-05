@@ -33,7 +33,8 @@ export const productService = createApi({
       providesTags: ["product"],
     }),
     getProductCategory: builder.query({
-      query: (name, page) => {
+      query: ({ name, page }) => {
+        console.log(">>>>>>>>page", page);
         return {
           url: `/cat-product/${name}/${page}`,
           method: "GET",

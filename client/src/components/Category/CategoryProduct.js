@@ -22,7 +22,7 @@ export const CategoryProduct = () => {
           className="w-6/12 p-4 sm:w-4/12 md:w-3/12 lg:w-[20%] xl:w-2/12"
           key={item}>
           <Skeleton>
-            <Thumbnail></Thumbnail>
+          <Thumbnail height={"50px"}></Thumbnail>
           </Skeleton>
         </div>
       ))}
