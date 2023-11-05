@@ -74,7 +74,7 @@ export const ProductEdit = () => {
     putProduct({ ...state, _id: id, sizes: listSizes });
     navigate(`/dashboard/product`);
   };
-  console.log(">productDataUpdate:", productDataUpdate);
+  
   useEffect(() => {
     if (!isFetchingDataUpdate) {
       setState(productDataUpdate);
@@ -85,7 +85,6 @@ export const ProductEdit = () => {
   useEffect(() => {
     setState({ ...state, description: value });
   }, [value]);
-  console.log(">>>>>>>>check value:", value);
   return (
     <div>
       <Link

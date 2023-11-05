@@ -184,9 +184,7 @@ export const deleteProduct = asyncHandler(async (req, res) => {
 export const getCateProduct = asyncHandler(async (req, res) => {
   const { name } = req.params;
   const page = req.params.page || 1;
-  console.log("page:", page)
-  console.log("name:", name);
-  let limit = 1;
+  let limit = 12;
   let offset = limit * (page - 1);
   const product = await Product.find({
     category: name,

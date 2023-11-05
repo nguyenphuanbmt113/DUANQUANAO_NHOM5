@@ -10,7 +10,7 @@ export const NavHome = () => {
   };
   return (
     <>
-      <div className="header h-[84px] shadow">
+      <div className="header h-[84px] border border-gray-200">
         <div className="h-[100%] max-w-[1240px] mx-auto px-5 flex items-center justify-between">
           <nav className="flex items-center gap-3">
             <Link

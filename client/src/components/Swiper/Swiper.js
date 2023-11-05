@@ -10,7 +10,6 @@ export const SwiperSlider = () => {
   const handleRouteCate = (title) => {
     navigate(`/category-product/${title}`);
   };
-  console.log("data:", data);
   return isFetching ? (
     <div className="my-container h-[70vh] flex items-center justify-center">
       <Spinner />

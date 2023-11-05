@@ -34,7 +34,6 @@ export const productService = createApi({
     }),
     getProductCategory: builder.query({
       query: ({ name, page }) => {
-        console.log(">>>>>>>>page", page);
         return {
           url: `/cat-product/${name}/${page}`,
           method: "GET",
@@ -53,7 +52,6 @@ export const productService = createApi({
     }),
     putProduct: builder.mutation({
       query: (data) => {
-        console.log("data update put len server :", data);
         return {
           url: `/update/${data.id}`,
           method: "PUT",

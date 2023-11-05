@@ -21,6 +21,7 @@ import { UserRouteProtect } from "./Route/UserRoute/UserRoute";
 import "swiper/css";
 import "swiper/css/pagination";
 import { CatProduct } from "./page/screen/CatProduct/CatProduct";
+import { ProductDetail } from "./page/ProductDetail/ProductDetail";
 const App = () => {
   return (
     <>
@@ -28,8 +29,15 @@ const App = () => {
         <Route path="/home" element={<Home></Home>}></Route>
         <Route element={<UserRouteProtect></UserRouteProtect>}>
           <Route path="/account" element={<Account></Account>}></Route>
-          <Route path="/category-product/:name" element={<CatProduct></CatProduct>}></Route>
-          <Route path="/category-product/:name/:page" element={<CatProduct></CatProduct>}></Route>
+          <Route
+            path="/product/:id"
+            element={<ProductDetail></ProductDetail>}></Route>
+          <Route
+            path="/category-product/:name"
+            element={<CatProduct></CatProduct>}></Route>
+          <Route
+            path="/category-product/:name/:page"
+            element={<CatProduct></CatProduct>}></Route>
         </Route>
         <Route element={<UserAuth></UserAuth>}>
           <Route path="/login" element={<LayoutLogin></LayoutLogin>}>

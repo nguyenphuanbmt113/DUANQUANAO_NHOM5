@@ -11,7 +11,7 @@ SwiperCore.use([Virtual, Navigation, Pagination]);
 export const CategoryProduct = () => {
   const { data, isFetching } = useGetAllCategoryQuery();
   const navigate = useNavigate();
-  console.log("data:", data);
+
   const handleRouteCate = (title) => {
     navigate(`/category-product/${title}`);
   };
