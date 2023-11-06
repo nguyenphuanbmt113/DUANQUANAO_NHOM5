@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.24.0",
+    "currency-formatter": "^1.5.9",
     "html-react-parser": "^3.0.11",
     "html2plaintext": "^2.1.4",
     "jwt-decode": "^3.1.2",

@@ -12,5 +12,5 @@ router.get(
 router.delete("/delete/:id", [verifyAccess, isAdmin], productCtr.deleteProduct);
 router.put("/update/:id", [verifyAccess, isAdmin], productCtr.updateProduct);
 router.get("/:id", productCtr.getProduct);
-
+router.get("/cat-product/:name/:page", productCtr.getCateProduct);
 export default router;

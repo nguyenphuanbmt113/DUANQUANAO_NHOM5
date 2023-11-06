@@ -6,10 +6,15 @@ import "swiper/css";
 import "./Category.scss";
 import { Skeleton } from "../LoadingSkeleton/Skeleton";
 import { Thumbnail } from "../LoadingSkeleton/Thumbnail";
+import { useNavigate } from "react-router-dom"; 
 SwiperCore.use([Virtual, Navigation, Pagination]);
 export const CategoryProduct = () => {
   const { data, isFetching } = useGetAllCategoryQuery();
-  console.log("data:", data);
+  const navigate = useNavigate();
+
+  const handleRouteCate = (title) => {
+    navigate(`/category-product/${title}`);
+  };
   return isFetching ? (
     <div className="flex flex-wrap justify-between">
       {[1, 2, 3, 4, 5, 6].map((item) => (
@@ -17,7 +22,7 @@ export const CategoryProduct = () => {
           className="w-6/12 p-4 sm:w-4/12 md:w-3/12 lg:w-[20%] xl:w-2/12"
           key={item}>
           <Skeleton>
-            <Thumbnail></Thumbnail>
+          <Thumbnail height={"50px"}></Thumbnail>
           </Skeleton>
         </div>
       ))}
@@ -50,6 +55,7 @@ export const CategoryProduct = () => {
         {data?.caterories?.map((category, index) => (
           <SwiperSlide
             key={index}
+            onClick={() => handleRouteCate(category.title)}
             virtualIndex={index}
             className="w-full overflow-hidden">
             {category.title}

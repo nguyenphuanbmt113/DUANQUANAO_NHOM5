@@ -51,7 +51,7 @@ export const Pagination = ({ page, totalPage, path, count }) => {
     }
   };
   return (
-    count > totalPage && (
+    count >= totalPage && (
       <div className="mt-5 fui-basic-pagination">
         <ul className="pagination-list">
           {prev()}
