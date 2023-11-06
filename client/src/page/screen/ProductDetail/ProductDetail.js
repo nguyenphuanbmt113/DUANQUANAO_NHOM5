@@ -10,9 +10,11 @@ export const ProductDetail = () => {
   console.log("data:", data);
   return (
     <>
-      <NavHome></NavHome>
-      <div className="my-container px-5 mt-8">
-        {<DetailProductCard product={data}></DetailProductCard>}
+      <NavHome detailpage="detailpage"></NavHome>
+      <div className="my-container px-5 my-8">
+        <DetailProductCard
+          product={data}
+          isLoading={isLoading}></DetailProductCard>
       </div>
     </>
   );

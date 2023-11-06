@@ -13,15 +13,15 @@ export const CatProduct = () => {
   const { data, isLoading } = useGetProductCategoryQuery({ name, page });
   return (
     <>
-      <NavHome></NavHome>
+      <NavHome detailpage="detailpage"></NavHome>
       {isLoading ? (
         <div className="my-container grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((item) => (
             <div className="" key={item}>
               <Skeleton>
                 <Thumbnail height="250px"></Thumbnail>
-                <TextSketelon></TextSketelon>
-                <TextSketelon></TextSketelon>
+                <TextSketelon height="20px"></TextSketelon>
+                <TextSketelon height="20px"></TextSketelon>
               </Skeleton>
             </div>
           ))}
@@ -32,6 +32,15 @@ export const CatProduct = () => {
             {data?.count} Products found in{" "}
             <span className="text-blue-400">#{name}</span>
           </span>
+          {data && (
+            <div className="my-container px-5">
+              <Pagination
+                page={parseInt(page)}
+                totalPage={parseInt(data?.totalPage)}
+                path={`category-products/${name}`}
+                count={data?.count}></Pagination>
+            </div>
+          )}
           <div className="px-5 mt-5 my-container grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {data.product.map((pro) => (
               <ProductCard key={pro._id} pro={pro}></ProductCard>
@@ -43,15 +52,6 @@ export const CatProduct = () => {
           <span className="block my-container px-5">
             Don't Have Any Products
           </span>
-        </div>
-      )}
-      {data && (
-        <div className="my-container px-5">
-          <Pagination
-            page={parseInt(page)}
-            totalPage={parseInt(data?.totalPage)}
-            path={`category-products/${name}`}
-            count={data?.count}></Pagination>
         </div>
       )}
     </>

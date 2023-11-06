@@ -32,15 +32,19 @@ const productSchema = mongoose.Schema(
     },
     image1: {
       type: String,
+      required: true,
     },
     image2: {
       type: String,
+      required: true,
     },
     image3: {
       type: String,
+      required: true,
     },
     description: {
       type: String,
+      required: true,
     },
     reviews: [{ type: mongoose.Types.ObjectId, ref: "review" }],
   },
