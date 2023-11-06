@@ -22,4 +22,5 @@ const Quantity = ({ quantity, inc, dec, theme }) => {
     </div>
   );
 };
+
 export default Quantity;

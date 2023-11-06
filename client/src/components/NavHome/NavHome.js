@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../../redux/reducers/authReducer";
+import { toggleSearchbar } from "../../redux/reducers/globalReducer";
+import { Search } from "../Search/Search";
 export const NavHome = ({ detailpage }) => {
   const dispatch = useDispatch();
   const { accessTokenUser } = useSelector((state) => state.authReducer);
+  const { searchBar } = useSelector((state) => state.globalReducer);
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+  const handleShow = () => {
+    dispatch(toggleSearchbar());
+  };
+
   return (
     <>
       <div
@@ -31,7 +39,10 @@ export const NavHome = ({ detailpage }) => {
               </Link>
             </nav>
           ) : (
-            <nav>
+            <nav className="flex items-center gap-6">
+              <div onClick={handleShow}>
+                <BsSearch size={20}></BsSearch>
+              </div>
               <span className="cursor-pointer" onClick={handleLogout}>
                 Đăng Xuất
               </span>
@@ -39,6 +50,7 @@ export const NavHome = ({ detailpage }) => {
           )}
         </div>
       </div>
+      {searchBar && <Search></Search>}
     </>
   );
 };

@@ -182,32 +182,46 @@ export const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 export const getCateProduct = asyncHandler(async (req, res) => {
-  const { name } = req.params;
-  const page = req.params.page || 1;
-  let limit = 12;
-  let offset = limit * (page - 1);
-  const product = await Product.find({
-    category: name,
-  })
-    .limit(limit)
-    .skip(offset)
-    .sort("-createdAt")
-    .where("stock")
-    .gt(0);
-  const count = await Product.find({
-    category: name,
-  })
-  .where("stock")
-  .gt(0)
-  .countDocuments();
-  const totalPage = Math.ceil(count / limit);
-  return res.status(200).json({
-    success: product ? true : false,
-    mes: product
-      ? "Get category products success"
-      : "failed to get category products",
-    product,
-    totalPage,
-    count,
-  });
+  const { name, page } = req.params;
+  if (page) {
+    let limit = 12;
+    let offset = limit * (page - 1);
+    const product = await Product.find({
+      category: name,
+    })
+      .limit(limit)
+      .skip(offset)
+      .sort("-createdAt")
+      .where("stock")
+      .gt(0);
+    const count = await Product.find({
+      category: name,
+    })
+      .where("stock")
+      .gt(0)
+      .countDocuments();
+    const totalPage = Math.ceil(count / limit);
+    return res.status(200).json({
+      success: product ? true : false,
+      mes: product
+        ? "Get category products success"
+        : "failed to get category products",
+      product,
+      totalPage,
+      count,
+    });
+  } else {
+    const product = await Product.find({
+      category: name,
+    })
+      .where("stock")
+      .gt(0)
+      .limit(4)
+      .sort("-updatedAt");
+    return res.status(200).json({
+      success: product ? true : false,
+      mes: product ? "get category success" : "failed to get product",
+      product,
+    });
+  }
 });

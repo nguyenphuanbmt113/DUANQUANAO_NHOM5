@@ -42,13 +42,25 @@
   font-weight: 700;
   font-size: 30px;
 }
+.font-v3 {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 25px;
+}
 .font-v1 {
   font-family: "Poppins", serif;
   font-weight: 500;
   font-size: 30px;
 }
+.ff {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+}
 .my-container {
   @apply max-w-[1240px] mx-auto;
+}
+.my-bigcontainer {
+  @apply max-w-[1340px] mx-auto;
 }
 .swiper.swiper-initialized.swiper-horizontal.mySwiper.swiper-backface-hidden {
   margin: 0;
