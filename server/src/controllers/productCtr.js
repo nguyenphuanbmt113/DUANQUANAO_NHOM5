@@ -82,7 +82,7 @@ export const getProductsByQuery = asyncHandler(async (req, res) => {
     }
     //fields, limited
     if (req.query.fields) {
-      const fieldsBy = req.query.fields.split(" ").join(" ");
+      const fieldsBy = req.query.fields.split(" ").join(" ")  //string ->split->array   //array->join->string;
       queryCommand = queryCommand.select(fieldsBy);
     }
 
@@ -220,7 +220,59 @@ export const getCateProduct = asyncHandler(async (req, res) => {
       .sort("-updatedAt");
     return res.status(200).json({
       success: product ? true : false,
-      mes: product ? "get category success" : "failed to get product",
+      mes: product ? "get product success" : "failed to get product",
+      product,
+    });
+  }
+});
+export const searchProduct = asyncHandler(async (req, res) => {
+  const { name, page, keyword } = req.params;
+  const options = name
+    ? { category: name }
+    : keyword && {
+        title: {
+          $regex: `${keyword}`,
+          $options: "i",
+        },
+      };
+  if (page) {
+    let limit = 12;
+    let offset = limit * (page - 1);
+    const product = await Product.find({
+      ...options,
+    })
+      .limit(limit)
+      .skip(offset)
+      .sort("-createdAt")
+      .where("stock")
+      .gt(0);
+    const count = await Product.find({
+      ...options,
+    })
+      .where("stock")
+      .gt(0)
+      .countDocuments();
+    const totalPage = Math.ceil(count / limit);
+    return res.status(200).json({
+      success: product ? true : false,
+      mes: product
+        ? "Get search products success"
+        : "failed to get search products",
+      product,
+      totalPage,
+      count,
+    });
+  } else {
+    const product = await Product.find({
+      category: name,
+    })
+      .where("stock")
+      .gt(0)
+      .limit(4)
+      .sort("-updatedAt");
+    return res.status(200).json({
+      success: product ? true : false,
+      mes: product ? "get product success" : "failed to get product",
       product,
     });
   }
