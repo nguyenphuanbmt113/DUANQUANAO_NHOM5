@@ -12,7 +12,7 @@ export const ProductCard = ({ pro }) => {
             <img
               src={`/images/${pro.image1}`}
               alt=""
-              className="w-full h-[200px] object-cover"
+              className="w-full h-[300px] object-cover"
             />
           </div>
           <div className="mt-3 text-lg font-nomal">{pro.title}</div>

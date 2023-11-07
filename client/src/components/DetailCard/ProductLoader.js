@@ -2,6 +2,7 @@ import React from "react";
 import { Skeleton } from "../LoadingSkeleton/Skeleton";
 import { TextSketelon } from "../LoadingSkeleton/TextSketelon";
 import { Thumbnail } from "../LoadingSkeleton/Thumbnail";
+
 export const ProductLoader = () => {
   return (
     <>
