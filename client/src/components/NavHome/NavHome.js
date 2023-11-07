@@ -40,7 +40,7 @@ export const NavHome = ({ detailpage }) => {
             </nav>
           ) : (
             <nav className="flex items-center gap-6">
-              <div onClick={handleShow}>
+              <div onClick={handleShow}  className="cursor-pointer">
                 <BsSearch size={20}></BsSearch>
               </div>
               <span className="cursor-pointer" onClick={handleLogout}>
