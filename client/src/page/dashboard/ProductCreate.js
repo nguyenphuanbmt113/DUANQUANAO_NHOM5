@@ -101,7 +101,6 @@ export const ProductCreate = () => {
     formData.append("image3", state.image3);
     createNewProduct(formData);
   };
-  console.log(">value:", value);
 
   useEffect(() => {
     if (response?.isSuccess) {

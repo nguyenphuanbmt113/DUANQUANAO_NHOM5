@@ -3,17 +3,49 @@ import currencyFormatter from "currency-formatter";
 import { DetailImage } from "./DetailImage";
 import { ProductLoader } from "./ProductLoader";
 import Quantity from "../Quatity/Quatity";
+import { AiOutlineCheck } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addtoCart } from "../../redux/reducers/cartReducer";
 export const DetailProductCard = ({ product, isLoading }) => {
-  console.log("isLoading:", isLoading);
+  const [sizesState, setSizesState] = useState(
+    product?.sizes?.length > 0 && product?.sizes[0].name
+  );
+  const [colorsState, setColorsState] = useState(
+    product?.colors?.length > 0 && product?.colors[0].color
+  );
+
   const percentage = product.discount / 100;
   const discountPrice = product.price - product.price * percentage;
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
   const inc = () => {
     setQuantity(quantity + 1);
   };
   const dec = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+    }
+  };
+  const addtocart = () => {
+    const { colors, sizes, updatedAt, createdAt, ...newProduct } = product;
+    newProduct.size = sizesState;
+    newProduct.color = colorsState;
+    newProduct.quantity = quantity;
+    console.log("newProduct:", newProduct);
+    const cart = localStorage.getItem("cart");
+    console.log("cart:", cart);
+    const cartItems = cart ? JSON.parse(cart) : [];
+    console.log("cartItems:", cartItems);
+    const checkItem = cartItems.find((item) => item._id === newProduct._id);
+    if (!checkItem) {
+      toast.success(`add ${newProduct.title} to cart success`);
+      cartItems.push(newProduct);
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      dispatch(addtoCart(newProduct));
+    } else {
+      toast.error(`${newProduct.title} is already in cart`);
+      return;
     }
   };
   return (
@@ -45,31 +77,41 @@ export const DetailProductCard = ({ product, isLoading }) => {
                   sizes
                 </h3>
                 <div className="flex flex-wrap -mx-1">
-                  {product.sizes.map((size) => (
-                    <div
-                      className={`px-3 py-2 m-1 border border-gray-300 rounded cursor-pointer `}
-                      key={size.name}>
-                      <span className={`text-sm font-semibold uppercase`}>
-                        {size.name}
-                      </span>
-                    </div>
-                  ))}
+                {product &&
+                    product.sizes.map((size) => (
+                      <div
+                        className={`px-3 py-2 m-1 border border-gray-300 rounded cursor-pointer ${
+                          sizesState === size.name && "bg-blue-400 text-white"
+                        }`}
+                        key={size.name}>
+                        <span
+                          className={`text-sm font-semibold uppercase`}
+                          onClick={() => setSizesState(size.name)}>
+                          {size.name}
+                        </span>
+                      </div>
+                    ))}
                 </div>
               </div>
             )}
-            {product?.colors?.length > 0 && (
+            {product && product?.colors?.length > 0 && (
               <div className="flex items-center gap-5  py-4 border-b border-gray-300">
                 <h3 className="w-[10%] mt-3 text-xl font-medium capitalize text-gray-600 mb-1 underline font-serif">
                   colors
                 </h3>
                 <div className="flex flex-wrap -mx-1">
-                  {product.colors.map((color) => (
+                  {product.colors.map((col) => (
                     <div
-                      key={color.color}
-                      className="border border-gray-300 m-1 rounded-full cursor-pointer">
+                    key={col.color}
+                    className={`border border-gray-300 m-1 rounded-full cursor-pointer p-[3px]`}>
                       <span
-                        className="min-w-[40px] min-h-[40px] rounded-full flex items-center justify-center"
-                        style={{ backgroundColor: color.color }}></span>
+                        onClick={() => setColorsState(col.color)}
+                        className={`min-w-[40px] min-h-[40px] rounded-full flex items-center justify-center`}
+                        style={{ backgroundColor: col.color }}>
+                        {colorsState === col.color && (
+                          <AiOutlineCheck size={20}></AiOutlineCheck>
+                        )}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -80,7 +122,9 @@ export const DetailProductCard = ({ product, isLoading }) => {
                 <Quantity quantity={quantity} inc={inc} dec={dec} />
               </div>
               <div className="w-full sm:w-6/12 p-3">
-                <button className="px-3 py-2 bg-indigo-400 text-white">
+              <button
+                  className="px-3 py-2 bg-indigo-400 text-white"
+                  onClick={addtocart}>
                   Add To Cart
                 </button>
               </div>

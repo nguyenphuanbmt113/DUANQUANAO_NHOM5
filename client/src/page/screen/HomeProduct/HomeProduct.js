@@ -3,12 +3,10 @@ import { ProductCard } from "../../../components/ProductCard/ProductCard";
 import { useGetProductCategoryQuery } from "../../../service/productService";
 
 export const HomeProduct = ({ category }) => {
-  console.log("category:", category);
   const { data } = useGetProductCategoryQuery({
     name: category.title,
     page: "",
   });
-  console.log(">......render:", data);
   return (
     <div className="">
       <div className="flex items-center justify-between mb-5">
@@ -20,7 +18,9 @@ export const HomeProduct = ({ category }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {data &&
           data.product.length > 0 &&
-          data.product.map((pro) => <ProductCard pro={pro} key={pro._id}></ProductCard>)}
+          data.product.map((pro) => (
+            <ProductCard pro={pro} key={pro._id}></ProductCard>
+          ))}
       </div>
     </div>
   );

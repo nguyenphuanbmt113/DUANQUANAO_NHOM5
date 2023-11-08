@@ -23,6 +23,7 @@ import "swiper/css/pagination";
 import { CatProduct } from "./page/screen/CatProduct/CatProduct";
 import { ProductDetail } from "./page/ProductDetail/ProductDetail";
 import { SearchProduct } from "./page/screen/SearchProduct/SearchProduct";
+import { Cart } from "./page/screen/Cart/Cart";
 const App = () => {
   return (
     <>
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/home" element={<Home></Home>}></Route>
         <Route element={<UserRouteProtect></UserRouteProtect>}>
           <Route path="/account" element={<Account></Account>}></Route>
+          <Route path="/cart" element={<Cart></Cart>}></Route>
           <Route
             path="/search/:keyword/:page"
             element={<SearchProduct></SearchProduct>}></Route>
