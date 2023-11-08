@@ -27,7 +27,7 @@ export const Home = () => {
         data.caterories.length > 0 &&
         data?.caterories?.map((category, index) => (
           <div className="my-bigcontainer px-5 mt-[30px]" key={category._id}>
-            <HomeProduct category={category}></HomeProduct>
+            <HomeProduct category={category} homepage={true}></HomeProduct>
           </div>
         ))
       ) : (

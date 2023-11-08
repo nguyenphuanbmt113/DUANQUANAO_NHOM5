@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import { ProductCard } from "../../../components/ProductCard/ProductCard";
 import { useGetProductCategoryQuery } from "../../../service/productService";
 
-export const HomeProduct = ({ category }) => {
+export const HomeProduct = ({ category, homepage }) => {
   const { data } = useGetProductCategoryQuery({
     name: category.title,
     page: "",
   });
   return (
-    <div className="">
+    <div className={"bg-white p-5 -mx-5 rounded-lg shadow-md"}>
       <div className="flex items-center justify-between mb-5">
         <span className="capitalize text-xl  font-v3">{category.title}</span>
         <Link to={`/category-product/${category.title}`}>
@@ -19,7 +19,7 @@ export const HomeProduct = ({ category }) => {
         {data &&
           data.product.length > 0 &&
           data.product.map((pro) => (
-            <ProductCard pro={pro} key={pro._id}></ProductCard>
+            <ProductCard pro={pro} key={pro._id} homepage={homepage}></ProductCard>
           ))}
       </div>
     </div>

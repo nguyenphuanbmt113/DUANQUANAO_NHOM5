@@ -1,11 +1,11 @@
 import React from "react";
 import currencyFormatter from "currency-formatter";
 import { Link } from "react-router-dom";
-export const ProductCard = ({ pro }) => {
+export const ProductCard = ({ pro, homepage }) => {
   const percentage = pro.discount / 100;
   const discountPrice = pro.price - pro.price * percentage;
   return (
-    <>
+    <div className={`${!homepage && "bg-white rounded-md p-5 shadow-md"}`}>
       <Link to={`/product/${pro._id}`}>
         <div className="w-full" key={pro._id}>
           <div className="w-full">
@@ -26,6 +26,6 @@ export const ProductCard = ({ pro }) => {
           </div>
         </div>
         </Link>
-    </>
+    </div>
   );
 };

@@ -38,22 +38,22 @@
   object-fit: cover;
 }
 .font-v2 {
-  font-family: "Playfair Display", serif;
-  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 30px;
 }
 .font-v3 {
-  font-family: "Playfair Display", serif;
-  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 25px;
 }
 .font-v1 {
-  font-family: "Poppins", serif;
-  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 30px;
 }
 .ff {
-  font-family: "Playfair Display", serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
 }
 .my-container {
@@ -64,4 +64,7 @@
 }
 .swiper.swiper-initialized.swiper-horizontal.mySwiper.swiper-backface-hidden {
   margin: 0;
+}
+.swiper-slide {
+  background: #f5f5f5 !important;
 }

@@ -26,7 +26,7 @@ import { SearchProduct } from "./page/screen/SearchProduct/SearchProduct";
 import { Cart } from "./page/screen/Cart/Cart";
 const App = () => {
   return (
-    <>
+    <div className="bg-[#f6f6f6]">
       <Routes>
         <Route path="/home" element={<Home></Home>}></Route>
         <Route element={<UserRouteProtect></UserRouteProtect>}>
@@ -97,19 +97,8 @@ const App = () => {
           <Route path="*" element={<Product></Product>}></Route>
         </Route>
       </Routes>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </>
+      
+    </div>
   );
 };
 

@@ -103,13 +103,13 @@ export const DetailProductCard = ({ product, isLoading }) => {
                   {product.colors.map((col) => (
                     <div
                     key={col.color}
-                    className={`border border-gray-300 m-1 rounded-full cursor-pointer p-[3px]`}>
+                    className={`border border-gray-300 m-1 rounded-full cursor-pointer`}>
                       <span
                         onClick={() => setColorsState(col.color)}
                         className={`min-w-[40px] min-h-[40px] rounded-full flex items-center justify-center`}
                         style={{ backgroundColor: col.color }}>
                         {colorsState === col.color && (
-                          <AiOutlineCheck size={20}></AiOutlineCheck>
+                          <AiOutlineCheck size={20} color="white"></AiOutlineCheck>
                         )}
                       </span>
                     </div>
