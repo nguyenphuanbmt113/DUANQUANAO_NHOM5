@@ -20,7 +20,7 @@ export const HomeProduct = ({ category }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {data &&
           data.product.length > 0 &&
-          data.product.map((pro) => <ProductCard pro={pro}></ProductCard>)}
+          data.product.map((pro) => <ProductCard pro={pro} key={pro._id}></ProductCard>)}
       </div>
     </div>
   );

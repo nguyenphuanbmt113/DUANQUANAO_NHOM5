@@ -8,7 +8,7 @@ import { HomeProduct } from "../HomeProduct/HomeProduct";
 
 export const Home = () => {
   const { data, isFetching } = useGetRanCategoryQuery();
-  console.log(">>>>>>>>>>>>category:", data)
+  console.log(">>>>>>>>>>>>category:", data);
   return (
     <div>
       <div>
@@ -25,8 +25,8 @@ export const Home = () => {
       {!isFetching ? (
         data.caterories.length > 0 &&
         data?.caterories?.map((category, index) => (
-          <div className="my-bigcontainer px-5 mt-[30px]">
-            <HomeProduct category={category} key={category._id}></HomeProduct>
+          <div className="my-bigcontainer px-5 mt-[30px]" key={category._id}>
+            <HomeProduct category={category}></HomeProduct>
           </div>
         ))
       ) : (
