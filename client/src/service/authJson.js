@@ -6,11 +6,32 @@ export const authJson = createApi({
   }),
   endpoints: (builder) => ({
     createLogin: builder.mutation({
-      query: (data) => ({
-        url: `/login`,
-        method: "POST",
-        body: data,
-      }),
+      query: (data) => {
+        return {
+          url: `/login`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    forgotPassword: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/forgotPassword`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    resetPassword: builder.mutation({
+      query: (data) => {
+
+        return {
+          url: `/resetpassword`,
+          method: "PUT",
+          body: data,
+        };
+      },
     }),
     createLoginUser: builder.mutation({
       query: (data) => ({
@@ -31,6 +52,8 @@ export const authJson = createApi({
 
 export const {
   useCreateLoginMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
   useRegisterMutation,
   useCreateLoginUserMutation,
 } = authJson;

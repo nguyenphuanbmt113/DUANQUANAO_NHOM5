@@ -1,25 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavHome } from "../../../components/NavHome/NavHome";
 import currencyFormatter from "currency-formatter";
 import { discount } from "../../../ulties/discount";
 import Quantity from "../../../components/Quatity/Quatity";
-import { deleteCartItem } from "../../../redux/reducers/cartReducer";
+import {
+  decQuantity,
+  deleteCartItem,
+  incQuantity,
+} from "../../../redux/reducers/cartReducer";
+import { useNavigate } from "react-router-dom";
+import { useSendPaymentMutation } from "../../../service/paymentService";
 export const Cart = () => {
   const { cart, totalMoney } = useSelector((state) => state.cartReducer);
-  console.log("totalMoney:", totalMoney);
-  console.log("cart:", cart);
+  const { accessTokenUser, userTokenVerify } = useSelector(
+    (state) => state.authReducer
+  );
   const dispatch = useDispatch();
-  const inc = () => {};
-  const dec = () => {};
+  const navigate = useNavigate();
+  const [sendPayment, response] = useSendPaymentMutation();
+
+  useEffect(() => {
+    if (response?.isSuccess) {
+      window.location.href = response?.data?.url;
+    }
+  }, [response]);
+  const inc = (id) => {
+    dispatch(incQuantity(id));
+  };
+  const dec = (id) => {
+    dispatch(decQuantity(id));
+  };
   const handleDeleteCartItem = (id) => {
-    const cart = localStorage.getItem("cart");
-    const checkExists = JSON.parse(cart).find((item) => item._id !== id);
-    console.log("checkExists:", checkExists);
-    if (checkExists) {
-      const newCart = JSON.parse(cart).filter((item) => item._id !== id);
-      localStorage.setItem("cart", JSON.stringify(newCart));
+    if (window.confirm("Bạn muốn xóa sản phẩm ra khỏi giỏ hàng?"))
       dispatch(deleteCartItem(id));
+  };
+  const checkoutCart = () => {
+    if (accessTokenUser) {
+      sendPayment({ cart, id: userTokenVerify._id });
+    } else {
+      navigate("/login");
     }
   };
   return (
@@ -61,8 +81,8 @@ export const Cart = () => {
                         <div className="flex items-center border-gray-100">
                           <Quantity
                             quantity={item.quantity}
-                            inc={() => inc()}
-                            dec={dec}></Quantity>
+                            inc={() => inc(item._id)}
+                            dec={() => dec(item._id)}></Quantity>
                         </div>
                         <div className="flex items-center space-x-4">
                           <p className="text-sm">{total}</p>
@@ -88,25 +108,34 @@ export const Cart = () => {
                 );
               })}
           </div>
-          <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-            <div className="text-gray-700 font-bold">Thanh Toán</div>
-            <hr className="my-4" />
-            <div className="flex justify-between">
-              <p className="text-lg font-bold">Tổng Cộng</p>
-              <div className="">
-                <p className="mb-1 text-lg font-bold">
-                  {currencyFormatter.format(totalMoney, {
-                    code: "USD",
-                  })}
-                </p>
-                <p className="text-sm text-gray-700">bao gồm VAT</p>
+                    {cart && cart.length > 0 && (
+            <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+              <div className="text-gray-700 font-bold">Thanh Toán</div>
+              <hr className="my-4" />
+              <div className="flex justify-between">
+                <p className="text-lg font-bold">Tổng Cộng</p>
+                <div className="">
+                  <p className="mb-1 text-lg font-bold">
+                    {currencyFormatter.format(totalMoney, {
+                      code: "USD",
+                    })}
+                  </p>
+                  <p className="text-sm text-gray-700">bao gồm VAT</p>
+                </div>
               </div>
+              <button
+                className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+                onClick={() => checkoutCart()}>
+                {response.isLoading ? "Loading..." : "CheckOut"}
+              </button>
             </div>
-            <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-              Check out
-            </button>
-          </div>
+          )}
         </div>
+        {cart.length === 0 && (
+          <div className="my-container px-5 py-2 bg-red-200 text-red-400">
+            The Cart is empty
+          </div>
+        )}
       </div>
     </>
   );

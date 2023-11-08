@@ -8,8 +8,8 @@ const reviewsSchema = Schema(
     comment: {
       type: String,
     },
-    product: { type: Types.ObjectId, ref: "product" },
-    user: { type: Types.ObjectId, ref: "user" },
+    product: { type: Types.ObjectId, ref: "Product" },
+    user: { type: Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,

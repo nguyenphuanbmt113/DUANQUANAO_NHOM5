@@ -1,7 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "swiper/css";
+import "swiper/css/pagination";
 import "./App.scss";
 import { Login } from "./components/Login/Login";
 import { LayoutLogin } from "./layout/layoutLogin";
@@ -11,25 +12,31 @@ import { DashBoard } from "./page/dashboard/DashBoard";
 import { ProductEdit } from "./page/dashboard/EditProduct";
 import { Product } from "./page/dashboard/Product";
 import { ProductCreate } from "./page/dashboard/ProductCreate";
+import { ProductDetail } from "./page/ProductDetail/ProductDetail";
 import { Account } from "./page/screen/Account/Account";
 import { LoginUser } from "./page/screen/AuthLogin/LoginUser";
 import { RegisterUser } from "./page/screen/AuthLogin/RegisterUser";
+import { Cart } from "./page/screen/Cart/Cart";
+import { CatProduct } from "./page/screen/CatProduct/CatProduct";
+import { ForgotPassword } from "./page/screen/ForgotPassword/ForgotPassword";
+import { ResetPassword } from "./page/screen/ForgotPassword/ResetPassword";
 import { Home } from "./page/screen/Home/Home";
+import { SearchProduct } from "./page/screen/SearchProduct/SearchProduct";
 import { PrivateRoute } from "./Route/PrivateRoute";
 import { UserAuth } from "./Route/UserRoute/UserAuth";
 import { UserRouteProtect } from "./Route/UserRoute/UserRoute";
-import "swiper/css";
-import "swiper/css/pagination";
-import { CatProduct } from "./page/screen/CatProduct/CatProduct";
-import { ProductDetail } from "./page/ProductDetail/ProductDetail";
-import { SearchProduct } from "./page/screen/SearchProduct/SearchProduct";
-import { Cart } from "./page/screen/Cart/Cart";
 const App = () => {
   return (
     <Routes>
       <Route path="/home" element={<Home></Home>}></Route>
+      <Route
+        path="/forgot-password"
+        element={<ForgotPassword></ForgotPassword>}></Route>
+      <Route
+        path="/resetpassword/:tokenpassword"
+        element={<ResetPassword></ResetPassword>}></Route>
       <Route element={<UserRouteProtect></UserRouteProtect>}>
-        <Route path="/account" element={<Account></Account>}></Route>
+        <Route path="/user" element={<Account></Account>}></Route>
         <Route path="/cart" element={<Cart></Cart>}></Route>
         <Route
           path="/search/:keyword/:page"

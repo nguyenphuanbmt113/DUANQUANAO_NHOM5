@@ -11,7 +11,6 @@ export const NavHome = ({ detailpage }) => {
   const { accessTokenUser } = useSelector((state) => state.authReducer);
   const { searchBar } = useSelector((state) => state.globalReducer);
   const { items } = useSelector((state) => state.cartReducer);
-  console.log("items:", items)
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logoutUser());
