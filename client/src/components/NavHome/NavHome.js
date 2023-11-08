@@ -10,6 +10,8 @@ export const NavHome = ({ detailpage }) => {
   const dispatch = useDispatch();
   const { accessTokenUser } = useSelector((state) => state.authReducer);
   const { searchBar } = useSelector((state) => state.globalReducer);
+  const { items } = useSelector((state) => state.cartReducer);
+  console.log("items:", items)
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -50,8 +52,8 @@ export const NavHome = ({ detailpage }) => {
               </div>
               <div className="cursor-pointer relative" onClick={tocartPage}>
                 <AiOutlineShoppingCart size={30}></AiOutlineShoppingCart>
-                <span className="p-[5px] text-white inline-block absolute top-[-10px] right-[-16px] rounded-full text-[10px] bg-red-400">
-                  10
+                <span className="p-[5px] text-white inline-block absolute top-[-10px] right-[-10px] rounded-full text-[10px] bg-red-400">
+                  {items}
                 </span>
               </div>
               <span className="cursor-pointer" onClick={handleLogout}>

@@ -1,12 +1,11 @@
-import React, { useState } from "react";
 import currencyFormatter from "currency-formatter";
+import { AiOutlineCheck } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { addtoCart } from "../../redux/reducers/cartReducer";
+import Quantity from "../Quatity/Quatity";
 import { DetailImage } from "./DetailImage";
 import { ProductLoader } from "./ProductLoader";
-import Quantity from "../Quatity/Quatity";
-import { AiOutlineCheck } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { addtoCart } from "../../redux/reducers/cartReducer";
 export const DetailProductCard = ({ product, isLoading }) => {
   const [sizesState, setSizesState] = useState(
     product?.sizes?.length > 0 && product?.sizes[0].name
@@ -109,7 +108,9 @@ export const DetailProductCard = ({ product, isLoading }) => {
                         className={`min-w-[40px] min-h-[40px] rounded-full flex items-center justify-center`}
                         style={{ backgroundColor: col.color }}>
                         {colorsState === col.color && (
-                          <AiOutlineCheck size={20} color="white"></AiOutlineCheck>
+                          <AiOutlineCheck
+                            size={20}
+                            color="white"></AiOutlineCheck>
                         )}
                       </span>
                     </div>

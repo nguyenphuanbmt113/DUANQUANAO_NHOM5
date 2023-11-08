@@ -26,79 +26,73 @@ import { SearchProduct } from "./page/screen/SearchProduct/SearchProduct";
 import { Cart } from "./page/screen/Cart/Cart";
 const App = () => {
   return (
-    <div className="bg-[#f6f6f6]">
-      <Routes>
-        <Route path="/home" element={<Home></Home>}></Route>
-        <Route element={<UserRouteProtect></UserRouteProtect>}>
-          <Route path="/account" element={<Account></Account>}></Route>
-          <Route path="/cart" element={<Cart></Cart>}></Route>
-          <Route
-            path="/search/:keyword/:page"
-            element={<SearchProduct></SearchProduct>}></Route>
-          {/* <Route
-            path="/search/:keyword"
-            element={<SearchProduct></SearchProduct>}></Route> */}
-          <Route
-            path="/product/:id"
-            element={<ProductDetail></ProductDetail>}></Route>
-          <Route
-            path="/category-product/:name"
-            element={<CatProduct></CatProduct>}></Route>
-          <Route
-            path="/category-product/:name/:page"
-            element={<CatProduct></CatProduct>}></Route>
-        </Route>
-        <Route element={<UserAuth></UserAuth>}>
-          <Route path="/login" element={<LayoutLogin></LayoutLogin>}>
-            <Route path="/login" element={<LoginUser></LoginUser>}></Route>
-          </Route>
-          <Route path="/register" element={<LayoutRegister></LayoutRegister>}>
-            <Route
-              path="/register"
-              element={<RegisterUser></RegisterUser>}></Route>
-          </Route>
-        </Route>
-        <Route path="/auth/login" element={<Login></Login>}></Route>
+    <Routes>
+      <Route path="/home" element={<Home></Home>}></Route>
+      <Route element={<UserRouteProtect></UserRouteProtect>}>
+        <Route path="/account" element={<Account></Account>}></Route>
+        <Route path="/cart" element={<Cart></Cart>}></Route>
         <Route
-          path="/dashboard"
+          path="/search/:keyword/:page"
+          element={<SearchProduct></SearchProduct>}></Route>
+        <Route
+          path="/product/:id"
+          element={<ProductDetail></ProductDetail>}></Route>
+        <Route
+          path="/category-product/:name"
+          element={<CatProduct></CatProduct>}></Route>
+        <Route
+          path="/category-product/:name/:page"
+          element={<CatProduct></CatProduct>}></Route>
+      </Route>
+      <Route element={<UserAuth></UserAuth>}>
+        <Route path="/login" element={<LayoutLogin></LayoutLogin>}>
+          <Route path="/login" element={<LoginUser></LoginUser>}></Route>
+        </Route>
+        <Route path="/register" element={<LayoutRegister></LayoutRegister>}>
+          <Route
+            path="/register"
+            element={<RegisterUser></RegisterUser>}></Route>
+        </Route>
+      </Route>
+      <Route path="/auth/login" element={<Login></Login>}></Route>
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <DashBoard></DashBoard>
+          </PrivateRoute>
+        }>
+        <Route
+          path="product"
           element={
             <PrivateRoute>
-              <DashBoard></DashBoard>
+              <Product></Product>
             </PrivateRoute>
-          }>
-          <Route
-            path="product"
-            element={
-              <PrivateRoute>
-                <Product></Product>
-              </PrivateRoute>
-            }></Route>
-          <Route
-            path="product/:page"
-            element={
-              <PrivateRoute>
-                <Product></Product>
-              </PrivateRoute>
-            }></Route>
-          <Route
-            path="product/edit/:id"
-            element={
-              <PrivateRoute>
-                <ProductEdit></ProductEdit>
-              </PrivateRoute>
-            }></Route>
-          <Route
-            path="create-product"
-            element={<ProductCreate></ProductCreate>}></Route>
-          <Route path="order" element={<Product></Product>}></Route>
-          <Route path="category" element={<Category></Category>}></Route>
-          <Route path="category/:page" element={<Category></Category>}></Route>
-          <Route path="user" element={<Product></Product>}></Route>
-          <Route path="*" element={<Product></Product>}></Route>
-        </Route>
-      </Routes>
-      
-    </div>
+          }></Route>
+        <Route
+          path="product/:page"
+          element={
+            <PrivateRoute>
+              <Product></Product>
+            </PrivateRoute>
+          }></Route>
+        <Route
+          path="product/edit/:id"
+          element={
+            <PrivateRoute>
+              <ProductEdit></ProductEdit>
+            </PrivateRoute>
+          }></Route>
+        <Route
+          path="create-product"
+          element={<ProductCreate></ProductCreate>}></Route>
+        <Route path="order" element={<Product></Product>}></Route>
+        <Route path="category" element={<Category></Category>}></Route>
+        <Route path="category/:page" element={<Category></Category>}></Route>
+        <Route path="user" element={<Product></Product>}></Route>
+        <Route path="*" element={<Product></Product>}></Route>
+      </Route>
+    </Routes>
   );
 };
 
