@@ -18,7 +18,7 @@ export const ColorList = ({ colors, setState, state }) => {
         ))}
 
       {colors && colors.length === 0 && (
-        <div className="h-[40px] w-full bg-gray-100 text-white"></div>
+       <div className="h-[40px] w-full bg-white"></div>
       )}
     </div>
   );

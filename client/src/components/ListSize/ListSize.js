@@ -13,13 +13,13 @@ export const ListSizes = ({ listSizes, setListSizes }) => {
           <div
             key={index}
             onClick={() => deleteSizes(item.name)}
-            className="capitalize px-3 py-2 border cursor-pointer">
+            className="capitalize bg-white px-3 py-2 border cursor-pointer ">
             {item.name}
           </div>
         ))}
 
       {listSizes && listSizes.length === 0 && (
-        <div className="h-[40px] w-full bg-gray-100 text-white"></div>
+        <div className="h-[40px] w-full bg-white"></div>
       )}
     </div>
   );

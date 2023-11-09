@@ -4,13 +4,13 @@ export const paymentService = createApi({
   tagTypes: "payment",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:7000/api/v1/payment",
-    // prepareHeaders: (headers, { getState }) => {
-    //   const accessTokenAdmin = getState().authReducer.accessTokenAdmin;
-    //   if (accessTokenAdmin) {
-    //     headers.set("authorization", `Bearer ${accessTokenAdmin}`);
-    //   }
-    //   return headers;
-    // },
+    prepareHeaders: (headers, { getState }) => {
+      const accessTokenUser = getState().authReducer.accessTokenUser;
+      if (accessTokenUser) {
+        headers.set("authorization", `Bearer ${accessTokenUser}`);
+      }
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     sendPayment: builder.mutation({
@@ -23,7 +23,16 @@ export const paymentService = createApi({
       },
       invalidatesTags: ["payment"],
     }),
+    verifyPayment: builder.query({
+      query: (data) => {
+        return {
+          url: `/verify-payment/${data}`,
+          method: "POST",
+        };
+      },
+      providesTags: ["payment"],
+    }),
   }),
 });
 
-export const { useSendPaymentMutation } = paymentService;
+export const { useSendPaymentMutation, useVerifyPaymentQuery } = paymentService;

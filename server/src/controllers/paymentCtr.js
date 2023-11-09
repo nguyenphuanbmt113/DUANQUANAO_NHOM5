@@ -74,7 +74,7 @@ export const paymentHandler = asyncHandler(async (req, res) => {
     }),
     customer: customer.id,
     mode: "payment",
-    success_url: `${process.env.CLIENT_URL}/user?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${process.env.CLIENT_URL}/user/session_id/{CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.CLIENT_URL}/cart`,
   });
   res.json({ url: session.url });
@@ -84,8 +84,7 @@ export const handlerWebhook = asyncHandler(async (request, response) => {
   const endpointSecret =
     "whsec_c52aed87da07b4b957f886dc30e5fe764af7f0f7519c551c16a1976344402265";
   const stripePayload = request.rawBody;
-  console.log("request:", request.rawBody);
-  console.log("requestv2:", request.body);
+  
   let event;
   try {
     event = stripe.webhooks.constructEvent(
@@ -111,48 +110,44 @@ export const handlerWebhook = asyncHandler(async (request, response) => {
       console.log("event:", event);
       const data = event.data.object;
       console.log(">>>>>>>>>>>data:", data);
-      // let customer = await stripe.customers.retrieve(data.customer);
-      // customer = JSON.parse(customer?.metadata?.cart);
-      // customer.forEach(async (ctr) => {
-      //   try {
-      //     let reviewStatus = false;
-      //     const findOrder = await OrderModel.findOne({
-      //       productId: ctr._id,
-      //       userId: ctr.userId,
-      //     })
-      //       .where("review")
-      //       .equals(true);
-      //     if (findOrder) {
-      //       reviewStatus = true;
-      //     }
-      //     await OrderModel.create({
-      //       productId: ctr._id,
-      //       userId: ctr.userId,
-      //       size: ctr.size,
-      //       color: ctr.color,
-      //       quantities: ctr.quantity,
-      //       address: data.customer_details.address,
-      //       review: reviewStatus,
-      //     });
-      //     const product = await ProductModel.findOne({ _id: ctr._id });
-      //     if (product) {
-      //       let stock = product.stock - ctr.quantity;
-      //       if (stock < 0) {
-      //         stock = 0;
-      //       }
-      //       await ProductModel.findByIdAndUpdate(
-      //         ctr._id,
-      //         { stock },
-      //         { new: true }
-      //       );
-      //     }
-      //   } catch (error) {
-      //     console.log(error.message);
-      //     return response.status(500).json("Server internal error");
-      //   }
-      // });
+      let customer = await stripe.customers.retrieve(data.customer);
+      customer = JSON.parse(customer?.metadata?.cart);
+      customer.forEach(async (ctr) => {
+        try {
+          let reviewStatus = false;
+          const findOrder = await Order.findOne({
+            productId: ctr._id,
+            userId: ctr.userId,
+          })
+            .where("review")
+            .equals(true);
+          if (findOrder) {
+            reviewStatus = true;
+          }
+          await Order.create({
+            productId: ctr._id,
+            userId: ctr.userId,
+            size: ctr.size,
+            color: ctr.color,
+            quantities: ctr.quantity,
+            address: data.customer_details.address,
+            review: reviewStatus,
+          });
+          const product = await Product.findOne({ _id: ctr._id });
+          if (product) {
+            let stock = product.stock - ctr.quantity;
+            if (stock < 0) {
+              stock = 0;
+            }
+            await Product.findByIdAndUpdate(ctr._id, { stock }, { new: true });
+          }
+        } catch (error) {
+          console.log(error.message);
+          return response.status(500).json("Server internal error");
+        }
+      });
       break;
-    // ... handle other event types
+ 
     default:
       console.log(`Unhandled event type ${event.type}`);
   }

@@ -52,7 +52,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     role: "user",
   });
 
-  if (user && (await user.comparePassword(password)) === true) {
+  if (user && (await user.comparePassword(password))) {
     //tuserạo token
     const access_token = await createToken(user._id, user.role);
     return res.status(200).json({
