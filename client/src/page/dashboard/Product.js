@@ -3,7 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { Spinner } from "../../components/Spinner/Spinner";
 import {
-  useDeleteProductMutation, useGetProductQuery
+  useDeleteProductMutation,
+  useGetProductQuery,
 } from "../../service/productService";
 
 export const Product = () => {

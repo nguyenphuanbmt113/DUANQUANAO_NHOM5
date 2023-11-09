@@ -22,7 +22,7 @@ import {
   CiCircleRemove,
 } from "react-icons/ci";
 import { ImPlay3 } from "react-icons/im";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaUserLock } from "react-icons/fa";
 import { BiVolumeMute, BiDotsHorizontalRounded } from "react-icons/bi";
 import { GrPlay, GrOrderedList } from "react-icons/gr";
 import { RxVideo } from "react-icons/rx";
@@ -37,6 +37,8 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import {
+  BsMegaphone,
+  BsCartCheck,
   BsPieChart,
   BsThreeDots,
   BsPauseFill,
@@ -50,6 +52,9 @@ import {
   BsAlignStart,
 } from "react-icons/bs";
 const icons = {
+  BsCartCheck,
+  FaUserLock, 
+  BsMegaphone,
   AiOutlineShoppingCart,
   FaUserCircle,
   MdOutlineCategory,

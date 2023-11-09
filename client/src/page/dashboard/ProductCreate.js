@@ -117,7 +117,7 @@ export const ProductCreate = () => {
         <FiEye></FiEye>
       </Link>
       <div className="mt-8">
-        <div className="block uppercase tracking-wide text-yellow-500 text-2xl font-bold mb-2">
+      <div className="block uppercase tracking-wide text-blue-500 text-2xl font-bold mb-2">
           Create Product
         </div>
         <div className="w-full max-w-2lg">
@@ -127,7 +127,7 @@ export const ProductCreate = () => {
                 Title
               </label>
               <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                className="appearance-none block w-full bg-white text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-200"
                 type="text"
                 name="title"
                 value={state.title}
@@ -139,7 +139,7 @@ export const ProductCreate = () => {
                 Price
               </label>
               <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200"
                 type="text"
                 name="price"
                 value={state.price}
@@ -162,7 +162,7 @@ export const ProductCreate = () => {
                 Discount
               </label>
               <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                className="appearance-none block w-full bg-white text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-200"
                 type="text"
                 name="discount"
                 value={state.discount}
@@ -174,7 +174,7 @@ export const ProductCreate = () => {
                 Stock
               </label>
               <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-white text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200"
                 type="text"
                 name="stock"
                 value={state.stock}
@@ -200,7 +200,7 @@ export const ProductCreate = () => {
                   {!isFetching ? (
                     data?.caterories?.length > 0 && (
                       <select
-                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-500"
                         value={state.category}
                         name="category"
                         defaultValue={data?.caterories[1].title}
@@ -243,7 +243,7 @@ export const ProductCreate = () => {
                     sizes.map((item, index) => (
                       <div
                         key={index}
-                        className="capitalize px-3 py-2 border cursor-pointer"
+                        className="capitalize bg-white px-3 py-2 border cursor-pointer "
                         onClick={() => chooseSizes(item)}>
                         {item.name}
                       </div>

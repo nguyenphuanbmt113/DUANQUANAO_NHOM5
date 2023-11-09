@@ -11,7 +11,7 @@ export const Sidebar = () => {
         </span>
         <AiFillCheckCircle color="#537FE7" size={20}></AiFillCheckCircle>
       </div>
-      <div className="mt-5 flex flex-col text-sm">
+      <div className="mt-5 flex flex-col text-sm mx-3">
         {sidebarMenu.length > 0 &&
           sidebarMenu.map((item) => {
             return (
@@ -19,8 +19,8 @@ export const Sidebar = () => {
                 to={item.path}
                 className={({ isActive }) =>
                   isActive === true
-                    ? "py-2 px-[25px] font-medium text-[#205295] flex gap-3 items-center hover:bg-gray-200 bg-gray-200"
-                    : "py-2 px-[25px] font-medium text-[#32323d] flex gap-3 items-center hover:bg-gray-200"
+                    ? "py-2 px-[25px] font-medium text-[#205295] flex gap-3 items-center hover:bg-gray-100 bg-gray-200"
+                    : "py-2 px-[25px] font-medium text-[#32323d] flex gap-3 items-center hover:bg-gray-100"
                 }
                 key={item.id}>
                 {item.icon}
