@@ -74,7 +74,7 @@ export const paymentHandler = asyncHandler(async (req, res) => {
     }),
     customer: customer.id,
     mode: "payment",
-    success_url: `${process.env.CLIENT_URL}/user/session_id/{CHECKOUT_SESSION_ID}`,
+    success_url: `${process.env.CLIENT_URL}/user?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.CLIENT_URL}/cart`,
   });
   res.json({ url: session.url });
@@ -84,7 +84,6 @@ export const handlerWebhook = asyncHandler(async (request, response) => {
   const endpointSecret =
     "whsec_c52aed87da07b4b957f886dc30e5fe764af7f0f7519c551c16a1976344402265";
   const stripePayload = request.rawBody;
-  
   let event;
   try {
     event = stripe.webhooks.constructEvent(
@@ -92,24 +91,19 @@ export const handlerWebhook = asyncHandler(async (request, response) => {
       sig?.toString(),
       endpointSecret
     );
-    console.log("payment success");
   } catch (err) {
-    console.log("err.message:", err.message);
     response.status(400).send(`Webhook Error: ${err.message}`);
     return;
   }
-
+  
   // Handle the event
   switch (event.type) {
     case "payment_intent.succeeded":
       const paymentIntentSucceeded = event.data.object;
-      console.log("paymentIntentSucceeded:", paymentIntentSucceeded);
       // Then define and call a function to handle the event payment_intent.succeeded
       break;
     case "checkout.session.completed":
-      console.log("event:", event);
       const data = event.data.object;
-      console.log(">>>>>>>>>>>data:", data);
       let customer = await stripe.customers.retrieve(data.customer);
       customer = JSON.parse(customer?.metadata?.cart);
       customer.forEach(async (ctr) => {
@@ -142,12 +136,10 @@ export const handlerWebhook = asyncHandler(async (request, response) => {
             await Product.findByIdAndUpdate(ctr._id, { stock }, { new: true });
           }
         } catch (error) {
-          console.log(error.message);
           return response.status(500).json("Server internal error");
         }
       });
       break;
- 
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
@@ -158,8 +150,9 @@ export const paymentVerify = async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.retrieve(id);
     return res.status(200).json({
-      msg: "Your payment has verfied successfully",
+      mes: "Your payment has verfied successfully",
       status: session.payment_status,
+      session,
     });
   } catch (error) {
     return res.status(500).json(error.message);

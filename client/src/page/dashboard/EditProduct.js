@@ -54,7 +54,7 @@ export const ProductEdit = () => {
   //call data
   const { data, isFetching } = useAllCategoryQuery();
   const [putProduct] = usePutProductMutation();
-  
+
   //choose Color
   const saveColors = (color) => {
     const filtered = state.colors.filter((clr) => clr.color !== color.hex);
@@ -89,13 +89,13 @@ export const ProductEdit = () => {
       <Link
         to="/dashboard/product"
         className="inline-flex items-center gap-3 px-3 py-2 bg-blue-500 text-white rounded-sm">
-        <span>Product List</span>
+        <span>Danh sách sản phẩm</span>
         <FiEye></FiEye>
       </Link>
       {!isFetchingDataUpdate ? (
         <div className="mt-8">
           <div className="block uppercase tracking-wide text-blue-500 text-2xl font-bold mb-2">
-            Edit Product
+            Chỉnh sửa sản phẩm
           </div>
           <div className="w-full max-w-2lg">
             <div className="flex -mx-3 mb-2">
@@ -113,7 +113,7 @@ export const ProductEdit = () => {
               </div>
               <div className="w-full md:w-full px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Price
+                  Giá cả
                 </label>
                 <input
                   className="appearance-none block w-full bg-white text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200"
@@ -148,7 +148,7 @@ export const ProductEdit = () => {
               </div>
               <div className="w-full md:w-full px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Stock
+                  Số lượng lưu trữ
                 </label>
                 <input
                   className="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-500"
@@ -177,7 +177,7 @@ export const ProductEdit = () => {
                     {!isFetching ? (
                       data?.caterories?.length > 0 && (
                         <select
-                        className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-500"
+                          className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-500"
                           value={state.category}
                           name="category"
                           defaultValue={data?.caterories[1].title}
@@ -220,7 +220,7 @@ export const ProductEdit = () => {
                       sizes.map((item, index) => (
                         <div
                           key={index}
-                          className="capitalize bg-white px-3 py-2 border cursor-pointer "
+                          className="capitalize bg-white px-3 py-2 border cursor-pointer    "
                           onClick={() => chooseSizes(item)}>
                           {item.name}
                         </div>
@@ -246,7 +246,7 @@ export const ProductEdit = () => {
             <button
               onClick={updateProduct}
               className="px-3 py-2 bg-blue-500 text-white rounded-sm">
-              Edit Product
+              Chỉnh sửa sản phẩm
             </button>
           </div>
         </div>

@@ -1,18 +1,20 @@
 import asyncHandler from "express-async-handler";
 import Order from "../model/orderModel";
 export const getOrders = asyncHandler(async (req, res) => {
-  const page = req?.params?.page || 1;
+  const query = req.body;
+  const page = req?.query?.page || 1;
+  const option = query.userId ? query.userId : {};
   try {
     const limit = 5;
     const skip = (page - 1) * limit;
-    const orders = await Order.find()
+    const orders = await Order.find(option)
       .populate("productId")
       .populate("userId")
       .limit(limit)
       .skip(skip)
       .sort("-updatedAt")
       .exec();
-    const count = await Order.countDocuments();
+    const count = await Order.find(option).countDocuments();
     return res.status(200).json({
       mes: orders ? "get orders success" : "failed to get orders",
       orders,

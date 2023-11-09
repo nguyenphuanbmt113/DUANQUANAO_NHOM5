@@ -1,4 +1,5 @@
 import currencyFormatter from "currency-formatter";
+import React, { useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -31,9 +32,8 @@ export const DetailProductCard = ({ product, isLoading }) => {
     newProduct.size = sizesState;
     newProduct.color = colorsState;
     newProduct.quantity = quantity;
-    console.log("newProduct:", newProduct);
     
-    
+    const cart = localStorage.getItem("cart");
     const cartItems = cart ? JSON.parse(cart) : [];
     const checkItem = cartItems.find((item) => item._id === newProduct._id);
     if (!checkItem) {
@@ -48,32 +48,32 @@ export const DetailProductCard = ({ product, isLoading }) => {
   };
   return (
     <>
-    {isLoading ? (
-      <ProductLoader></ProductLoader>
-    ) : (
-          <>
-            <div className="flex flex-wrap p-4 bg-white rounded-md">
-              <div className="md:px-5 md:-mx-5 md:w-[40%] sm:w-full">
-                <DetailImage product={product}></DetailImage>
-              </div>
-              <div className="w-full md:w-[60%] md:px-5 md:mx-5 sm:w-full">
-                <div className="pb-4">
-                  <span className="mt-3 text-2xl font-medium capitalize text-black mb-1">
-                    {product.title}
+      {isLoading ? (
+        <ProductLoader></ProductLoader>
+      ) : (
+        <>
+          <div className="flex flex-wrap p-4 bg-white rounded-md">
+            <div className="md:px-5 md:-mx-5 md:w-[40%] sm:w-full">
+              <DetailImage product={product}></DetailImage>
+            </div>
+            <div className="w-full md:w-[60%] md:px-5 md:mx-5 sm:w-full">
+              <div className="pb-4">
+                <span className="mt-3 text-2xl font-medium capitalize text-black mb-1">
+                  {product.title}
                 </span>
-                  <div className="flex items-center gap-5">
-                    <span className="text-xl font-bold mt-2 font-nomal">
-                      {currencyFormatter.format(discountPrice, { code: "USD" })}
-                    </span>
-                    <span className="mt-2 text-sm font-nomal line-through font-medium">
-                      {currencyFormatter.format(product.price, { code: "USD" })}
-                    </span>
-                  </div>
+                <div className="flex items-center gap-5">
+                  <span className="text-xl font-bold mt-2 font-nomal">
+                    {currencyFormatter.format(discountPrice, { code: "USD" })}
+                  </span>
+                  <span className="mt-2 text-sm font-nomal line-through font-medium">
+                    {currencyFormatter.format(product.price, { code: "USD" })}
+                  </span>
+                </div>
               </div>
               {product?.sizes?.length > 0 && (
-                <div className="flex items-center gap-3 py-4 border-y border-gray-300">
-                  <h3 className="w-[10%] mt-3 text-xl font-medium capitalize text-gray-600 mb-1">
-                    sizes
+                <div className="gap-3 py-4 border-y border-gray-300">
+                  <h3 className="mt-3 text-md font-medium capitalize text-black mb-1">
+                    Kính Thước
                   </h3>
                   <div className="flex flex-wrap -mx-1">
                     {product &&
@@ -94,15 +94,15 @@ export const DetailProductCard = ({ product, isLoading }) => {
                 </div>
               )}
               {product && product?.colors?.length > 0 && (
-                <div className="flex items-center gap-5  py-4 border-b border-gray-300">
-                  <h3 className="w-[10%] mt-3 text-xl font-medium capitalize text-gray-600 mb-1">
-                    colors
+                <div className="py-4 border-b border-gray-300">
+                  <h3 className="mt-3 text-md font-medium capitalize text-black mb-1">
+                    Màu sắc
                   </h3>
                   <div className="flex flex-wrap -mx-1">
                     {product.colors.map((col) => (
                       <div
-                      key={col.color}
-                      className={`border border-gray-300 m-1 rounded-full cursor-pointer`}>
+                        key={col.color}
+                        className={`border border-gray-300 m-1 rounded-full cursor-pointer`}>
                         <span
                           onClick={() => setColorsState(col.color)}
                           className={`min-w-[40px] min-h-[40px] rounded-full flex items-center justify-center`}
@@ -118,7 +118,7 @@ export const DetailProductCard = ({ product, isLoading }) => {
                   </div>
                 </div>
               )}
-              <div className="flex -mx-3 items-center">
+              <div className="py-4 flex -mx-3 items-center">
                 <div className="w-full sm:w-6/12 p-3">
                   <Quantity quantity={quantity} inc={inc} dec={dec} />
                 </div>

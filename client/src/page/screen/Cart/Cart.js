@@ -19,7 +19,7 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [sendPayment, response] = useSendPaymentMutation();
-
+  
   useEffect(() => {
     if (response?.isSuccess) {
       window.location.href = response?.data?.url;
@@ -32,7 +32,7 @@ export const Cart = () => {
     dispatch(decQuantity(id));
   };
   const handleDeleteCartItem = (id) => {
-    if (window.confirm("Bạn muốn xóa sản phẩm ra khỏi giỏ hàng?"))
+    if (window.confirm("Bạn muốn xóa sản phẩm ra khỏi rỏ hàng?"))
       dispatch(deleteCartItem(id));
   };
   const checkoutCart = () => {
@@ -47,8 +47,8 @@ export const Cart = () => {
       <div>
         <NavHome></NavHome>
       </div>
-      <div className="h-screen bg-gray-100 pt-10">
-        <div className="my-container justify-center px-5 md:flex md:space-x-6 xl:px-0">
+      <div className="h-screen bg-[#d5d5d5] pt-10">
+        <div className="my-container justify-center px-5 md:flex md:space-x-6 xl:px-0 ">
           <div className="rounded-lg md:w-2/3">
             {cart &&
               cart.length > 0 &&
@@ -108,7 +108,7 @@ export const Cart = () => {
                 );
               })}
           </div>
-                    {cart && cart.length > 0 && (
+          {cart && cart.length > 0 && (
             <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
               <div className="text-gray-700 font-bold">Thanh Toán</div>
               <hr className="my-4" />
@@ -126,7 +126,7 @@ export const Cart = () => {
               <button
                 className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
                 onClick={() => checkoutCart()}>
-                {response.isLoading ? "Loading..." : "CheckOut"}
+                {response.isLoading ? "Loading..." : "Thanh Toán"}
               </button>
             </div>
           )}

@@ -19,7 +19,7 @@ export const LoginUser = () => {
       toast.success("Login success");
       localStorage.setItem("access_token_user", response?.data?.access_token);
       dispatch(setAccessTokenUser(response.data.access_token));
-      navigate("/home");
+      navigate("/");
     }
   }, [response.isSuccess]);
   useEffect(() => {
@@ -59,7 +59,7 @@ export const LoginUser = () => {
                   />
                   <div className="min-h-[1rem] mt-1 text-red-500 text-sm"></div>
                 </div>
-
+                
                 <input
                   type={"button"}
                   value={`${!response.isLoading ? "Đăng Nhập" : "Loading..."}`}

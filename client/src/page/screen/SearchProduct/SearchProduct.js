@@ -45,15 +45,16 @@ export const SearchProduct = () => {
             </div>
           )}
           <div className="px-5 mt-5 my-container grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {data && data.product.map((pro) => (
-              <ProductCard key={pro._id} pro={pro}></ProductCard>
-            ))}
+            {data &&
+              data.product.map((pro) => (
+                <ProductCard key={pro._id} pro={pro}></ProductCard>
+              ))}
           </div>
         </div>
       ) : (
         <div className="px-3 py-3 bg-red-200 text-red-500">
           <span className="block my-container px-5">
-            Don't Have Any Products
+            Không có sãn phẩm, xin vui lòng cảm ơn quý khách
           </span>
         </div>
       )}

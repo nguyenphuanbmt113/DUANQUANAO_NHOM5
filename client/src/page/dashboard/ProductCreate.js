@@ -101,7 +101,6 @@ export const ProductCreate = () => {
     formData.append("image3", state.image3);
     createNewProduct(formData);
   };
-
   useEffect(() => {
     if (response?.isSuccess) {
       toast.success("Create Product success");
@@ -113,18 +112,18 @@ export const ProductCreate = () => {
       <Link
         to="/dashboard/product"
         className="inline-flex items-center gap-3 px-3 py-2 bg-blue-500 text-white rounded-sm">
-        <span>Product List</span>
+        <span>Danh sách sản phẩm</span>
         <FiEye></FiEye>
       </Link>
       <div className="mt-8">
-      <div className="block uppercase tracking-wide text-blue-500 text-2xl font-bold mb-2">
-          Create Product
+        <div className="block uppercase tracking-wide text-blue-500 text-2xl font-bold mb-2">
+          Tạo mới sản phẩm
         </div>
         <div className="w-full max-w-2lg">
           <div className="flex -mx-3 mb-2">
             <div className="w-full md:w-full px-3 mb-2 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Title
+                Tên sản phẩm
               </label>
               <input
                 className="appearance-none block w-full bg-white text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-200"
@@ -136,7 +135,7 @@ export const ProductCreate = () => {
             </div>
             <div className="w-full md:w-full px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Price
+                Giá sản phẩm
               </label>
               <input
                 className="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200"
@@ -148,7 +147,7 @@ export const ProductCreate = () => {
             </div>
             <div className="w-full md:w-full px-3 mb-2 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                List Color
+                Danh sách màu
               </label>
               <ColorList
                 colors={state?.colors}
@@ -159,7 +158,7 @@ export const ProductCreate = () => {
           <div className="flex -mx-3 mb-2">
             <div className="w-full md:w-full px-3 mb-2 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Discount
+                % Giảm giá
               </label>
               <input
                 className="appearance-none block w-full bg-white text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-200"
@@ -171,7 +170,7 @@ export const ProductCreate = () => {
             </div>
             <div className="w-full md:w-full px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Stock
+                Số sản phẩm trong kho đang lưu trữ
               </label>
               <input
                 className="appearance-none block w-full bg-white text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200"
@@ -183,7 +182,8 @@ export const ProductCreate = () => {
             </div>
             <div className="w-full px-3 mb-2 md:mb-0">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                List Sizes
+
+                Danh sách kích cỡ
               </label>
               <ListSizes
                 listSizes={listSizes}
@@ -194,18 +194,18 @@ export const ProductCreate = () => {
             <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full md:w-1/3 px-3 mb-2 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Category
+                  Danh mục sản phẩm
                 </label>
                 <div className="relative">
                   {!isFetching ? (
                     data?.caterories?.length > 0 && (
                       <select
-                      className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-500"
+                        className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-500"
                         value={state.category}
                         name="category"
                         defaultValue={data?.caterories[1].title}
                         onChange={handleChange}>
-                        <option>Choose Category</option>
+                        <option>Chọn danh mục</option>
                         {data?.caterories.length > 0 &&
                           data?.caterories.map((item) => (
                             <option key={item._id} value={item.title}>
@@ -229,13 +229,13 @@ export const ProductCreate = () => {
               </div>
               <div className="w-full md:w-1/3 px-3 mb-2 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Choose Color
+                  Chọn Màu
                 </label>
                 <TwitterPicker onChangeComplete={saveColors} />
               </div>
               <div className="w-full md:w-1/3 px-3 mb-2 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Choose Sizes
+                  Chọn kích cở
                 </label>
                 <div className="relative flex flex-wrap gap-2 items-center">
                   {sizes &&
@@ -243,7 +243,7 @@ export const ProductCreate = () => {
                     sizes.map((item, index) => (
                       <div
                         key={index}
-                        className="capitalize bg-white px-3 py-2 border cursor-pointer "
+                        className="capitalize bg-white px-3 py-2 border cursor-pointer    "
                         onClick={() => chooseSizes(item)}>
                         {item.name}
                       </div>
@@ -257,7 +257,7 @@ export const ProductCreate = () => {
                   htmlFor="upload1"
                   className="flex flex-col items-center gap-2 cursor-pointer">
                   <BiUpload size={25}></BiUpload>
-                  <span className="text-gray-600 font-sm">Upload file 1</span>
+                  <span className="text-gray-600 font-sm">Hình ảnh 1</span>
                 </label>
                 <input
                   id="upload1"
@@ -277,7 +277,7 @@ export const ProductCreate = () => {
                   htmlFor="upload2"
                   className="flex flex-col items-center gap-2 cursor-pointer">
                   <BiUpload size={25}></BiUpload>
-                  <span className="text-gray-600 font-sm">Upload file 2</span>
+                  <span className="text-gray-600 font-sm">Hình ảnh 2</span>
                 </label>
                 <input
                   id="upload2"
@@ -297,7 +297,7 @@ export const ProductCreate = () => {
                   htmlFor="upload3"
                   className="flex flex-col items-center gap-2 cursor-pointer">
                   <BiUpload size={25}></BiUpload>
-                  <span className="text-gray-600 font-sm">Upload file 3</span>
+                  <span className="text-gray-600 font-sm">Hình ảnh 3</span>
                 </label>
                 <input
                   id="upload3"
@@ -316,7 +316,7 @@ export const ProductCreate = () => {
             <div className="flex flex-wrap -mx-3 mb-5">
               <div className="w-full px-3 mb-2 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Description
+                  Mô tả về sản phẩm
                 </label>
                 <div className="relative">
                   <ReactQuill theme="snow" value={value} onChange={setValue} />
@@ -327,7 +327,7 @@ export const ProductCreate = () => {
           <button
             onClick={CreateProduct}
             className="px-3 py-2 bg-blue-500 text-white rounded-sm">
-            Create Product
+            Tạo mới sản phẩm
           </button>
         </div>
       </div>

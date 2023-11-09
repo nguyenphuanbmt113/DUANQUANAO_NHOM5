@@ -11,25 +11,25 @@ export const sidebarMenu = [
   {
     id: 1,
     path: "product",
-    text: "Products",
+    text: "Sản phẩm",
     icon: <AiOutlineShoppingCart size="24px"></AiOutlineShoppingCart>,
   },
   {
     id: 2,
     path: "order",
-    text: "Orders",
+    text: "Đã đặt hàng",
     icon: <GrOrderedList size="24"></GrOrderedList>,
   },
   {
     id: 3,
     path: "user",
-    text: "Customers",
+    text: "Người dùng",
     icon: <FaUserCircle size="24"></FaUserCircle>,
   },
   {
     id: 4,
     path: "category",
-    text: "Category",
+    text: "Danh mục sản phẩm",
     icon: <MdOutlineCategory size="24"></MdOutlineCategory>,
   },
 ];
@@ -49,7 +49,7 @@ export const menuAccount = [
   {
     id: 3,
     text: "Thông Tin Sản Phẩm",
-    path: `/user/session_id`,
+    path: `order`,
     icon: <BsCartCheck size="24"></BsCartCheck>,
   },
 ];

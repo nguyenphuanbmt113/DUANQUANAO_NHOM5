@@ -27,10 +27,10 @@ export const paymentService = createApi({
       query: (data) => {
         return {
           url: `/verify-payment/${data}`,
-          method: "POST",
+          method: "GET",
         };
       },
-      providesTags: ["payment"],
+      invalidatesTags: ["payment"],
     }),
   }),
 });

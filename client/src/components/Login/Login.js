@@ -22,7 +22,7 @@ export const Login = () => {
     createLogin(state);
   };
   //error
-  const error = response?.error?.data?.mes
+  const error = response?.error?.data?.mes;
   useEffect(() => {
     if (response.isSuccess) {
       localStorage.setItem("access_token", response?.data?.access_token);
@@ -33,7 +33,18 @@ export const Login = () => {
   return (
     <div className="p-5 bg-blue-400 h-[100vh]">
       <div className="bt-form-login-simple-1 bg-white">
-        <h1 className="form-heading">Login Clother Hunter</h1>
+        <nav className="flex items-center justify-center gap-3 mb-4">
+          <div className={`relative`}>
+            <img
+              src="https://www.coolmate.me/images/logo-coolmate-birthday.svg"
+              alt=""
+              className=""
+            />
+            <span className="absolute w-[30px] h-[30px] rounded-full bg-red-500 text-white flex items-center justify-center  top-0 right-[-30px] text-[10px]">
+              fake
+            </span>
+          </div>
+        </nav>
         <form className="form" autoComplete="off" onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="email">Email *</label>
@@ -48,7 +59,7 @@ export const Login = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password *</label>
+            <label htmlFor="password">Mật khẩu *</label>
             <input
               type="password"
               name="password"
@@ -59,22 +70,21 @@ export const Login = () => {
               onChange={handleInputs}
             />
           </div>
-          {error && <p className="text-red-500 h-[4px]">Not Authentication</p>}
+          {error && <p className="text-red-500 h-[4px]">Không có thẩm quyền</p>}
           <div className="form-meta">
-            <Link className="form-link">Forgot Password</Link>
+            <Link className="form-link">Quên mật khẩu</Link>
           </div>
           <button type="submit" className="form-btn">
             {response && !response.isLoading ? (
-              "Login"
+              "Đăng nhập"
             ) : (
               <div className="loader"></div>
             )}
-            {/* Login */}
           </button>
         </form>
         <div className="form-option">
-          Dont&#x27;t have am account?
-          <Link>Sign up htmlFor free</Link>
+          Bạn đã có tài khoản
+          <Link>Tạo tài khoản</Link>
         </div>
       </div>
     </div>

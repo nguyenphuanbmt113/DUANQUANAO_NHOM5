@@ -9,7 +9,7 @@ export const orderService = createApi({
       if (accessTokenAdmin) {
         headers.set("authorization", `Bearer ${accessTokenAdmin}`);
       }
-
+      
       return headers;
     },
   }),
@@ -17,7 +17,7 @@ export const orderService = createApi({
     getOrder: builder.query({
       query: (data) => {
         return {
-          url: `/get-order/${data}`,
+          url: `/get-order?page=${data}`,
           method: "GET",
         };
       },
