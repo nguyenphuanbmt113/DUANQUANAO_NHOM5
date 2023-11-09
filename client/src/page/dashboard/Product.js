@@ -42,23 +42,23 @@ export const Product = () => {
                 <table className="table-auto w-full">
                   <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                     <tr>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">Tên</div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">Giá cả</div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">
                           Số lượng lưu trữ
                         </div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">
                           Hình ảnh minh họa
                         </div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">Thao tác</div>
                       </th>
                     </tr>
@@ -67,22 +67,22 @@ export const Product = () => {
                     {data &&
                       data?.products.map((item, index) => (
                         <tr key={index}>
-                          <td className="p-2 whitespace-nowrap">
+                          <td className="p-2 whitespace-nowrap text-black text-md">
                             <div className="text-left font-medium text-gray-500">
                               {item?.title}
                             </div>
                           </td>
-                          <td className="p-2 whitespace-nowrap">
+                          <td className="p-2 whitespace-nowrap text-black text-md">
                             <div className="text-left font-medium text-gray-500">
                               ${item?.price}
                             </div>
                           </td>
-                          <td className="p-2 whitespace-nowrap">
+                          <td className="p-2 whitespace-nowrap text-black text-md">
                             <div className="text-left font-medium text-gray-500">
                               {item?.stock}
                             </div>
                           </td>
-                          <td className="p-2 whitespace-nowrap">
+                          <td className="p-2 whitespace-nowrap text-black text-md">
                             <div className="text-left font-medium text-gray-500">
                               <img
                                 src={`/images/${item?.image1}`}
@@ -91,7 +91,7 @@ export const Product = () => {
                               />
                             </div>
                           </td>
-                          <td className="p-2 whitespace-nowrap flex items-center gap-3">
+                          <td className="p-2 whitespace-nowrap text-black text-md flex items-center gap-3">
                             <div
                               className="cursor-pointer px-2 py-1 bg-blue-500 text-white rounded-sm"
                               onClick={() => handleUpdate(item)}>

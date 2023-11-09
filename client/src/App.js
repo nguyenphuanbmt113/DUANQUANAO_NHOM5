@@ -117,6 +117,7 @@ const App = () => {
       {/* Account */}
       <Route path="/user" element={<Account></Account>}>
         <Route path="order" element={<OrderUser></OrderUser>}></Route>
+        <Route path="order/:page" element={<OrderUser></OrderUser>}></Route>
         <Route path="*" element={<OrderUser></OrderUser>}></Route>
       </Route>
     </Routes>

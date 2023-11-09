@@ -132,8 +132,8 @@ export const Cart = () => {
           )}
         </div>
         {cart.length === 0 && (
-          <div className="my-container px-5 py-2 bg-red-200 text-red-400">
-            The Cart is empty
+          <div className="my-container px-5 py-2 bg-white rounded-md text-red-400">
+            Không có sản phẩm nào được đặt
           </div>
         )}
       </div>

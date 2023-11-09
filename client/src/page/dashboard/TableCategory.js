@@ -20,10 +20,10 @@ export const TableCategory = React.memo(({ data, isLoading }) => {
             <table className="table-auto w-full">
               <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                 <tr>
-                  <th className="p-2 whitespace-nowrap">
+                  <th className="p-2 whitespace-nowrap text-black text-md">
                     <div className="font-semibold text-left">Tên</div>
                   </th>
-                  <th className="p-2 whitespace-nowrap">
+                  <th className="p-2 whitespace-nowrap text-black text-md">
                     <div className="font-semibold text-left">Thao tác</div>
                   </th>
                 </tr>
@@ -32,12 +32,12 @@ export const TableCategory = React.memo(({ data, isLoading }) => {
                 {data &&
                   data?.caterories.map((item, index) => (
                     <tr key={index}>
-                      <td className="p-2 whitespace-nowrap">
+                      <td className="p-2 whitespace-nowrap text-black text-md">
                         <div className="text-left font-medium text-gray-500">
                           {item.title}
                         </div>
                       </td>
-                      <td className="p-2 whitespace-nowrap flex items-center gap-3">
+                      <td className="p-2 whitespace-nowrap text-black text-md flex items-center gap-3">
                         <div className="cursor-pointer px-3 py-2 bg-blue-500 text-white rounded-sm">
                           Chỉnh sửa
                         </div>

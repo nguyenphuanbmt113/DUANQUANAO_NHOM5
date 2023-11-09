@@ -18,7 +18,7 @@
 
   /* Center slide text vertically */
   display: -webkit-box;
-  display: -ms-flexbox;  
+  display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   -webkit-box-pack: center;
@@ -72,5 +72,5 @@
   @apply bg-white;
 }
 .hidden-bar {
-  @apply absolute shadow-md transition-all;
+  @apply absolute shadow-md transition-all translate-x-[-1000px];
 }

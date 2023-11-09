@@ -18,7 +18,7 @@ export const NavContent = ({ toggle }) => {
         <FaBars size={30} color="#537FE7"></FaBars>
       </div>
       <div className="flex items-center gap-3">
-        <div className="w-[400px] h-[45px] bg-white px-5 rounded-full">
+        <div className="md:w-[400px] w-[250px] h-[45px] bg-white px-5 rounded-full">
           <input
             type="text"
             className="w-full h-full rounded-full"

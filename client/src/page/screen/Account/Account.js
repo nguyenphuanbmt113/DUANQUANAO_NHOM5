@@ -4,7 +4,7 @@ import { NavHome } from "../../../components/NavHome/NavHome";
 import { menuAccount } from "../../../ulties/menu";
 import { useSearchParams } from "react-router-dom";
 import { useVerifyPaymentQuery } from "../../../service/paymentService";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { emptyCart } from "../../../redux/reducers/cartReducer";
 export const Account = () => {
@@ -19,7 +19,7 @@ export const Account = () => {
   useEffect(() => {
     if (isSuccess) {
       localStorage.removeItem("cart");
-      navigate(`/user`);
+      navigate(`/user/order`);
       dispatch(emptyCart());
     }
   }, [dispatch, isSuccess, navigate]);
@@ -29,7 +29,7 @@ export const Account = () => {
         <NavHome></NavHome>
       </div>
       <div className="flex">
-        <div className="flex-none h-[85vh] lg:w-[300px] bg-gray-200 border">
+        <div className="flex-none h-[85vh] lg:w-[300px] bg-white border">
           <ul className="flex flex-col item-center">
             {menuAccount &&
               menuAccount.length > 0 &&
@@ -54,7 +54,7 @@ export const Account = () => {
               })}
           </ul>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 h-[85vh] overflow-y-auto">
           <Outlet></Outlet>
         </div>
       </div>

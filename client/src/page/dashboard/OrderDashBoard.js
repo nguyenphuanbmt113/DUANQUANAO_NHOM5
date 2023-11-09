@@ -22,24 +22,28 @@ export const OrderDashBoard = () => {
                 <table className="table-auto w-full">
                   <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                     <tr>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">Tên</div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">
                           Số lượng mua
                         </div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">image</div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
-                        <div className="font-semibold text-left">Khách hàng đã nhận đơn</div>
+                      <th className="p-2 whitespace-nowrap text-black text-md">
+                        <div className="font-semibold text-left">
+                          Khách hàng đã nhận đơn
+                        </div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
-                        <div className="font-semibold text-left">Hình trạng vận chuyển</div>
+                      <th className="p-2 whitespace-nowrap text-black text-md">
+                        <div className="font-semibold text-left">
+                          Hình trạng vận chuyển
+                        </div>
                       </th>
-                      <th className="p-2 whitespace-nowrap">
+                      <th className="p-2 whitespace-nowrap text-black text-md">
                         <div className="font-semibold text-left">Chi tiết</div>
                       </th>
                     </tr>
@@ -47,34 +51,34 @@ export const OrderDashBoard = () => {
                   <tbody className="text-sm divide-y divide-gray-100">
                     {data?.orders?.map((order) => (
                       <tr key={order._id}>
-                        <td className="p-2 whitespace-nowrap">
+                        <td className="p-2 whitespace-nowrap text-black text-md">
                           <div className="text-left font-medium text-gray-500">
                             {order?.productId?.title}
                           </div>
                         </td>
-                        <td className="p-2 whitespace-nowrap">
+                        <td className="p-2 whitespace-nowrap text-black text-md">
                           <div className="text-left font-medium text-gray-500">
                             {order?.quantities}
                           </div>
                         </td>
-                        <td className="p-2 whitespace-nowrap">
+                        <td className="p-2 whitespace-nowrap text-black text-md">
                           <img
                             src={`/images/${order?.productId?.image1}`}
                             alt="name"
                             className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-lg object-cover"
                           />
                         </td>
-                        <td className="p-2 whitespace-nowrap">
+                        <td className="p-2 whitespace-nowrap text-black text-md">
                           <div className="text-left font-medium text-gray-500">
                             {order.received ? "Yes" : "No"}
                           </div>
                         </td>
-                        <td className="p-2 whitespace-nowrap">
+                        <td className="p-2 whitespace-nowrap text-black text-md">
                           <div className="text-left font-medium text-gray-500">
                             {order.status ? "Yes" : "No"}
                           </div>
                         </td>
-                        <td className="p-2 whitespace-nowrap">
+                        <td className="p-2 whitespace-nowrap text-black text-md">
                           <Link
                             to={`/dashboard/order-details/${order._id}`}
                             className="cursor-pointer px-2 py-1 bg-blue-500 text-white rounded-sm">

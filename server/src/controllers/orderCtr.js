@@ -1,9 +1,9 @@
 import asyncHandler from "express-async-handler";
 import Order from "../model/orderModel";
 export const getOrders = asyncHandler(async (req, res) => {
-  const query = req.body;
+  const query = req.query;
   const page = req?.query?.page || 1;
-  const option = query.userId ? query.userId : {};
+  const option = query.userId ? { userId: query.userId } : {};
   try {
     const limit = 5;
     const skip = (page - 1) * limit;

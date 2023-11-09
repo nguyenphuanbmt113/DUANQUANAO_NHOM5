@@ -4,17 +4,18 @@ import { NavContent } from "../../components/NavContent/NavContent";
 import { Sidebar } from "../../components/Sidebar.js/Sidebar";
 
 export const DashBoard = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
+  const [showBar, setShowBar] = useState(true);
   const toggle = () => {
     setShow(!show);
+    setShowBar(!showBar);
   };
+
   return (
     <div className="flex bg-gray-300">
       {show && (
         <div
-          className={`flex-none hidden-bar md:block md:w-[250px] md:relative h-[100vh] bg-white ${
-            show ? "transition-show" : "transition-hidden"
-          }`}>
+          className={` flex-none md:block md:w-[250px] md:relative h-[100vh] bg-white`}>
           <Sidebar></Sidebar>
         </div>
       )}
