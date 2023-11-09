@@ -28,11 +28,13 @@ import { GrPlay, GrOrderedList } from "react-icons/gr";
 import { RxVideo } from "react-icons/rx";
 import {
   AiOutlinePlayCircle,
+  AiOutlineQuestionCircle,
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
   AiOutlineHeart,
   AiOutlineBars,
   AiOutlineUserAdd,
+  AiOutlineLogout,
   AiOutlineShareAlt,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
@@ -53,13 +55,14 @@ import {
 } from "react-icons/bs";
 const icons = {
   BsCartCheck,
-  FaUserLock, 
+  FaUserLock,
   BsMegaphone,
   AiOutlineShoppingCart,
   FaUserCircle,
   MdOutlineCategory,
   RxVideo,
   BsAlignStart,
+  AiOutlineLogout,
   FcKindle,
   RiMusic2Line,
   CiCircleRemove,
@@ -75,6 +78,7 @@ const icons = {
   RiCompassDiscoverLine,
   BsPieChart,
   AiOutlinePlayCircle,
+  AiOutlineQuestionCircle,
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
   AiOutlineHeart,

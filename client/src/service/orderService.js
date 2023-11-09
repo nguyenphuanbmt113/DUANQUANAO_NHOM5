@@ -23,7 +23,16 @@ export const orderService = createApi({
       },
       providesTags: ["order"],
     }),
+    getDetailOrder: builder.query({
+      query: (data) => {
+        return {
+          url: `/get-detailorder/${data}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["order"],
+    }),
   }),
 });
 
-export const { useGetOrderQuery } = orderService;
+export const { useGetOrderQuery, useGetDetailOrderQuery } = orderService;

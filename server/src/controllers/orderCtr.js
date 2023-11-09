@@ -23,3 +23,17 @@ export const getOrders = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+export const getDetailOrder = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const order = await Order.findById(id)
+      .populate("productId")
+      .populate("userId");
+    return res.status(200).json({
+      mes: order ? "get order success" : "failed to get order",
+      details: order,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});

@@ -11,6 +11,7 @@ import { Category } from "./page/dashboard/Category";
 import { DashBoard } from "./page/dashboard/DashBoard";
 import { ProductEdit } from "./page/dashboard/EditProduct";
 import { OrderDashBoard } from "./page/dashboard/OrderDashBoard";
+import { OrderDetail } from "./page/dashboard/OrderDetail";
 import { Product } from "./page/dashboard/Product";
 import { ProductCreate } from "./page/dashboard/ProductCreate";
 import { ProductDetail } from "./page/ProductDetail/ProductDetail";
@@ -103,6 +104,9 @@ const App = () => {
         <Route
           path="order/:page"
           element={<OrderDashBoard></OrderDashBoard>}></Route>
+          <Route
+          path="order-details/:id"
+          element={<OrderDetail></OrderDetail>}></Route>
         <Route path="category" element={<Category></Category>}></Route>
         <Route path="category/:page" element={<Category></Category>}></Route>
         <Route path="user" element={<Product></Product>}></Route>
