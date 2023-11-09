@@ -6,15 +6,17 @@ import { useGetProductByIdQuery } from "../../service/productService";
 
 export const ProductDetail = () => {
   const { id } = useParams();
-  const { data = [], isLoading } = useGetProductByIdQuery(id);
-  console.log("data:", data);
+  const { data, isLoading } = useGetProductByIdQuery(id);
+
   return (
     <>
       <NavHome detailpage="detailpage"></NavHome>
       <div className="my-container px-5 my-8">
-        <DetailProductCard
-          product={data}
-          isLoading={isLoading}></DetailProductCard>
+      {data && (
+          <DetailProductCard
+            product={data}
+            isLoading={isLoading}></DetailProductCard>
+        )}
       </div>
     </>
   );

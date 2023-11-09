@@ -5,23 +5,24 @@ const access_token_user = localStorage.getItem("access_token_user");
 const initialState = {
   accessTokenAdmin: access_token ? access_token : null,
   accessTokenUser: access_token_user ? access_token_user : null,
+  userTokenVerify: verifyToken("access_token_user") || "",
   isAuthentication: false,
 };
-// const verifyToken = (keyname) => {
-//   const storage = localStorage.getItem(keyname);
-//   if (storage) {
-//     const decodeToken = jwt_decode(storage);
-//     const expiresIn = new Date(decodeToken.expiresIn * 1000);
-//     if (new Date() > expiresIn) {
-//       localStorage.removeItem(keyname);
-//       return null;
-//     } else {
-//       return storage;
-//     }
-//   } else {
-//     return null;
-//   }
-// };
+function verifyToken(keyname) {
+  const storage = localStorage.getItem(keyname);
+  if (storage) {
+    const decodeToken = jwt_decode(storage);
+    const expiresIn = new Date(decodeToken.expiresIn * 1000);
+    if (new Date() > expiresIn) {
+      localStorage.removeItem(keyname);
+      return null;
+    } else {
+      return decodeToken;
+    }
+  } else {
+    return null;
+  }
+}
 
 export const authSlice = createSlice({
   name: "authReducer",
@@ -33,6 +34,7 @@ export const authSlice = createSlice({
     },
     setAccessTokenUser: (state, action) => {
       state.accessTokenUser = action?.payload;
+      state.userTokenVerify = verifyToken(action.payload);
     },
     logoutUser: (state, action) => {
       localStorage.removeItem("access_token_user");

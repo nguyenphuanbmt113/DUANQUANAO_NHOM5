@@ -9,7 +9,7 @@ const Quantity = ({ quantity, inc, dec, theme }) => {
         onClick={dec}>
         <AiOutlineMinus />
       </span>
-      <span className="flex-1 border flex items-center justify-center font-medium border-r-0">
+      <span className="flex-1 border flex items-center justify-center font-medium border-r-0 w-[100px]">
         {quantity}
       </span>
       <span

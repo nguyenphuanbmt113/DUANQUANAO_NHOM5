@@ -14,7 +14,6 @@ export const SearchProduct = () => {
     keyword,
     page,
   });
-  console.log("data search:", data)
   return (
     <>
       <NavHome detailpage="detailpage"></NavHome>

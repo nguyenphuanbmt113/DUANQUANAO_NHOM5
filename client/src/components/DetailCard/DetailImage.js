@@ -4,11 +4,11 @@ export const DetailImage = ({ product }) => {
   return (
     <>
       <div className="flex gap-3 flex-col">
-        <div className="h-[450px] w-full]">
+        <div className="h-[350px] w-full]">
           <img
             src={`/images/${product.image1}`}
             alt=""
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -16,14 +16,14 @@ export const DetailImage = ({ product }) => {
             <img
               src={`/images/${product.image2}`}
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           <div className="h-[100px] w-full">
             <img
               src={`/images/${product.image3}`}
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
         </div>

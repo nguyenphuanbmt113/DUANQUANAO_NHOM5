@@ -1,19 +1,25 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../redux/reducers/authReducer";
 import { toggleSearchbar } from "../../redux/reducers/globalReducer";
 import { Search } from "../Search/Search";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 export const NavHome = ({ detailpage }) => {
   const dispatch = useDispatch();
   const { accessTokenUser } = useSelector((state) => state.authReducer);
   const { searchBar } = useSelector((state) => state.globalReducer);
+  const { items } = useSelector((state) => state.cartReducer);
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logoutUser());
   };
   const handleShow = () => {
     dispatch(toggleSearchbar());
+  };
+  const tocartPage = () => {
+    navigate("/cart");
   };
 
   return (
@@ -42,6 +48,12 @@ export const NavHome = ({ detailpage }) => {
             <nav className="flex items-center gap-6">
               <div onClick={handleShow}  className="cursor-pointer">
                 <BsSearch size={20}></BsSearch>
+              </div>
+              <div className="cursor-pointer relative" onClick={tocartPage}>
+                <AiOutlineShoppingCart size={30}></AiOutlineShoppingCart>
+                <span className="p-[5px] text-white inline-block absolute top-[-10px] right-[-10px] rounded-full text-[10px] bg-red-400">
+                  {items}
+                </span>
               </div>
               <span className="cursor-pointer" onClick={handleLogout}>
                 Đăng Xuất

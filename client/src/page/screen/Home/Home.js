@@ -1,5 +1,6 @@
 import React from "react";
 import { CategoryProduct } from "../../../components/Category/CategoryProduct";
+import { Footer } from "../../../components/Footer/Footer";
 import { HomeSkeleton } from "../../../components/HomeSkeleton/HomeSkeleton";
 import { NavHome } from "../../../components/NavHome/NavHome";
 import { SwiperSlider } from "../../../components/Swiper/Swiper";
@@ -8,7 +9,7 @@ import { HomeProduct } from "../HomeProduct/HomeProduct";
 
 export const Home = () => {
   const { data, isFetching } = useGetRanCategoryQuery();
-  console.log(">>>>>>>>>>>>category:", data);
+
   return (
     <div>
       <div>
@@ -26,7 +27,7 @@ export const Home = () => {
         data.caterories.length > 0 &&
         data?.caterories?.map((category, index) => (
           <div className="my-bigcontainer px-5 mt-[30px]" key={category._id}>
-            <HomeProduct category={category}></HomeProduct>
+            <HomeProduct category={category} homepage={true}></HomeProduct>
           </div>
         ))
       ) : (
@@ -34,6 +35,9 @@ export const Home = () => {
           <HomeSkeleton></HomeSkeleton>
         </div>
         )}
+      <div>
+        <Footer></Footer>
+      </div>
     </div>
   );
 };

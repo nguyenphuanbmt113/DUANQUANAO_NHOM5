@@ -1,44 +1,175 @@
 import React from "react";
-
+import "./Footer.scss";
 export const Footer = () => {
   return (
-    <div className="bg-graylight border py-12 md:py-7">
-      <div className="h-[100%] max-w-[1208px] mx-auto px-2 ">
-        <div className="text-[14px] grid grid-cols-3 gap-4 md:gap-2 md:grid-cols-1 text-[rgba(0,0,0,.65)]">
-          <div className="col-span-1">
-            <span> © 2023 Shopee. Tất cả các quyền được bảo lưu.</span>
+    <>
+    <div className="fui-footer-2">
+      <div className="footer">
+        <div className="footer-category">
+          <ul className="footer-list">
+            <h4 className="category-name">Hỗ trợ khách hàng</h4>
+            <li className="footer-item">
+              <a href="#a" title="Landing Page" className="footer-link">
+                Hotline: 1900-6035 (1000 đ/phút, 8-21h kể cả T7, CN)
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Popup Builder" className="footer-link">
+                Các câu hỏi thường gặp
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Web-design" className="footer-link">
+                Gửi yêu cầu hỗ trợ
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Content" className="footer-link">
+                Hướng dẫn đặt hàng
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Integrations" className="footer-link">
+                Phương thức vận chuyển
+              </a>
+            </li>
+          </ul>
+          <ul className="footer-list">
+            <h4 className="category-name">Về Clothes Hunter</h4>
+            <li className="footer-item">
+              <a href="#a" title="Web-designers" className="footer-link">
+                Điều khoản sử dụng
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Marketers" className="footer-link">
+                Chính sách giải quyết khiếu nại
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Small Business" className="footer-link">
+                Chính sách bảo mật thanh toán
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Website Builder" className="footer-link">
+                Chính sách bảo mật thông tin cá nhân
+              </a>
+            </li>
+          </ul>
+          <ul className="footer-list">
+            <h4 className="category-name">Hợp tác và liên kết</h4>
+            <li className="footer-item">
+              <a href="#a" title="Academy" className="footer-link">
+                Quy chế hoạt động Sàn GDTMT
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Blog" className="footer-link">
+                Bán hàng doanh nghiệp
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Themes" className="footer-link">
+                Điều kiện vận chuyển
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Hosting" className="footer-link">
+                Chính sách hàng nhập khẩu
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Developers" className="footer-link">
+                Báo lỗi bảo mật: security@cotheshunter.vn
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Developers" className="footer-link">
+                Gửi Astra nhận Xu mua sắm thả ga
+              </a>
+            </li>
+          </ul>
+          <ul className="footer-list">
+            <h4 className="category-name">THEO DÕI CHÚNG TÔI TRÊN</h4>
+            <li className="footer-item">
+              <a href="#a" title="About Us" className="footer-link">
+                Facebook
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Careers" className="footer-link">
+                Instagram
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="FAQs" className="footer-link">
+                LinkedIn
+              </a>
+            </li>
+            <li className="footer-item">
+              <a href="#a" title="Teams" className="footer-link">
+                TẢI ỨNG DỤNG NGAY THÔI
+              </a>
+            </li>
+          </ul>
           </div>
-          <div className="col-span-2">
-            <span>
-              Quốc gia & Khu vực: Singapore Indonesia Đài Loan Thái Lan Malaysia
-              Việt Nam Philippines Brazil México Colombia Chile
-            </span>
+          <div className="footer-meta">
+            <div className="">
+              <p className="">
+                Trụ sở chính: Tòa nhà Viettel, Số 285, đường Cách Mạng Tháng 8,
+                phường 12, quận 10, Thành phố Hồ Chí Minh
+              </p>
+              <p>
+                ClothesHunter nhận đặt hàng trực tuyến và giao hàng tận nơi,
+                chưa hỗ trợ mua và nhận hàng trực tiếp tại văn phòng hoặc trung
+                tâm xử lý đơn hàng
+              </p>
+              <p>
+                Giấy chứng nhận Đăng ký Kinh doanh số 0309532909 do Sở Kế hoạch
+                và Đầu tư Thành phố Hồ Chí Minh cấp lần đầu ngày 06/01/2010 và
+                sửa đổi lần thứ 23 ngày 14/02/2022
+              </p>
+              <p>© 2022 - Bản quyền của Công ty TNHH</p>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <ul className="footer-list-more">
+              <li className="footer-item-more">
+                <a
+                  href="#a"
+                  className="footer-link-more"
+                  title="Privacy Policy">
+                  Tất cả các quyền được bảo lưu.
+                </a>
+              </li>
+              <li className="footer-item-more">
+                <a href="#a" className="footer-link-more" title="Terms of Use">
+                  CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN
+                </a>
+              </li>
+              <li className="footer-item-more">
+                <a
+                  href="#a"
+                  className="footer-link-more"
+                  title="Sales and Refunds">
+                  CHÍNH SÁCH VẬN CHUYỂN
+                </a>
+              </li>
+              <li className="footer-item-more">
+                <a href="#a" className="footer-link-more" title="Legal">
+                  QUY CHẾ HOẠT ĐỘNG
+                </a>
+              </li>
+              <li className="footer-item-more">
+                <a href="#a" className="footer-link-more" title="Site Map">
+                  CHÍNH SÁCH BẢO MẬT
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="text-center text-sm mt-10 text-[rgba(0,0,0,.65)]">
-          <span>Công ty TNHH Shopee</span>
-          <div>
-            <div className="mt-5">
-              Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai,
-              Phường Ngọc Khánh, Quận Ba Đình, Thành phố Hà Nội, Việt Nam. Tổng
-              đài hỗ trợ: 19001221 - Email: cskh@hotro.shopee.vn
-            </div>
-            <div className="mt-5">
-              Chịu Trách Nhiệm Quản Lý Nội Dung: Nguyễn Đức Trí - Điện thoại
-              liên hệ: 024 73081221 (ext 4678)
-            </div>
-            <div className="mt-5">
-              Mã số doanh nghiệp: 0106773786 do Sở Kế hoạch & Đầu tư TP Hà Nội
-              cấp lần đầu ngày 10/02/2015
-            </div>
-            <div className="mt-5">
-              © 2015 - Bản quyền thuộc về Công ty TNHH Shopee
-            </div>
-          </div>
-        </div>
-        <div></div>
-        <div></div>
-      </div>
     </div>
+    </>
   );
 };
