@@ -23,9 +23,9 @@ export const RelativeProduct = ({ name }) => {
           ))}
         </div>
       ) : data.product.length > 0 ? (
-        <div>
-          <div className="font-bold my-4">Sản phẩm có liên quan</div>
-          <div className="mt-5 my-container grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="bg-white rounded-md">
+        <div className="font-bold mt-4 p-3 bg-white rounded-md text-lg">Sản phẩm có liên quan</div>
+        <div className="my-container grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {data.product.slice(0, 8).map((pro) => (
               <ProductCard key={pro._id} pro={pro}></ProductCard>
             ))}

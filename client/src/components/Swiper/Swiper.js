@@ -29,17 +29,10 @@ export const SwiperSlider = () => {
             onClick={() => handleRouteCate(cat.title)}>
             <div className={`slide-img`}>
               <img
-                src={`./images/slider/${index + 1}.jpg`}
+                src={`./images/slider2/${index + 1}.png`}
                 className="w-full h-full object-cover"
                 alt=""
               />
-            </div>
-            <div className="absolute inset-0 w-full h-full bg-black/40">
-              <div className="flex justify-start max-w-[1240px] mx-auto p-5 mt-7">
-                <span className="flex-none text-white capitalize font-v2 border inline-block px-3 py-2">
-                  {cat.title}
-                </span>
-              </div>
             </div>
           </SwiperSlide>
         ))}

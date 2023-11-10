@@ -2,7 +2,7 @@ import React from "react";
 import { useGetReviewQuery } from "../../service/orderUserService";
 import moment from "moment";
 export const CommentSection = ({ productId }) => {
-  const { data, isFetching } = useGetReviewQuery(productId);
+  const { data } = useGetReviewQuery(productId);
   console.log("data:", data);
   const dataReview = data?.productReviews;
   return (
@@ -14,7 +14,9 @@ export const CommentSection = ({ productId }) => {
         dataReview.length > 0 &&
         dataReview.map((item) => {
           return (
-            <div className="p-4 flex gap-5 mb-3  bg-gray-100 rounded-md">
+            <div
+            className="p-4 flex gap-5 mb-3  bg-gray-100 rounded-md"
+            key={item._id}>
               <div className="w-[50px] h-[50px] rounded-full">
                 <img
                   src="https://images.unsplash.com/photo-1679163096312-4edfbfbe2a73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"

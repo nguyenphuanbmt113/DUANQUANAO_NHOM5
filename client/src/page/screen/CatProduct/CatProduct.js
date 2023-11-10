@@ -12,6 +12,8 @@ import { useGetProductCategoryQuery } from "../../../service/productService";
 export const CatProduct = () => {
   const { page = 1, name } = useParams();
   const { data, isLoading } = useGetProductCategoryQuery({ name, page });
+  console.log("datakakak:", data);
+  const imgBg = data?.product[0].image1;
   return (
     <>
       <NavHome detailpage="detailpage"></NavHome>
@@ -29,9 +31,6 @@ export const CatProduct = () => {
         </div>
       ) : data.product.length > 0 ? (
         <div>
-             <span className="my-container px-5 block text-lg bg-green-400 py-2 text-white">
-            {data?.count} sản phẩm được tìm thấy{" "}
-          </span>
           {data && (
             <div className="my-container px-5">
               <Pagination

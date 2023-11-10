@@ -23,7 +23,7 @@ export const HomeProduct = ({ category, homepage }) => {
               pro={pro}
               key={pro._id}
               homepage={homepage}></ProductCard>
-          ))}
+              ))}
       </div>
     </div>
   );
