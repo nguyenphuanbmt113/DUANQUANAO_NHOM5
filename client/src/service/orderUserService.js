@@ -41,8 +41,21 @@ export const orderUserService = createApi({
       },
       invalidatesTags: ["orderUser"],
     }),
+    getReview: builder.query({
+      query: (data) => {
+        return {
+          url: `/get-reviews?productId=${data}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["orderUser"],
+    }),
   }),
 });
 
-export const { useGetOrderUserQuery, useGetDetailOrderUserQuery, usePostReviewMutation } =
-  orderUserService;
+export const {
+  useGetOrderUserQuery,
+  useGetDetailOrderUserQuery,
+  usePostReviewMutation,
+  useGetReviewQuery,
+} = orderUserService;

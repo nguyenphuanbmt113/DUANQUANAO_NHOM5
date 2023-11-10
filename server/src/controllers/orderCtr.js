@@ -70,3 +70,17 @@ export const addReviewComment = asyncHandler(async (req, res) => {
     mes: "review has created successfully",
   });
 });
+export const getReview = asyncHandler(async (req, res) => {
+  const { productId } = req.query;
+  console.log("productId:", productId);
+  if (!productId) throw new Error("Missing query input");
+  const productReviews = await Review.find({
+    product: productId,
+  })
+    .populate("user")
+    .populate("product");
+  return res.status(200).json({
+    mes: "geting product is already success",
+    productReviews,
+  });
+});

@@ -65,6 +65,9 @@ export const NavHome = ({ detailpage }) => {
                 <AiOutlineUser size={30}></AiOutlineUser>
               </div>
               <span className="cursor-pointer" onClick={handleLogout}>
+                Hỗ trợ khách hàng
+              </span>
+              <span className="cursor-pointer" onClick={handleLogout}>
                 Đăng Xuất
               </span>
             </nav>

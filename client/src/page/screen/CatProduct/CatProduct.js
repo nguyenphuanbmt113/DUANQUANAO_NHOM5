@@ -29,9 +29,8 @@ export const CatProduct = () => {
         </div>
       ) : data.product.length > 0 ? (
         <div>
-          <span className="mt-3 my-container px-5 block text-lg">
-            {data?.count} Products found in{" "}
-            <span className="text-blue-400">#{name}</span>
+             <span className="my-container px-5 block text-lg bg-green-400 py-2 text-white">
+            {data?.count} sản phẩm được tìm thấy{" "}
           </span>
           {data && (
             <div className="my-container px-5">

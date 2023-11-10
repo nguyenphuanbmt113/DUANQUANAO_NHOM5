@@ -4,10 +4,12 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { addtoCart } from "../../redux/reducers/cartReducer";
+import { CommentSection } from "../commentSection/commentSection";
 import Quantity from "../Quatity/Quatity";
 import { DetailImage } from "./DetailImage";
 import { ProductLoader } from "./ProductLoader";
 export const DetailProductCard = ({ product, isLoading }) => {
+  console.log(">>>>>product:", product);
   const [sizesState, setSizesState] = useState(
     product?.sizes?.length > 0 && product?.sizes[0].name
   );
@@ -136,6 +138,9 @@ export const DetailProductCard = ({ product, isLoading }) => {
             className="mt-4 p-4 bg-white rounded-md"
             dangerouslySetInnerHTML={{ __html: product.description }}
           />
+           <div className="p-3 mt-4 bg-white rounded-md">
+            <CommentSection productId={product._id}></CommentSection>
+          </div>
         </>
       )}
     </>

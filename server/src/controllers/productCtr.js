@@ -218,7 +218,8 @@ export const getCateProduct = asyncHandler(async (req, res) => {
       .where("stock")
       .gt(0)
       .limit(4)
-      .sort("-updatedAt");
+      .sort("-updatedAt")
+      .populate("reviews");
     return res.status(200).json({
       success: product ? true : false,
       mes: product ? "get product success" : "failed to get product",
