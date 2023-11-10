@@ -20,10 +20,12 @@ import { LoginUser } from "./page/screen/AuthLogin/LoginUser";
 import { RegisterUser } from "./page/screen/AuthLogin/RegisterUser";
 import { Cart } from "./page/screen/Cart/Cart";
 import { CatProduct } from "./page/screen/CatProduct/CatProduct";
+import { DetailOrder } from "./page/screen/DetailOrder/DetailOrder";
 import { ForgotPassword } from "./page/screen/ForgotPassword/ForgotPassword";
 import { ResetPassword } from "./page/screen/ForgotPassword/ResetPassword";
 import { Home } from "./page/screen/Home/Home";
-import { SearchProduct } from "./page/screen/SearchProduct/SearchProduct";
+import { Order } from "./page/screen/Orders/Order";
+import { OrderUser } from "./page/screen/OrderUser";
 import { SearchProduct } from "./page/screen/SearchProduct/SearchProduct";
 import { PrivateRoute } from "./Route/PrivateRoute";
 import { UserAuth } from "./Route/UserRoute/UserAuth";
@@ -58,6 +60,7 @@ const App = () => {
           path="/category-product/:name/:page"
           element={<CatProduct></CatProduct>}></Route>
       </Route>
+      {/* Authentication */}
       <Route element={<UserAuth></UserAuth>}>
         <Route path="/login" element={<LayoutLogin></LayoutLogin>}>
           <Route path="/login" element={<LoginUser></LoginUser>}></Route>
@@ -69,6 +72,7 @@ const App = () => {
         </Route>
       </Route>
       <Route path="/auth/login" element={<Login></Login>}></Route>
+      {/* Dashboard */}
       <Route
         path="/dashboard"
         element={
@@ -107,10 +111,18 @@ const App = () => {
           <Route
           path="order-details/:id"
           element={<OrderDetail></OrderDetail>}></Route>
-        <Route path="category" element={<Category></Category>}></Route>
-        <Route path="category/:page" element={<Category></Category>}></Route>
-        <Route path="user" element={<Product></Product>}></Route>
-        <Route path="*" element={<Product></Product>}></Route>
+          <Route path="category" element={<Category></Category>}></Route>
+          <Route path="category/:page" element={<Category></Category>}></Route>
+          <Route path="*" element={<Product></Product>}></Route>
+        </Route>
+        {/* Account */}
+        <Route path="/user" element={<Account></Account>}>
+          <Route
+            path="detail-order/:id"
+            element={<DetailOrder></DetailOrder>}></Route>
+          <Route path="order" element={<OrderUser></OrderUser>}></Route>
+          <Route path="order/:page" element={<OrderUser></OrderUser>}></Route>
+          <Route path="*" element={<OrderUser></OrderUser>}></Route>
       </Route>
     </Routes>
   );

@@ -152,7 +152,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
 export const getProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await Product.findOne({ _id: id });
+    const product = await Product.findOne({ _id: id }).populate("reviews");
     return res.status(200).json(product);
   } catch (error) {
     throw new Error(error);
@@ -190,6 +190,7 @@ export const getCateProduct = asyncHandler(async (req, res) => {
       category: name,
     })
       .limit(limit)
+      .populate("reviews")
       .skip(offset)
       .sort("-createdAt")
       .where("stock")
@@ -245,7 +246,8 @@ export const searchProduct = asyncHandler(async (req, res) => {
       .skip(offset)
       .sort("-createdAt")
       .where("stock")
-      .gt(0);
+      .gt(0)
+      .populate("reviews");
     const count = await Product.find({
       ...options,
     })
@@ -269,7 +271,8 @@ export const searchProduct = asyncHandler(async (req, res) => {
       .where("stock")
       .gt(0)
       .limit(4)
-      .sort("-updatedAt");
+      .sort("-updatedAt")
+      .populate("reviews");
     return res.status(200).json({
       success: product ? true : false,
       mes: product ? "get product success" : "failed to get product",

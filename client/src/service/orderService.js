@@ -9,7 +9,6 @@ export const orderService = createApi({
       if (accessTokenAdmin) {
         headers.set("authorization", `Bearer ${accessTokenAdmin}`);
       }
-
       return headers;
     },
   }),
