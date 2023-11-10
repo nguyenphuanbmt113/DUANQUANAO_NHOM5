@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import "./Pagi.scss";
 import { GrNext, GrPrevious } from "react-icons/gr";
 export const Pagination = ({ page, totalPage, path, count }) => {
-  console.log("count:", count)
-  console.log("path:", path)
-  console.log("totalPage:", totalPage)
-  console.log("page:", page)
   let startLoop = page;
   let diff = totalPage - page;
   if (diff <= 3) {
@@ -31,7 +27,7 @@ export const Pagination = ({ page, totalPage, path, count }) => {
     }
     return allLinks;
   };
-
+  
   const next = () => {
     if (page < totalPage) {
       return (

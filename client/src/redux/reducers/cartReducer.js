@@ -22,7 +22,7 @@ function totalMoney(cartData) {
 }
 const initialState = {
   cart: cartData.length > 0 ? cartData : [],
-  items: cartData.length > 0 ? allItems(cartData) : [],
+  items: cartData.length > 0 ? allItems(cartData) : 0,
   totalMoney: cartData.length > 0 ? totalMoney(cartData) : [],
 };
 
@@ -39,11 +39,17 @@ export const cartSlice = createSlice({
         state.totalMoney +=
           discount(action.payload.price, action.payload.discount) *
           action.payload.quantity;
-        state.cart.push(action.payload)
+        state.cart.push(action.payload);
       } else {
         state.cart = [...state.cart];
       }
     },
+    emptyCart: (state, action) => {
+      state.totalMoney = 0;
+      state.items = 0;
+      state.cart = [];
+    },
+
     deleteCartItem: (state, action) => {
       const find = state.cart.find((item) => {
         return item._id === action.payload;
@@ -82,7 +88,12 @@ export const cartSlice = createSlice({
     },
   },
 });
-export const { addtoCart, deleteCartItem, incQuantity, decQuantity } =
-  cartSlice.actions;
+export const {
+  addtoCart,
+  emptyCart,
+  deleteCartItem,
+  incQuantity,
+  decQuantity,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

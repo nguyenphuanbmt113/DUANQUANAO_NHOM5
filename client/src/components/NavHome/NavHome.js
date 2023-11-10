@@ -5,12 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../redux/reducers/authReducer";
 import { toggleSearchbar } from "../../redux/reducers/globalReducer";
 import { Search } from "../Search/Search";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 export const NavHome = ({ detailpage }) => {
   const dispatch = useDispatch();
   const { accessTokenUser } = useSelector((state) => state.authReducer);
   const { searchBar } = useSelector((state) => state.globalReducer);
   const { items } = useSelector((state) => state.cartReducer);
+  console.log("items:", items);
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -21,21 +22,24 @@ export const NavHome = ({ detailpage }) => {
   const tocartPage = () => {
     navigate("/cart");
   };
+  const toAccount = () => {
+    navigate("/user/order");
+  };
 
   return (
     <>
-      <div
-        className={`header h-[84px] border border-gray-200 ${
-          detailpage ? "bg-blue-500 text-white border-none" : ""
-        }`}>
+      <div className={`header h-[84px] bg-white`}>
         <div className="h-[100%] max-w-[1240px] mx-auto px-5 flex items-center justify-between">
           <nav className="flex items-center gap-3">
             <Link
-              to="/home"
-              className={`block uppercase tracking-wide text-blue-500 text-xl font-bold ${
-                detailpage ? "text-white border-none" : ""
-              }`}>
-              Clothes Hunter
+              to="/"
+              className={`relative`}>
+              <img
+                src="https://www.coolmate.me/images/logo-coolmate-birthday.svg"
+                alt=""
+                className=""
+              />
+              <span className="absolute w-[30px] h-[30px] rounded-full bg-red-500 text-white flex items-center justify-center  top-0 right-[-30px] text-[10px]">fake</span>
             </Link>
           </nav>
           {!accessTokenUser ? (
@@ -46,14 +50,19 @@ export const NavHome = ({ detailpage }) => {
             </nav>
           ) : (
             <nav className="flex items-center gap-6">
-              <div onClick={handleShow}  className="cursor-pointer">
+              <div onClick={handleShow} className="cursor-pointer">
                 <BsSearch size={20}></BsSearch>
               </div>
               <div className="cursor-pointer relative" onClick={tocartPage}>
                 <AiOutlineShoppingCart size={30}></AiOutlineShoppingCart>
-                <span className="p-[5px] text-white inline-block absolute top-[-10px] right-[-10px] rounded-full text-[10px] bg-red-400">
-                  {items}
-                </span>
+                {items !== 0 && (
+                  <span className="h-5 w-5 flex items-center justify-center rounded-full text-[10px] text-white bg-red-400 absolute top-[-10px] right-[-10px]">
+                    {items}
+                  </span>
+                )}
+              </div>
+              <div className="cursor-pointer relative" onClick={toAccount}>
+                <AiOutlineUser size={30}></AiOutlineUser>
               </div>
               <span className="cursor-pointer" onClick={handleLogout}>
                 Đăng Xuất

@@ -13,18 +13,18 @@ export const TableCategory = React.memo(({ data, isLoading }) => {
     <>
       <div className="w-full bg-white shadow-lg rounded-sm border border-gray-200">
         <header className="px-5 py-4 border-b border-gray-100">
-          <h2 className="font-semibold text-gray-800">Category</h2>
+          <h2 className="font-semibold text-gray-800">Danh mục phân loại</h2>
         </header>
         <div className="p-3">
           <div className="overflow-x-auto">
             <table className="table-auto w-full">
               <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                 <tr>
-                  <th className="p-2 whitespace-nowrap">
-                    <div className="font-semibold text-left">Name</div>
+                  <th className="p-2 whitespace-nowrap text-black text-md">
+                    <div className="font-semibold text-left">Tên</div>
                   </th>
-                  <th className="p-2 whitespace-nowrap">
-                    <div className="font-semibold text-left">Actions</div>
+                  <th className="p-2 whitespace-nowrap text-black text-md">
+                    <div className="font-semibold text-left">Thao tác</div>
                   </th>
                 </tr>
               </thead>
@@ -32,19 +32,19 @@ export const TableCategory = React.memo(({ data, isLoading }) => {
                 {data &&
                   data?.caterories.map((item, index) => (
                     <tr key={index}>
-                      <td className="p-2 whitespace-nowrap">
+                      <td className="p-2 whitespace-nowrap text-black text-md">
                         <div className="text-left font-medium text-gray-500">
                           {item.title}
                         </div>
                       </td>
-                      <td className="p-2 whitespace-nowrap flex items-center gap-3">
+                      <td className="p-2 whitespace-nowrap text-black text-md flex items-center gap-3">
                         <div className="cursor-pointer px-3 py-2 bg-blue-500 text-white rounded-sm">
-                          Update
+                          Chỉnh sửa
                         </div>
                         <div
                           className=" cursor-pointer px-3 py-2 bg-red-500 text-white rounded-sm"
                           onClick={() => handleDelete(item._id)}>
-                          Delete
+                          Xóa
                         </div>
                       </td>
                     </tr>

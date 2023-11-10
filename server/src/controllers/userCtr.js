@@ -25,8 +25,6 @@ export const login = asyncHandler(async (req, res) => {
     email,
     role: "admin",
   });
-  console.log("user:", user)
-  console.log(">check,:", await user.comparePassword(password));
   if (user && (await user.comparePassword(password))) {
     //tạo token
     const access_token = await createToken(user._id, user.role);
@@ -51,7 +49,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     email,
     role: "user",
   });
-
+  
   if (user && (await user.comparePassword(password))) {
     //tuserạo token
     const access_token = await createToken(user._id, user.role);
@@ -69,7 +67,6 @@ export const loginUser = asyncHandler(async (req, res) => {
 });
 export const fotgotPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
-  console.log(">>>", req.body);
   if (!email) throw new Error("Missing email");
   const user = await User.findOne({
     email,
@@ -87,7 +84,6 @@ export const fotgotPassword = asyncHandler(async (req, res) => {
 });
 export const resetPassword = asyncHandler(async (req, res) => {
   const { newPassword, tokenReset } = req.body;
-  console.log("newPassword:", newPassword);
   if (!tokenReset) throw new Error("Can not reset password");
   if (!newPassword) throw new Error("Missing inputs");
   const passwordResetToken = crypto
@@ -97,7 +93,6 @@ export const resetPassword = asyncHandler(async (req, res) => {
   const user = await User.findOne({
     passwordResetToken: passwordResetToken,
   });
-  console.log("user:", user);
   if (!user) throw new Error("Invalid reset token");
   user.password = newPassword;
   user.passwordResetToken = undefined;

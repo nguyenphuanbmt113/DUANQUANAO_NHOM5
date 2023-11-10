@@ -51,7 +51,7 @@ export const CatProduct = () => {
       ) : (
         <div className="px-3 py-3 bg-red-200 text-red-500">
           <span className="block my-container px-5">
-            Don't Have Any Products
+            Không có sãn phẩm, xin vui lòng cảm ơn quý khách
           </span>
         </div>
       )}

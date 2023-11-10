@@ -34,7 +34,7 @@ export const Category = () => {
         <input
           autoComplete="off"
           type="text"
-          placeholder="Enter name"
+          placeholder="Nhập tên muốn tạo"
           value={category}
           onChange={(e) => setCateory(e.target.value)}
         />
@@ -42,7 +42,7 @@ export const Category = () => {
       <div
         className="mt-3 inline-block px-2 py-1 bg-blue-500 text-white cursor-pointer"
         onClick={(e) => handleSubmit(e)}>
-        Create
+        Tạo mới
       </div>
       <div className="mt-8">
         {data && (

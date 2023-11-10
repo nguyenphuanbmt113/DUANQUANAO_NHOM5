@@ -32,6 +32,7 @@ import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
   AiOutlineHeart,
+  AiOutlineUser,
   AiOutlineBars,
   AiOutlineUserAdd,
   AiOutlineLogout,
@@ -54,6 +55,7 @@ import {
   BsAlignStart,
 } from "react-icons/bs";
 const icons = {
+  AiOutlineUser,
   BsCartCheck,
   FaUserLock,
   BsMegaphone,
