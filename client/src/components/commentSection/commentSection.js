@@ -39,6 +39,13 @@ export const CommentSection = ({ productId }) => {
             </div>
           );
         })}
+        {+dataReview?.length === 0 ? (
+          <p className="my-3 text-gray-400">
+            Chưa có đánh giá nào cho sản phẩm này
+        </p>
+      ) : (
+        ""
+      )}
     </>
   );
 };

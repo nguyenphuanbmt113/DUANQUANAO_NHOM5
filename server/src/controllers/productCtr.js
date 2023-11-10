@@ -56,6 +56,7 @@ export const createProduct = asyncHandler(async (req, res) => {
 export const getProductsByQuery = asyncHandler(async (req, res) => {
   try {
     //Tách các trường đặc biệt ra khỏi query
+    console.log("query em oi:", req.query);
     const queries = { ...req.query };
     const excludeFields = ["limit", "sort", "page", "fields"];
     //xoá các query dac biet

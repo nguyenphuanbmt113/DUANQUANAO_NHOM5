@@ -52,7 +52,7 @@ export const SearchProduct = () => {
           </div>
         </div>
       ) : (
-        <div className="px-3 py-3 bg-red-200 text-red-500">
+        <div className="px-3 py-3 bg-white text-red-500">
           <span className="block my-container px-5">
             Không có sãn phẩm, xin vui lòng cảm ơn quý khách
           </span>

@@ -24,7 +24,9 @@ export const RelativeProduct = ({ name }) => {
         </div>
       ) : data.product.length > 0 ? (
         <div className="bg-white rounded-md">
-        <div className="font-bold mt-4 p-3 bg-white rounded-md text-lg">Sản phẩm có liên quan</div>
+                 <div className="font-bold mt-4 p-3 bg-white rounded-md text-lg">
+            Sản phẩm có liên quan
+          </div>
         <div className="my-container grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {data.product.slice(0, 8).map((pro) => (
               <ProductCard key={pro._id} pro={pro}></ProductCard>
@@ -32,7 +34,7 @@ export const RelativeProduct = ({ name }) => {
           </div>
         </div>
       ) : (
-        <div className="px-3 py-3 bg-red-200 text-red-500">
+        <div className="px-3 py-3 bg-white text-red-500">
           <span className="block my-container px-5">
             Không có sãn phẩm, xin vui lòng cảm ơn quý khách
           </span>

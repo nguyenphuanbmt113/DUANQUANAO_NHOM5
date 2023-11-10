@@ -12,8 +12,6 @@ import { useGetProductCategoryQuery } from "../../../service/productService";
 export const CatProduct = () => {
   const { page = 1, name } = useParams();
   const { data, isLoading } = useGetProductCategoryQuery({ name, page });
-  console.log("datakakak:", data);
-  const imgBg = data?.product[0].image1;
   return (
     <>
       <NavHome detailpage="detailpage"></NavHome>
@@ -47,7 +45,7 @@ export const CatProduct = () => {
           </div>
         </div>
       ) : (
-        <div className="px-3 py-3 bg-red-200 text-red-500">
+        <div className="px-3 py-3 bg-white text-red-500">
           <span className="block my-container px-5">
             Không có sãn phẩm, xin vui lòng cảm ơn quý khách
           </span>

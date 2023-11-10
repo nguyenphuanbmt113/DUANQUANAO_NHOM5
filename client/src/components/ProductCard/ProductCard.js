@@ -52,7 +52,7 @@ export const ProductCard = ({ pro, homepage }) => {
               className="w-full h-[300px] object-cover"
             />
           </div>
-          <div className="mt-3 text-lg font-nomal">{pro.title}</div>
+          <div className="mt-3 text-lg font-nomal uppercase">{pro.title}</div>
           <div className="flex items-center">
             <div className="flex items-center space-x-2 mb-1">
               <span>{finalResult}</span>
