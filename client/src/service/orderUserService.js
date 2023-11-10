@@ -31,8 +31,18 @@ export const orderUserService = createApi({
       },
       providesTags: ["orderUser"],
     }),
+    postReview: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/add-review`,
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["orderUser"],
+    }),
   }),
 });
 
-export const { useGetOrderUserQuery, useGetDetailOrderUserQuery } =
+export const { useGetOrderUserQuery, useGetDetailOrderUserQuery, usePostReviewMutation } =
   orderUserService;
