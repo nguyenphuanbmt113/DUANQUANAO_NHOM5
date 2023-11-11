@@ -19,8 +19,11 @@ export const HomeProduct = ({ category, homepage }) => {
         {data &&
           data.product.length > 0 &&
           data.product.map((pro) => (
-            <ProductCard pro={pro} key={pro._id} homepage={homepage}></ProductCard>
-          ))}
+            <ProductCard
+              pro={pro}
+              key={pro._id}
+              homepage={homepage}></ProductCard>
+              ))}
       </div>
     </div>
   );

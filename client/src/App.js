@@ -20,6 +20,7 @@ import { LoginUser } from "./page/screen/AuthLogin/LoginUser";
 import { RegisterUser } from "./page/screen/AuthLogin/RegisterUser";
 import { Cart } from "./page/screen/Cart/Cart";
 import { CatProduct } from "./page/screen/CatProduct/CatProduct";
+import { DetailOrder } from "./page/screen/DetailOrder/DetailOrder";
 import { ForgotPassword } from "./page/screen/ForgotPassword/ForgotPassword";
 import { ResetPassword } from "./page/screen/ForgotPassword/ResetPassword";
 import { Home } from "./page/screen/Home/Home";
@@ -116,6 +117,9 @@ const App = () => {
       </Route>
       {/* Account */}
       <Route path="/user" element={<Account></Account>}>
+      <Route
+          path="detail-order/:id"
+          element={<DetailOrder></DetailOrder>}></Route>
         <Route path="order" element={<OrderUser></OrderUser>}></Route>
         <Route path="order/:page" element={<OrderUser></OrderUser>}></Route>
         <Route path="*" element={<OrderUser></OrderUser>}></Route>

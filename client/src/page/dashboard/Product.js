@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { Spinner } from "../../components/Spinner/Spinner";
+import { BsSearch } from "react-icons/bs";
 import {
   useDeleteProductMutation,
   useGetProductQuery,
@@ -9,7 +10,7 @@ import {
 
 export const Product = () => {
   let { page } = useParams();
-  
+  const [keyword, setKeyWord] = useState("");
   if (!page) {
     page = 1;
   }
@@ -24,13 +25,36 @@ export const Product = () => {
       deleteProduct(item._id);
     }
   };
+   //search
+   const tosearch = () => {
+
+   }
+   useEffect(() => {
+ 
+   }, [])
   return (
     <div>
-      <Link
-        to="/dashboard/create-product"
-        className="px-3 py-2 bg-blue-500 text-white rounded-sm">
-        Tạo Sản Phẩm
-      </Link>
+        <div className="flex items-center gap-4">
+        <Link
+          to="/dashboard/create-product"
+          className="px-3 py-2 bg-blue-500 text-white rounded-sm">
+          Tạo Sản Phẩm
+        </Link>
+        <div className="w-[300px] h-[40px] bg-white px-3 relative">
+          <input
+            type="text"
+            className="w-full h-full uppercase"
+            placeholder="Tìm kiếm"
+            value={keyword}
+            onChange={(e) => setKeyWord(e.target.value)}
+          />
+          <div
+            className="absolute top-[50%] right-3 -translate-y-1/2"
+            onClick={tosearch}>
+            <BsSearch></BsSearch>
+          </div>
+        </div>
+      </div>
       {!isFetching && data?.products.length > 0 ? (
         <>
           <div className="mt-5 w-full bg-white shadow-lg rounded-sm border border-gray-200">

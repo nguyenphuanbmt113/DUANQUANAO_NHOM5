@@ -4,10 +4,12 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { addtoCart } from "../../redux/reducers/cartReducer";
+import { CommentSection } from "../commentSection/commentSection";
 import Quantity from "../Quatity/Quatity";
 import { DetailImage } from "./DetailImage";
 import { ProductLoader } from "./ProductLoader";
 export const DetailProductCard = ({ product, isLoading }) => {
+  console.log(">>>>>product:", product);
   const [sizesState, setSizesState] = useState(
     product?.sizes?.length > 0 && product?.sizes[0].name
   );
@@ -80,7 +82,7 @@ export const DetailProductCard = ({ product, isLoading }) => {
                       product.sizes.map((size) => (
                         <div
                           className={`px-3 py-2 m-1 border border-gray-300 rounded cursor-pointer ${
-                            sizesState === size.name && "bg-blue-400 text-white"
+                            sizesState === size.name && "bg-gray-400 text-white"
                           }`}
                           key={size.name}>
                           <span
@@ -122,20 +124,30 @@ export const DetailProductCard = ({ product, isLoading }) => {
                 <div className="w-full sm:w-6/12 p-3">
                   <Quantity quantity={quantity} inc={inc} dec={dec} />
                 </div>
-                <div className="w-full sm:w-6/12 p-3">
+                <div className="flex gap-3 w-full sm:w-6/12 p-3">
                   <button
-                    className="px-3 py-2 bg-red-500 text-white"
+                    className="px-4 py-2 bg-green-500 text-white"
                     onClick={addtocart}>
-                    Add To Cart
+                    Thêm vào giỏ hàng
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-blue-500 text-white"
+                    onClick={addtocart}>
+                   Mua ngay
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="mt-4 p-4 bg-white rounded-md"
-            dangerouslySetInnerHTML={{ __html: product.description }}
-          />
+          <div className="mt-4 p-4 bg-white rounded-md">
+            <div className="text-lg pb-3 border-b border-gray-300 font-bold">
+              Mô tả về sản phẩm
+            </div>
+            <div className="mt-4" dangerouslySetInnerHTML={{ __html: product.description }} />
+          </div>
+           <div className="p-3 mt-4 bg-white rounded-md">
+            <CommentSection productId={product._id}></CommentSection>
+          </div>
         </>
       )}
     </>

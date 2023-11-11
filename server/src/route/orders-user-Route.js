@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.get("/get-order", [verifyAccess], orderCtr.getOrders);
 router.get("/get-detailorder/:id", [verifyAccess], orderCtr.getDetailOrder);
+router.post("/add-review", [verifyAccess], orderCtr.addReviewComment);
+router.get("/get-reviews", [verifyAccess], orderCtr.getReview);
 
 export default router;

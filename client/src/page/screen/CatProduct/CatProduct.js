@@ -29,10 +29,6 @@ export const CatProduct = () => {
         </div>
       ) : data.product.length > 0 ? (
         <div>
-          <span className="mt-3 my-container px-5 block text-lg">
-            {data?.count} Products found in{" "}
-            <span className="text-blue-400">#{name}</span>
-          </span>
           {data && (
             <div className="my-container px-5">
               <Pagination
@@ -49,7 +45,7 @@ export const CatProduct = () => {
           </div>
         </div>
       ) : (
-        <div className="px-3 py-3 bg-red-200 text-red-500">
+        <div className="px-3 py-3 bg-white text-red-500">
           <span className="block my-container px-5">
             Không có sãn phẩm, xin vui lòng cảm ơn quý khách
           </span>

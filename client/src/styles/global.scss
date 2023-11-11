@@ -8,7 +8,7 @@
 
 .swiper {
   width: 100%;
-  height: 70vh;
+  height: 80vh;
 }
 
 .swiper-slide {
@@ -67,10 +67,15 @@
 }
 .swiper-slide {
   background: #d5d5d5 !important;
+  // color: white !important;
+  font-weight: 500;
 }
 .quill {
   @apply bg-white;
 }
 .hidden-bar {
   @apply absolute shadow-md transition-all translate-x-[-1000px];
+}
+.ReactSimpleImageViewer {
+  background-color: #000000a8 !important;
 }
