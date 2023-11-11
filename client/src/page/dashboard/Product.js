@@ -55,11 +55,6 @@ export const Product = () => {
           </div>
         </div>
       </div>
-      <Link
-        to="/dashboard/create-product"
-        className="px-3 py-2 bg-blue-500 text-white rounded-sm">
-        Tạo Sản Phẩm
-      </Link>
       {!isFetching && data?.products.length > 0 ? (
         <>
           <div className="mt-5 w-full bg-white shadow-lg rounded-sm border border-gray-200">
