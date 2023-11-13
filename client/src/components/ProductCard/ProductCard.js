@@ -50,7 +50,7 @@ export const ProductCard = ({ pro, homepage }) => {
               alt=""
               className="w-full h-[300px] object-cover"
             />
-             <div class="absolute top-0 right-[-100%] h-full w-full overflow-hidden bg-[rgba(0,0,0,0.4)] transition-all duration-1000 ease-in-out group-hover:right-0"></div>
+              <div className="absolute top-0 right-[-100%] h-full w-full overflow-hidden bg-[rgba(0,0,0,0.4)] transition-all duration-1000 ease-in-out group-hover:right-0"></div>
           </div>
           <div className="mt-3 text-lg font-nomal uppercase hover:text-blue-400 transition-all duration-500 ease-in-out">
             {pro.title}
