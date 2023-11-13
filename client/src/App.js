@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./App.scss";
 import { Login } from "./components/Login/Login";
+import { ProtectChangeRoute } from "./components/ProtectChangeRoute/ProtectCHnageRoute";
 import AutoScrollToTop from "./components/ScrollToTop/AutoScrollToTop";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { LayoutLogin } from "./layout/layoutLogin";
@@ -35,7 +36,7 @@ import { UserRouteProtect } from "./Route/UserRoute/UserRoute";
 const App = () => {
   return (
     <>
-    <ScrollToTop></ScrollToTop>
+      <ScrollToTop></ScrollToTop>
       <AutoScrollToTop>
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
