@@ -91,7 +91,7 @@ export const getProductsByQuery = asyncHandler(async (req, res) => {
       const page = req.query.page * 1 || 1;
       const limit = 7;
       const skip = (page - 1) * limit;
-      queryCommand = queryCommand.skip(skip).limit(limit).sort("-updatedAt");
+      queryCommand = queryCommand.skip(skip).limit(limit);
     }
     //pagination
     queryCommand.exec(async (err, result) => {
