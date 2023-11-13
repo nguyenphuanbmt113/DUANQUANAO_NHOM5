@@ -9,7 +9,6 @@ import Quantity from "../Quatity/Quatity";
 import { DetailImage } from "./DetailImage";
 import { ProductLoader } from "./ProductLoader";
 export const DetailProductCard = ({ product, isLoading }) => {
-  console.log(">>>>>product:", product);
   const [sizesState, setSizesState] = useState(
     product?.sizes?.length > 0 && product?.sizes[0].name
   );
