@@ -10,12 +10,17 @@ import {
 
 export const Product = () => {
   let { page } = useParams();
+  const [params, setParams] = useState({
+    page,
+    sort: "-updatedAt",
+  });
+  console.log("params:", params);
   const [keyword, setKeyWord] = useState("");
   if (!page) {
     page = 1;
   }
   const navigate = useNavigate();
-  const { data, isFetching } = useGetProductQuery({ page });
+  const { data, isFetching, refetch } = useGetProductQuery(params);
   const [deleteProduct] = useDeleteProductMutation();
   const handleUpdate = (dataUpdate) => {
     navigate(`/dashboard/product/edit/${dataUpdate._id}`);
@@ -27,20 +32,34 @@ export const Product = () => {
   };
    //search
    const tosearch = () => {
-
-   }
+    setParams({
+      ...params,
+      title: keyword,
+    });
+    refetch();
+  };
    useEffect(() => {
- 
-   }, [])
+    setParams({
+      ...params,
+      page,
+    });
+  }, [page]);
+  const filterDay = (e) => {
+    setParams({
+      ...params,
+      sort: e.target.value,
+    });
+    refetch();
+  };
   return (
     <div>
         <div className="flex items-center gap-4">
         <Link
           to="/dashboard/create-product"
-          className="px-3 py-2 bg-blue-500 text-white rounded-sm">
+          className="px-3 py-2 bg-blue-500 text-white rounded-md">
           Tạo Sản Phẩm
         </Link>
-        <div className="w-[300px] h-[40px] bg-white px-3 relative">
+        <div className="w-[300px] h-[40px] bg-white px-3 relative rounded-md">
           <input
             type="text"
             className="w-full h-full uppercase"
@@ -49,9 +68,21 @@ export const Product = () => {
             onChange={(e) => setKeyWord(e.target.value)}
           />
           <div
-            className="absolute top-[50%] right-3 -translate-y-1/2"
+             className="absolute top-[50%] right-3 -translate-y-1/2 cursor-pointer"
             onClick={tosearch}>
             <BsSearch></BsSearch>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="lg:w-60 h-[40px]">
+            <select
+              data-te-select-init
+              className="h-full w-full px-1 rounded-md"
+              onChange={(e) => filterDay(e)}>
+              <option value="1">Sắp xếp theo ngày</option>
+              <option value="-updatedAt">mới nhất - muộn nhất</option>
+              <option value="updateAt">muộn nhất - mới nhất</option>
+            </select>
           </div>
         </div>
       </div>

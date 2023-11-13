@@ -3,7 +3,6 @@ import { useGetReviewQuery } from "../../service/orderUserService";
 import moment from "moment";
 export const CommentSection = ({ productId }) => {
   const { data } = useGetReviewQuery(productId);
-  console.log("data:", data);
   const dataReview = data?.productReviews;
   return (
     <>

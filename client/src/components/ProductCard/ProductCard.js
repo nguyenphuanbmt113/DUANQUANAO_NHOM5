@@ -3,7 +3,6 @@ import currencyFormatter from "currency-formatter";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 export const ProductCard = ({ pro, homepage }) => {
-  console.log("pro:", pro)
   const percentage = pro.discount / 100;
   const discountPrice = pro.price - pro.price * percentage;
   let result = 0;

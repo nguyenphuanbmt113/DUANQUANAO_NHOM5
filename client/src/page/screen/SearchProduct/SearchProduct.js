@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { Footer } from "../../../components/Footer/Footer";
 import { Skeleton } from "../../../components/LoadingSkeleton/Skeleton";
 import { TextSketelon } from "../../../components/LoadingSkeleton/TextSketelon";
 import { Thumbnail } from "../../../components/LoadingSkeleton/Thumbnail";
@@ -58,6 +59,7 @@ export const SearchProduct = () => {
           </span>
         </div>
       )}
+       <Footer></Footer>
     </>
   );
 };

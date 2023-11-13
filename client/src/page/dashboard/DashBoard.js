@@ -15,7 +15,7 @@ export const DashBoard = () => {
     <div className="flex bg-gray-300">
       {show && (
         <div
-          className={` flex-none md:block md:w-[250px] md:relative h-[100vh] bg-white`}>
+        className={`transition-all flex-none md:block md:w-[250px] md:relative h-[100vh] bg-white`}>
           <Sidebar></Sidebar>
         </div>
       )}
