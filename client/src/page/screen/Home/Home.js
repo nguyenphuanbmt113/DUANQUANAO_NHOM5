@@ -3,6 +3,7 @@ import { CategoryProduct } from "../../../components/Category/CategoryProduct";
 import { Footer } from "../../../components/Footer/Footer";
 import { HomeSkeleton } from "../../../components/HomeSkeleton/HomeSkeleton";
 import { NavHome } from "../../../components/NavHome/NavHome";
+import ScrollToTop from "../../../components/ScrollToTop/ScrollToTop";
 import { SwiperSlider } from "../../../components/Swiper/Swiper";
 import { useGetRanCategoryQuery } from "../../../service/categoryService";
 import { HomeProduct } from "../HomeProduct/HomeProduct";
@@ -11,7 +12,7 @@ export const Home = () => {
   const { data, isFetching } = useGetRanCategoryQuery();
 
   return (
-    <div>
+    <div className="relative">
       <div>
       <NavHome></NavHome>
         <div>
@@ -38,6 +39,7 @@ export const Home = () => {
       <div>
         <Footer></Footer>
       </div>
+      <ScrollToTop></ScrollToTop>
     </div>
   );
 };

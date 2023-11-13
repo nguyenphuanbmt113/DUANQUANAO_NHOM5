@@ -13,7 +13,6 @@ export const OrderUser = () => {
     page,
     userId: dataUser._id,
   });
-  console.log("data:", data);
   return (
     <>
     {isFetching ? (

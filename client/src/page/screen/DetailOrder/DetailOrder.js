@@ -11,9 +11,7 @@ import { discount } from "../../../ulties/discount";
 export const DetailOrder = () => {
   const { id } = useParams();
   const { data, isFetching } = useGetDetailOrderUserQuery(id);
-  console.log("data:", data);
   const [postReview, response] = usePostReviewMutation();
-  console.log("response:", response);
   const [state, setState] = useState({
     rating: 0,
     mes: "",

@@ -6,7 +6,6 @@ export const DetailImage = ({ product }) => {
     `/images/${product.image2}`,
     `/images/${product.image3}`,
   ];
-  console.log("product image:", product);
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const openImageViewer = useCallback((index) => {

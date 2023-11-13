@@ -15,10 +15,11 @@ export const productService = createApi({
   endpoints: (builder) => ({
     createProduct: builder.mutation({
       query: (data) => {
+        console.log("data:", data);
         return {
-          url: `/create`,
-          method: "POST",
-          body: data,
+          url: `/get-product`,
+          method: "GET",
+          params: { ...data },
         };
       },
       invalidatesTags: ["product"],

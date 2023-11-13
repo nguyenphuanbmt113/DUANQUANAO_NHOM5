@@ -15,7 +15,6 @@ export const Account = () => {
   const { data, isSuccess } = useVerifyPaymentQuery(id, {
     skip: id ? false : true,
   });
-  console.log("data:", data);
   useEffect(() => {
     if (isSuccess) {
       localStorage.removeItem("cart");

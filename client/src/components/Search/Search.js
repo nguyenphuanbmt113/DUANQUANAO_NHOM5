@@ -20,6 +20,14 @@ export const Search = () => {
     navigate(`/search/${value}/1`);
     dispatch(toggleSearchbar());
   };
+  const entertosearch = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      navigate(`/search/${value}/1`);
+      dispatch(toggleSearchbar());
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black/60 z-[10] w-full h-full">
       <div className="flex items-center justify-center">
@@ -29,6 +37,7 @@ export const Search = () => {
             className="w-full h-[60px] px-5 py-2 outline-none bg-white rounded-md uppercase"
             placeholder="Tìm kiếm sản phẩm"
             value={value}
+            onClick={entertosearch}
             onChange={handleChangeInput}
           />
           <div

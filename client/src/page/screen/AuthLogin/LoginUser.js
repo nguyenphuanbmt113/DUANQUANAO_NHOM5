@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,6 +7,7 @@ import { setAccessTokenUser } from "../../../redux/reducers/authReducer";
 import { useCreateLoginUserMutation } from "../../../service/authJson";
 import "./AuthUser.scss";
 export const LoginUser = () => {
+  const [isFormIncomplete, setIsFormIncomplete] = useState(true);
   const { state, handleChangeState } = UseForm({
     email: "",
     password: "",
@@ -29,6 +30,15 @@ export const LoginUser = () => {
   }, [response?.error?.data, response.isError]);
   const handleSubmit = () => {
     loginUser(state);
+  };
+  window.onbeforeunload = (event) => {
+    const e = event || window.event;
+    e.preventDefault();
+    alert("The window is closing now!");
+    if (e) {
+      e.returnValue = "";
+    }
+    return "";
   };
   return (
     <>

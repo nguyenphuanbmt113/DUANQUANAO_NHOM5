@@ -9,7 +9,6 @@ import Quantity from "../Quatity/Quatity";
 import { DetailImage } from "./DetailImage";
 import { ProductLoader } from "./ProductLoader";
 export const DetailProductCard = ({ product, isLoading }) => {
-  console.log(">>>>>product:", product);
   const [sizesState, setSizesState] = useState(
     product?.sizes?.length > 0 && product?.sizes[0].name
   );
@@ -143,7 +142,10 @@ export const DetailProductCard = ({ product, isLoading }) => {
             <div className="text-lg pb-3 border-b border-gray-300 font-bold">
               Mô tả về sản phẩm
             </div>
-            <div className="mt-4" dangerouslySetInnerHTML={{ __html: product.description }} />
+            <div
+              className="mt-4"
+              dangerouslySetInnerHTML={{ __html: product.description }}
+            />
           </div>
            <div className="p-3 mt-4 bg-white rounded-md">
             <CommentSection productId={product._id}></CommentSection>

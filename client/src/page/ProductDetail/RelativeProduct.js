@@ -7,7 +7,6 @@ import { useGetProductCategoryQuery } from "../../service/productService";
 
 export const RelativeProduct = ({ name }) => {
   const { data, isLoading } = useGetProductCategoryQuery({ name });
-  console.log("data:", data);
   return (
     <div className="">
       {isLoading ? (
@@ -27,10 +26,12 @@ export const RelativeProduct = ({ name }) => {
                  <div className="font-bold mt-4 p-3 bg-white rounded-md text-lg">
             Sản phẩm có liên quan
           </div>
-        <div className="my-container grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {data.product.slice(0, 8).map((pro) => (
-              <ProductCard key={pro._id} pro={pro}></ProductCard>
-            ))}
+          <div className="px-3 pb-6">
+            <div className="my-container grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {data.product.slice(0, 8).map((pro) => (
+                <ProductCard key={pro._id} pro={pro}></ProductCard>
+              ))}
+            </div>
           </div>
         </div>
       ) : (

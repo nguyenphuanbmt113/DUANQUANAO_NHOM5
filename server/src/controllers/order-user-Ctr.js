@@ -1,5 +1,5 @@
 import express from "express";
-import * as orderCtr from "../controllers/orde";
+import * as orderCtr from "../controllers/orderCtr";
 import { verifyAccess, isAdmin } from "../middleware/verifyAccess";
 const router = express.Router();
 

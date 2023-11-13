@@ -10,7 +10,7 @@ export const HomeProduct = ({ category, homepage }) => {
   return (
     <div className={"bg-white p-5 -mx-5 rounded-lg border border-[#d2d2d2]]"}>
       <div className="flex items-center justify-between mb-5">
-        <span className="capitalize text-xl  font-v3">{category.title}</span>
+      <span className="uppercase text-blue-500 font-bold text-xl  font-v3">{category.title}</span>
         <Link to={`/category-product/${category.title}`}>
           <span className="text-md ff">See All</span>
         </Link>

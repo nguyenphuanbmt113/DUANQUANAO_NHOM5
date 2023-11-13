@@ -44,7 +44,6 @@
 }
 .font-v3 {
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
   font-size: 20px;
 }
 .font-v1 {
@@ -78,4 +77,23 @@
 }
 .ReactSimpleImageViewer {
   background-color: #000000a8 !important;
+}
+//cart hover
+.card-body {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: -100%;
+  position: absolute;
+  background: #1f3d4738;
+  backdrop-filter: blur(5px);
+  color: #fff;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 2s;
+}
+.card:hover .card-body {
+  right: 0;
 }

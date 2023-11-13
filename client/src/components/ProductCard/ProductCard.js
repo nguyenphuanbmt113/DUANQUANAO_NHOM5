@@ -3,7 +3,6 @@ import currencyFormatter from "currency-formatter";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 export const ProductCard = ({ pro, homepage }) => {
-  console.log("pro:", pro)
   const percentage = pro.discount / 100;
   const discountPrice = pro.price - pro.price * percentage;
   let result = 0;
@@ -44,15 +43,18 @@ export const ProductCard = ({ pro, homepage }) => {
       !homepage && "bg-white rounded-md p-5 border border-[#d2d2d2]"
     }`}>
       <Link to={`/product/${pro._id}`}>
-        <div className="w-full" key={pro._id}>
-          <div className="w-full">
+      <div className="w-full group overflow-hidden" key={pro._id}>
+          <div className="w-full relative ">
             <img
               src={`/images/${pro.image1}`}
               alt=""
               className="w-full h-[300px] object-cover"
             />
+              <div className="absolute top-0 right-[-100%] h-full w-full overflow-hidden bg-[rgba(0,0,0,0.4)] transition-all duration-1000 ease-in-out group-hover:right-0"></div>
           </div>
-          <div className="mt-3 text-lg font-nomal uppercase">{pro.title}</div>
+          <div className="mt-3 text-lg font-nomal uppercase hover:text-blue-400 transition-all duration-500 ease-in-out">
+            {pro.title}
+          </div>
           <div className="flex items-center">
             <div className="flex items-center space-x-2 mb-1">
               <span>{finalResult}</span>

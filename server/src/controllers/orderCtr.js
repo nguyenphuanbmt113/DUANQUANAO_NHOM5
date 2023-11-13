@@ -44,8 +44,6 @@ export const getDetailOrder = asyncHandler(async (req, res) => {
 });
 export const addReviewComment = asyncHandler(async (req, res) => {
   const { rating, mes, userId, productId, orderId } = req.body;
-  console.log("orderId:", orderId);
-  console.log("productId:", productId);
   if (!rating) {
     throw new Error("Thiếu rating start");
   }
@@ -72,7 +70,6 @@ export const addReviewComment = asyncHandler(async (req, res) => {
 });
 export const getReview = asyncHandler(async (req, res) => {
   const { productId } = req.query;
-  console.log("productId:", productId);
   if (!productId) throw new Error("Missing query input");
   const productReviews = await Review.find({
     product: productId,
