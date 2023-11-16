@@ -129,7 +129,12 @@ export const UserDashboard = () => {
                                                                     />
                                                                 </div>
                                                             </td>
-                                                            <td className="p-2 whitespace-nowrap text-black text-md flex items-center gap-3">
+                                                            <td
+                                                                className={`p-2 whitespace-nowrap text-black text-md flex items-center gap-3  ${
+                                                                    item.isBlock &&
+                                                                    "pointer-events-none opacity-50"
+                                                                }`}
+                                                            >
                                                                 <div className="cursor-pointer px-2 py-1 bg-blue-500 text-white rounded-sm">
                                                                     Chỉnh sửa
                                                                 </div>
