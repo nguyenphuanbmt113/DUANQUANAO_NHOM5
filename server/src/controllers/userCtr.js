@@ -49,7 +49,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     email,
     role: "user",
   });
-  
+
   if (user && (await user.comparePassword(password))) {
     //tuserạo token
     const access_token = await createToken(user._id, user.role);
@@ -103,4 +103,58 @@ export const resetPassword = asyncHandler(async (req, res) => {
     success: user ? true : false,
     mes: user ? "Updated password" : "Something went wrong",
   });
+});
+export const getUserQuery = asyncHandler(async (req, res) => {
+  try {
+    const queries = { ...req.query };
+    const excludeFields = ["sort", "page"];
+    excludeFields.forEach((ele) => {
+      delete queries[ele];
+    });
+    let option = {};
+    if (queries?.name) {
+      option = {
+        ...option,
+        $or: [
+          {
+            firstname: { $regex: queries.name, $options: "i" },
+          },
+          {
+            lastname: { $regex: queries.name, $options: "i" },
+          },
+        ],
+      };
+    }
+    console.log("option:", option);
+    let queryCommand = User.find(option);
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      queryCommand = queryCommand.sort(sortBy);
+    }
+
+    if (req.query.page) {
+      const page = req.query.page * 1 || 1;
+      const limit = 7;
+      const skip = (page - 1) * limit;
+      queryCommand = queryCommand.skip(skip).limit(limit);
+    }
+    //pagination
+    queryCommand.exec(async (err, result) => {
+      if (err) throw new Error(err.message);
+      //số lượng sản phản thỏa mản đk
+      const counts = await User.find(option).countDocuments();
+      const limit = 7;
+      const totalPage = Math.ceil(counts / limit);
+      return res.status(200).json({
+        success: result ? true : false,
+        user: result ? result : "cannot get user",
+        counts,
+        totalPage,
+      });
+    });
+  } catch (err) {
+    if (err.name === "CastError")
+      return new Error(`Invalid ${err.path}: ${err.value}`);
+    return err;
+  }
 });

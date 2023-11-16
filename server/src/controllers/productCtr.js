@@ -83,7 +83,7 @@ export const getProductsByQuery = asyncHandler(async (req, res) => {
     }
     //fields, limited
     if (req.query.fields) {
-      const fieldsBy = req.query.fields.split(" ").join(" ")  //string ->split->array   //array->join->string;
+      const fieldsBy = req.query.fields.split(" ").join(" "); //string ->split->array   //array->join->string;
       queryCommand = queryCommand.select(fieldsBy);
     }
 
@@ -282,3 +282,4 @@ export const searchProduct = asyncHandler(async (req, res) => {
     });
   }
 });
+export const getSearchBar = asyncHandler(async (req, res) => {});
