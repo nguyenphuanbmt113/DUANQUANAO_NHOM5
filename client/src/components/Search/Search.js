@@ -1,11 +1,13 @@
+import currencyFormatter from "currency-formatter";
+import React, { useState } from "react";
 import React, { useState, useEffect } from "react";
 import { BsSearch } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { toggleSearchbar } from "../../redux/reducers/globalReducer";
 import { useGetProductSearchQuery } from "../../service/productService";
-import currencyFormatter from "currency-formatter";
 
 export const Search = () => {
   const dispatch = useDispatch();
@@ -33,6 +35,10 @@ export const Search = () => {
       navigate(`/search/${value}/1`);
       dispatch(toggleSearchbar());
     }
+  };
+  const handlerClickProduct = (item) => {
+    navigate(`/product/${item._id}`);
+    dispatch(toggleSearchbar());
   };
 
   return (
@@ -63,35 +69,37 @@ export const Search = () => {
           {data &&
             data.product &&
             data.product.map((item) => {
+              console.log("item:", item);
               const percentage = item.discount / 100;
               const discountPrice = item.price - item.price * percentage;
               return (
-                <Link to={`/search/${value}/1`}>
-                  <div className="flex items-start gap-3 p-3 rounded-md border-b">
-                    <div className="w-[50px]">
-                      <img
-                        src={`/images/${item.image1}`}
-                        alt=""
-                        className="w-full h-full rounded-md"
-                      />
-                    </div>
-                    <div className="text-sm">
-                      <span>{item.title}</span>
-                      <div className="flex items-center justify-between">
-                        <div className="mt-2 text-sm font-nomal font-medium">
-                          {currencyFormatter.format(discountPrice, {
-                            code: "USD",
-                          })}
-                        </div>
-                        <div className="mt-3 text-sm font-nomal line-through font-medium">
-                          {currencyFormatter.format(item.price, {
-                            code: "USD",
-                          })}
-                        </div>
+                <div
+                  className="flex items-start gap-3 p-3 rounded-md border-b"
+                  onClick={() => handlerClickProduct(item)}
+                >
+                  <div className="w-[50px]">
+                    <img
+                      src={`/images/${item.image1}`}
+                      alt=""
+                      className="w-full h-full rounded-md"
+                    />
+                  </div>
+                  <div className="text-sm">
+                    <span>{item.title}</span>
+                    <div className="flex items-center justify-between">
+                      <div className="mt-2 text-sm font-nomal font-medium">
+                        {currencyFormatter.format(discountPrice, {
+                          code: "USD",
+                        })}
+                      </div>
+                      <div className="mt-3 text-sm font-nomal line-through font-medium">
+                        {currencyFormatter.format(item.price, {
+                          code: "USD",
+                        })}
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
         </div>

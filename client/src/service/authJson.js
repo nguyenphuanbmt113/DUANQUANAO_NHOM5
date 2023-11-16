@@ -25,7 +25,6 @@ export const authJson = createApi({
     }),
     resetPassword: builder.mutation({
       query: (data) => {
-
         return {
           url: `/resetpassword`,
           method: "PUT",
@@ -47,10 +46,18 @@ export const authJson = createApi({
         body: data,
       }),
     }),
+    getUsers: builder.query({
+      query: (data) => ({
+        url: `/get-users`,
+        method: "GET",
+        params: data,
+      }),
+    }),
   }),
 });
 
 export const {
+  useGetUsersQuery,
   useCreateLoginMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,

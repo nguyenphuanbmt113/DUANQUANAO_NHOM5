@@ -96,3 +96,6 @@
 .card:hover .card-body {
   right: 0;
 }
+.resnavbar {
+  @apply sm:bg-white sm:absolute sm:top-0 sm:right-0 sm:z-[1000] sm:flex sm:flex-col sm:gap-3 sm:w-[300px] p-5 items-start h-[100vh];
+}

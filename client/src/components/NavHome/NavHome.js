@@ -28,7 +28,7 @@ export const NavHome = ({ detailpage }) => {
 
   return (
     <>
-      <div className={`header h-[84px] bg-white`}>
+      <div className={`header h-[84px] bg-white relative`}>
         <div className="h-[100%] max-w-[1240px] mx-auto px-5 flex items-center justify-between">
           <nav className="flex items-center gap-3">
             <Link to="/" className={`relative`}>
