@@ -90,21 +90,41 @@ export const UserDashboard = () => {
                                                     (item, index) => (
                                                         <tr key={index}>
                                                             <td className="p-2 whitespace-nowrap text-black text-md">
-                                                                <div className="text-left font-medium text-gray-500">
+                                                                <div
+                                                                    className={`p-2 whitespace-nowrap text-black text-md ${
+                                                                        item.isBlock &&
+                                                                        "pointer-events-none opacity-50"
+                                                                    }`}
+                                                                >
                                                                     {
                                                                         item?.firstname
                                                                     }
                                                                 </div>
                                                             </td>
-                                                            <td className="p-2 whitespace-nowrap text-black text-md">
-                                                                <div className="text-left font-medium text-gray-500">
+                                                            <td
+                                                                className={`p-2 whitespace-nowrap text-black text-md ${
+                                                                    item.isBlock &&
+                                                                    "pointer-events-none opacity-50"
+                                                                }`}
+                                                            >
+                                                                <div
+                                                                    className={`p-2 whitespace-nowrap text-black text-md ${
+                                                                        item.isBlock &&
+                                                                        "pointer-events-none opacity-50"
+                                                                    }`}
+                                                                >
                                                                     {
                                                                         item?.lastname
                                                                     }
                                                                 </div>
                                                             </td>
                                                             <td className="p-2 whitespace-nowrap text-black text-md">
-                                                                <div className="text-left font-medium text-gray-500">
+                                                                <div
+                                                                    className={`p-2 whitespace-nowrap text-black text-md ${
+                                                                        item.isBlock &&
+                                                                        "pointer-events-none opacity-50"
+                                                                    }`}
+                                                                >
                                                                     {
                                                                         item?.email
                                                                     }

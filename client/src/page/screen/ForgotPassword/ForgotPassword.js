@@ -32,7 +32,7 @@ export const ForgotPassword = () => {
                     />
                 </div>
                 <div
-                    className="mt-4 px-3 py-2 bg-yellow-500 text-white inline-block cursor-pointer"
+                    className="mt-4 px-3 py-2 bg-red-500 text-white inline-block cursor-pointer"
                     onClick={handleSubmit}
                 >
                     Submit
