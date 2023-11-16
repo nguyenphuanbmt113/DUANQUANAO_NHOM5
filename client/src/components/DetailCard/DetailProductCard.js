@@ -33,7 +33,7 @@ export const DetailProductCard = ({ product, isLoading }) => {
     newProduct.size = sizesState;
     newProduct.color = colorsState;
     newProduct.quantity = quantity;
-    
+
     const cart = localStorage.getItem("cart");
     const cartItems = cart ? JSON.parse(cart) : [];
     const checkItem = cartItems.find((item) => item._id === newProduct._id);
@@ -59,7 +59,7 @@ export const DetailProductCard = ({ product, isLoading }) => {
             </div>
             <div className="w-full md:w-[60%] md:px-5 md:mx-5 sm:w-full">
               <div className="pb-4">
-                <span className="mt-3 text-2xl font-medium capitalize text-black mb-1">
+                <span className="inline-block pt-3 text-2xl font-medium capitalize text-black mb-1">
                   {product.title}
                 </span>
                 <div className="flex items-center gap-5">
@@ -83,10 +83,12 @@ export const DetailProductCard = ({ product, isLoading }) => {
                           className={`px-3 py-2 m-1 border border-gray-300 rounded cursor-pointer ${
                             sizesState === size.name && "bg-gray-400 text-white"
                           }`}
-                          key={size.name}>
+                          key={size.name}
+                        >
                           <span
                             className={`text-sm font-semibold uppercase`}
-                            onClick={() => setSizesState(size.name)}>
+                            onClick={() => setSizesState(size.name)}
+                          >
                             {size.name}
                           </span>
                         </div>
@@ -103,15 +105,18 @@ export const DetailProductCard = ({ product, isLoading }) => {
                     {product.colors.map((col) => (
                       <div
                         key={col.color}
-                        className={`border border-gray-300 m-1 rounded-full cursor-pointer`}>
+                        className={`border border-gray-300 m-1 rounded-full cursor-pointer`}
+                      >
                         <span
                           onClick={() => setColorsState(col.color)}
                           className={`min-w-[40px] min-h-[40px] rounded-full flex items-center justify-center`}
-                          style={{ backgroundColor: col.color }}>
+                          style={{ backgroundColor: col.color }}
+                        >
                           {colorsState === col.color && (
                             <AiOutlineCheck
                               size={20}
-                              color="white"></AiOutlineCheck>
+                              color="white"
+                            ></AiOutlineCheck>
                           )}
                         </span>
                       </div>
@@ -123,16 +128,18 @@ export const DetailProductCard = ({ product, isLoading }) => {
                 <div className="w-full sm:w-6/12 p-3">
                   <Quantity quantity={quantity} inc={inc} dec={dec} />
                 </div>
-                <div className="flex gap-3 w-full sm:w-6/12 p-3">
+                <div className="uppercase flex gap-3 w-full sm:w-6/12 p-3">
                   <button
-                    className="px-4 py-2 bg-green-500 text-white"
-                    onClick={addtocart}>
+                    className="h-[50px] px-3 bg-green-500 text-white"
+                    onClick={addtocart}
+                  >
                     Thêm vào giỏ hàng
                   </button>
                   <button
-                    className="px-4 py-2 bg-blue-500 text-white"
-                    onClick={addtocart}>
-                   Mua ngay
+                    className="h-[50px] px-3 bg-blue-500 text-white"
+                    onClick={addtocart}
+                  >
+                    Mua ngay
                   </button>
                 </div>
               </div>
@@ -147,7 +154,7 @@ export const DetailProductCard = ({ product, isLoading }) => {
               dangerouslySetInnerHTML={{ __html: product.description }}
             />
           </div>
-           <div className="p-3 mt-4 bg-white rounded-md">
+          <div className="p-3 mt-4 bg-white rounded-md">
             <CommentSection productId={product._id}></CommentSection>
           </div>
         </>
