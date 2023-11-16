@@ -6,6 +6,7 @@ import { logoutUser } from "../../redux/reducers/authReducer";
 import { toggleSearchbar } from "../../redux/reducers/globalReducer";
 import { Search } from "../Search/Search";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
+import DarkMode from "../DarkMode/DarkMode";
 export const NavHome = ({ detailpage }) => {
   const dispatch = useDispatch();
   const { accessTokenUser } = useSelector((state) => state.authReducer);
@@ -30,15 +31,15 @@ export const NavHome = ({ detailpage }) => {
       <div className={`header h-[84px] bg-white`}>
         <div className="h-[100%] max-w-[1240px] mx-auto px-5 flex items-center justify-between">
           <nav className="flex items-center gap-3">
-            <Link
-              to="/"
-              className={`relative`}>
+            <Link to="/" className={`relative`}>
               <img
                 src="https://www.coolmate.me/images/logo-coolmate-birthday.svg"
                 alt=""
                 className=""
               />
-              <span className="absolute w-[30px] h-[30px] rounded-full bg-red-500 text-white flex items-center justify-center  top-0 right-[-30px] text-[10px]">fake</span>
+              <span className="absolute w-[30px] h-[30px] rounded-full bg-red-500 text-white flex items-center justify-center  top-0 right-[-30px] text-[10px]">
+                fake
+              </span>
             </Link>
           </nav>
           {!accessTokenUser ? (
@@ -66,6 +67,9 @@ export const NavHome = ({ detailpage }) => {
               <span className="cursor-pointer" onClick={handleLogout}>
                 Hỗ trợ khách hàng
               </span>
+              <div>
+                <DarkMode></DarkMode>
+              </div>
               <span className="cursor-pointer" onClick={handleLogout}>
                 Đăng Xuất
               </span>

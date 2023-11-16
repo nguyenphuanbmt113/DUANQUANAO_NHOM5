@@ -11,8 +11,7 @@ export const Search = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [value, setValue] = useState("");
-  console.log("value:", value);
-  const { data, isFetching, refetch } = useGetProductSearchQuery({
+  const { data } = useGetProductSearchQuery({
     keyword: value,
   });
 
@@ -20,10 +19,6 @@ export const Search = () => {
   const handleClose = () => {
     dispatch(toggleSearchbar());
   };
-
-  useEffect(() => {
-    refetch();
-  }, [refetch, value]);
 
   const handleChangeInput = (e) => {
     setValue(e.target.value);
