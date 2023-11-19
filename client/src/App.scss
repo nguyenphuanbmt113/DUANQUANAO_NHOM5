@@ -1,33 +1,56 @@
 html {
-  box-sizing: border-box;
-  background: #d5d5d5;
+    box-sizing: border-box;
+    background: #d5d5d5;
+    font-family: "Poppins", sans-serif;
 }
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 input,
 textarea,
 select,
 button {
-  outline: none;
+    outline: none;
 }
 input {
-  line-height: normal;
+    line-height: normal;
 }
 label,
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 img {
-  display: block;
-  max-width: 100%;
+    display: block;
+    max-width: 100%;
+}
+:root {
+    --font-color: #333;
+    --background-color: #d5d5d5;
+    --background-color-header: #ffffff;
+    --link-color: cornflowerblue;
+    --font-color-f1: rgb(27, 27, 27);
+}
+[data-theme="dark"] {
+    --font-color: #333;
+    --background-color: #4f4f4f;
+    --background-color-header: #202020;
+    --link-color: lightblue;
+    --font-color-f1: white;
+}
+body {
+    background-color: var(--background-color);
+    color: var(--font-color);
+}
+.header {
+    background-color: var(--background-color-header);
+    color: var(--font-color-f1);
 }

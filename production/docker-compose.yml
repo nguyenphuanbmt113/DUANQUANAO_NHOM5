@@ -1,0 +1,40 @@
+version: "3.6"
+# Deploys MongoDB with customization scripts and container with Mongo client
+# https://fabianlee.org/2018/05/20/docker-using-docker-compose-to-link-a-mongodb-server-and-client/
+#
+# usage:
+# sudo docker-compose build
+# sudo docker-compose up
+
+services:
+  cuahangdb:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=cuahangshop
+      - MONGO_INITDB_ROOT_USERNAME=nguyenphuan
+      - MONGO_INITDB_ROOT_PASSWORD=anbmt113
+    expose:
+      - 27017
+
+  backend:
+    build:
+      context: ../server
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DB_PORT=27017
+      - DB_HOST=cuahangdb
+      - CLIENT_URL=http://localhost
+    ports:
+      - 7000:7000
+
+  nginx:
+    image: nginx:1.23.3
+    ports:
+      - 80:80
+    volumes:
+      - ../client/build:/usr/share/nginx/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
