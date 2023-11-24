@@ -14,7 +14,6 @@ export const Product = () => {
         page,
         sort: "-updatedAt",
     });
-    console.log("params:", params);
     const [keyword, setKeyWord] = useState("");
     if (!page) {
         page = 1;
@@ -22,6 +21,7 @@ export const Product = () => {
     const navigate = useNavigate();
     const { data, isFetching, refetch } = useGetProductQuery(params);
     const [deleteProduct] = useDeleteProductMutation();
+    
     const handleUpdate = (dataUpdate) => {
         navigate(`/dashboard/product/edit/${dataUpdate._id}`);
     };
