@@ -1,5 +1,4 @@
 import React from "react";
-import { AiFillCheckCircle } from "react-icons/ai";
 import { Link, NavLink } from "react-router-dom";
 import { sidebarMenu } from "../../ulties/menu";
 export const Sidebar = () => {
